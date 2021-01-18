@@ -1,11 +1,11 @@
 :root {
   --blanco: #ffffff;
-  --gris1: #edf2f6;
+  --gris1: #fff;
   --gris2: #2f3848;
   --gris3: #1a202d;
   --negro: #000000;
-  --headingFont: "Raleway", sans-serif;
-  --textFont: "Roboto", sans-serif;
+  --headingFont: 'Raleway', sans-serif;
+  --textFont: 'Roboto', sans-serif;
 }
 *,
 *:before,
@@ -20,7 +20,6 @@ html {
 body {
   min-height: 100%;
   background-color: var(--gris1);
-  font-size: 16px;
   font-size: 1.6rem;
   font-family: var(--textFont);
 }
@@ -57,11 +56,12 @@ a {
   margin-top: 2rem;
   font-family: var(--headingFont);
   padding: 1.5rem;
-  font-size: 1.4;
+  font-size: 1.8rem;
   font-weight: 400;
   border-radius: 0.5rem;
   border: none;
   transition: background-color 0.3s ease;
+  outline: none;
 }
 .btn:hover {
   cursor: pointer;
@@ -90,7 +90,50 @@ a {
   background-color: transparent;
 }
 
-@media (min-width: 768px) {
+.btn-eliminar {
+  background-color: #d64550;
+  color: #eee;
+  padding: 1rem 1.5rem;
+}
+
+.no-projects {
+  border-radius: 2rem;
+  border: 5px dotted #bbb;
+  width: 300px;
+  padding: 2rem 0;
+  margin: 0 auto;
+  color: #999;
+}
+
+.no-projects p {
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+}
+
+.no-projects div {
+  background-color: #aaa;
+  width: 90%;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  color: #e5e5e5;
+}
+
+.no-project-separator {
+  border-top: 1px solid #aaa;
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  margin: 2rem auto !important;
+}
+
+.no-project-button {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) {
   .contenedor-app {
     display: flex;
     min-height: 100vh;
@@ -100,14 +143,36 @@ a {
     background-color: var(--blanco);
     flex: 0 0 300px;
   }
+
   .seccion-principal {
     flex: 1;
   }
 }
 
+@media (max-width: 768px) {
+  .contenedor-app {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 100vh;
+    justify-content: flex-end;
+  }
+
+  .app-header {
+    padding: 2rem !important;
+  }
+
+  .mern-title {
+    display: none;
+  }
+
+  .not-found-container img {
+    max-width: 60%;
+  }
+}
+
 /* BARRA LATERAL */
 aside {
-  padding: 3rem;
+  padding: 2rem 3rem;
 }
 
 .formulario-nuevo-proyecto {
@@ -122,10 +187,19 @@ aside {
   color: var(--gris2);
 }
 .proyectos {
-  margin-top: 10rem;
+  margin-top: 6rem;
+  border-top: 1px solid #ccc;
 }
+
+.proyectos h2 {
+  margin: 2.8rem 0;
+}
+
 .listado-proyectos li {
   margin-bottom: 2rem;
+  background: linear-gradient(45deg, #dcdcdc, #cdcdcd);
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 .listado-proyectos li a {
   font-size: 1.4rem;
@@ -147,6 +221,13 @@ aside {
 .nombre-usuario span {
   font-weight: 900;
 }
+
+.nav-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-principal a {
   color: var(--blanco);
   text-decoration: none;
@@ -181,7 +262,22 @@ aside {
 
 /** TAREAS LISTADO **/
 .contenedor-tareas {
-  padding: 4rem;
+  padding: 2rem;
+}
+
+.select-project {
+  margin-bottom: 2rem;
+}
+
+.not-found-container {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-container img {
+  width: 100%;
 }
 
 .listado-tareas {
@@ -244,19 +340,28 @@ aside {
 .mensaje:hover {
   cursor: default;
 }
+
+.completo {
+  outline: none;
+}
+
+.incompleto {
+  outline: none;
+}
+
 .completo,
 .correcto {
-  background-color: rgba(154, 252, 154, 0.3);
-  color: var(--gris3);
+  background-color: #08a045;
+  color: #eee;
 }
 .incompleto {
-  background-color: rgba(255, 178, 178, 0.4);
-  color: var(--gris3);
+  background-color: #d64550;
+  color: #eee;
 }
 .error {
   max-width: 600px;
   margin: 2rem auto 0 auto;
-  background-color: rgb(170, 0, 0);
+  background-color: #e54b4b;
   color: var(--blanco);
 }
 
@@ -284,21 +389,22 @@ aside {
   height: 100vh;
   min-height: 800px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .contenedor-form {
-  padding: 5rem 3rem;
+  padding: 5rem 2rem;
   max-width: 500px;
-  width: 95%;
+  width: 90%;
   background-color: var(--blanco);
   border-radius: 1rem;
+  margin-top: 15rem;
 }
 
 .campo-form {
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   align-items: center;
 }
 .campo-form:last-of-type {
@@ -308,9 +414,9 @@ aside {
   flex: 0 0 100px;
   font-family: var(--textFont);
 }
-.campo-form input[type="password"],
-.campo-form input[type="email"],
-.campo-form input[type="text"] {
+.campo-form input[type='password'],
+.campo-form input[type='email'],
+.campo-form input[type='text'] {
   border: 1px solid #e1e1e1;
   padding: 1rem;
   flex: 1;
@@ -320,6 +426,7 @@ aside {
   margin-top: 2rem;
   display: block;
   opacity: 0.7;
+  text-align: center;
 }
 
 .alerta {
@@ -345,11 +452,11 @@ aside {
 }
 
 .alerta-ok {
-  background-color: rgb(109, 211, 109);
-  color: rgb(2, 103, 2);
+  background-color: #08a045;
+  color: #eee;
 }
 .alerta-error {
-  background-color: rgb(230, 78, 78);
+  background-color: #e54b4b;
   color: var(--blanco);
 }
 
