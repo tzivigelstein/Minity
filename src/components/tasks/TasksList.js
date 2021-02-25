@@ -3,6 +3,7 @@ import Task from './Task'
 import projectContext from '../../context/projects/projectContext'
 import tasksContext from '../../context/tasks/tasksContext'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import Bin from '../../Icons/Bin'
 
 const TasksList = () => {
   const taskContext = useContext(tasksContext)
@@ -49,7 +50,7 @@ const TasksList = () => {
       <h2>Project {actualProject.name}</h2>
       <ul className="listado-tareas">
         {tasksproject.length === 0 ? (
-          <li>There are no tasks. Try adding a new one.</li>
+          <li style={{ textAlign: 'center' }}>Ops... No tasks! Try adding a new one.</li>
         ) : (
           <TransitionGroup>
             {tasksproject.map(task => (
@@ -62,7 +63,7 @@ const TasksList = () => {
       </ul>
 
       <button type="button" className="btn btn-eliminar" onClick={onClick}>
-        Delete {actualProject.name} &times;
+        {actualProject.name} <Bin style={{ marginLeft: '0.5rem' }} width={16} height={16} />
       </button>
     </Fragment>
   )

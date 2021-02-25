@@ -15,7 +15,7 @@ const Bar = () => {
     <header className="app-header">
       {user ? (
         <p className="nombre-usuario">
-          Hello <span>{user.name}</span>
+          Hello<span style={{ margin: '0 0.5rem' }}>{user.name}</span> 👋
         </p>
       ) : null}
       <nav className="nav-principal">

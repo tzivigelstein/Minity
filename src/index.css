@@ -94,6 +94,10 @@ a {
   background-color: #d64550;
   color: #eee;
   padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
 }
 
 .no-projects {
@@ -217,6 +221,8 @@ aside {
   color: var(--blanco);
   font-size: 2.2rem;
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 .nombre-usuario span {
   font-weight: 900;
@@ -343,10 +349,12 @@ aside {
 
 .completo {
   outline: none;
+  padding: 8px !important;
 }
 
 .incompleto {
   outline: none;
+  padding: 8px !important;
 }
 
 .completo,
@@ -462,4 +470,6 @@ aside {
 
 .cerrar-sesion {
   color: var(--blanco);
+  background-color: #e54b4b;
+  padding: 0.7rem 1rem;
 }
