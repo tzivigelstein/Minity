@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import AlertContext from '../../context/alerts/alertContext'
 import AuthContext from '../../context/auth/authContext'
 import { Link } from 'react-router-dom'
+import Spinner from '../Spinner/Spinner'
 
 const SignUp = props => {
   const authContext = useContext(AuthContext)
-  const { msg, auth, registerUser } = authContext
+  const { msg, auth, registerUser, visualLoading } = authContext
 
   const alertContext = useContext(AlertContext)
   const { alert, showAlert } = alertContext
@@ -75,8 +76,8 @@ const SignUp = props => {
           {alert.msg}
         </div>
       ) : null}
-      <div className="contenedor-form sombra-dark">
-        <h1 data-cy="title">Signup</h1>
+      <div className="contenedor-form sombra">
+        <h1 data-cy="title">Join us 🤗</h1>
         <form data-cy="signup-form" onSubmit={onSubmit}>
           <div className="campo-form">
             <input
@@ -127,7 +128,9 @@ const SignUp = props => {
           </div>
 
           <div className="campo-form">
-            <input data-cy="submit-signup" type="submit" value="Signup" className="btn btn-primario btn-block" />
+            <button data-cy="submit-signup" type="submit" className="btn btn-primario btn-block">
+              {visualLoading ? <Spinner width={16} height={16} /> : 'Signup'}
+            </button>
           </div>
         </form>
         <Link data-cy="login-link" to={'/'} className="enlace-cuenta">

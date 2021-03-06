@@ -34,7 +34,7 @@ const List = () => {
       <>
         <p>It seems you don't have projects. Try creating a new one.</p>
         <div className="not-found-container">
-          <img src="/not-found.gif" alt="" />
+          <img src="/not-found.svg" alt="" />
         </div>
       </>
     )

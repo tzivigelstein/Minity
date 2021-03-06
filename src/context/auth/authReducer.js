@@ -1,7 +1,19 @@
-import { SUCCESS_REGISTER, ERROR_REGISTER, SUCCESS_LOGIN, ERROR_LOGIN, GET_USER, LOG_OUT } from '../../types'
+import {
+  SUCCESS_REGISTER,
+  ERROR_REGISTER,
+  SUCCESS_LOGIN,
+  ERROR_LOGIN,
+  GET_USER,
+  LOG_OUT,
+  VISUAL_LOADING,
+} from '../../types'
 
 export default (state, action) => {
   switch (action.type) {
+    case VISUAL_LOADING:
+      return {
+        visualLoading: true,
+      }
     case SUCCESS_REGISTER:
     case SUCCESS_LOGIN:
       localStorage.setItem('token', action.payload.token)
@@ -10,6 +22,7 @@ export default (state, action) => {
         auth: true,
         msg: null,
         loading: false,
+        visualLoading: false,
       }
     case GET_USER:
       return {
@@ -29,6 +42,7 @@ export default (state, action) => {
         msg: action.payload,
         auth: null,
         loading: false,
+        visualLoading: false,
       }
     default:
       return state

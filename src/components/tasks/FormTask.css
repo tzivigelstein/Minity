@@ -1,0 +1,37 @@
+.form_task_container {
+  padding: 1rem;
+  background-color: var(--blanco);
+}
+
+.form_task {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.input_container {
+  flex: 1 0 auto;
+}
+
+.input_container input {
+  box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+}
+
+.input_container input:focus {
+  box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);
+}
+
+.add_button_container {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+}
+
+.add_button_container:active {
+  box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);
+}

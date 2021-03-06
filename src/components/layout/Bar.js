@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import AuthContext from '../../context/auth/authContext'
+import Logout from '../../Icons/Logout'
 
 const Bar = () => {
   //Extraccion del estado
@@ -20,7 +21,7 @@ const Bar = () => {
       ) : null}
       <nav className="nav-principal">
         <button data-cy="logout" className="btn btn-blank cerrar-sesion" onClick={() => logOut()}>
-          Logout
+          <Logout width={16} height={16} />
         </button>
       </nav>
     </header>

@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alerts/alertContext'
 import AuthContext from '../../context/auth/authContext'
+import Spinner from '../Spinner/Spinner'
 
 const Login = props => {
   const authContext = useContext(AuthContext)
-  const { logIn, msg, auth } = authContext
+  const { logIn, msg, auth, visualLoading } = authContext
 
   const alertContext = useContext(AlertContext)
   const { alert, showAlert } = alertContext
@@ -59,9 +60,13 @@ const Login = props => {
 
   return (
     <div className="form-usuario">
-      {alert ? <div data-cy="alert" className={`alerta ${alert.category}`}>{alert.msg}</div> : null}
-      <div className="contenedor-form sombra-dark">
-        <h1 data-cy="titulo">Login</h1>
+      {alert ? (
+        <div data-cy="alert" className={`alerta ${alert.category}`}>
+          {alert.msg}
+        </div>
+      ) : null}
+      <div className="contenedor-form sombra">
+        <h1 data-cy="titulo">Welcome 👋</h1>
         <form data-cy="form-login" onSubmit={onSubmit}>
           <div className="campo-form">
             <input
@@ -88,7 +93,9 @@ const Login = props => {
           </div>
 
           <div className="campo-form">
-            <input data-cy="submit-login" type="submit" value="Login" className="btn btn-primario btn-block" />
+            <button data-cy="submit-login" type="submit" className="btn btn-primario btn-block">
+              {visualLoading ? <Spinner width={16} height={16} /> : 'Login'}
+            </button>
           </div>
         </form>
         <Link data-cy="get-account" to={'/signup'} className="enlace-cuenta">

@@ -22,3 +22,5 @@ export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
 export const ERROR_LOGIN = 'ERROR_LOGIN'
 export const GET_USER = 'GET_USER'
 export const LOG_OUT = 'LOG_OUT'
+
+export const VISUAL_LOADING = 'VISUAL_LOADING'

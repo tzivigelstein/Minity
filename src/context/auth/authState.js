@@ -3,7 +3,15 @@ import AuthContext from './authContext'
 import AuthReducer from './authReducer'
 import client from '../../config/axios'
 import tokenAuth from '../../config/token'
-import { SUCCESS_REGISTER, ERROR_REGISTER, SUCCESS_LOGIN, ERROR_LOGIN, GET_USER, LOG_OUT } from '../../types/index'
+import {
+  SUCCESS_REGISTER,
+  ERROR_REGISTER,
+  SUCCESS_LOGIN,
+  ERROR_LOGIN,
+  GET_USER,
+  LOG_OUT,
+  VISUAL_LOADING,
+} from '../../types/index'
 
 const AuthState = props => {
   const initialState = {
@@ -12,6 +20,7 @@ const AuthState = props => {
     user: null,
     msg: null,
     loading: true,
+    visualLoading: false,
   }
 
   const [state, dispatch] = useReducer(AuthReducer, initialState)
@@ -19,6 +28,9 @@ const AuthState = props => {
   //Registro
   const registerUser = async info => {
     try {
+      dispatch({
+        type: VISUAL_LOADING,
+      })
       const query = await client.post('/api/users', info)
       dispatch({
         type: SUCCESS_REGISTER,
@@ -53,7 +65,7 @@ const AuthState = props => {
         payload: query.data.user,
       })
     } catch (err) {
-      console.log(err.response)
+      console.log(err)
       dispatch({
         type: ERROR_LOGIN,
       })
@@ -63,6 +75,9 @@ const AuthState = props => {
   //Login
   const logIn = async info => {
     try {
+      dispatch({
+        type: VISUAL_LOADING,
+      })
       const query = await client.post('/api/auth', info)
       dispatch({
         type: SUCCESS_LOGIN,
@@ -96,6 +111,7 @@ const AuthState = props => {
         user: state.user,
         msg: state.msg,
         loading: state.loading,
+        visualLoading: state.visualLoading,
         registerUser,
         logIn,
         authUser,
