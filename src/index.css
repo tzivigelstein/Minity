@@ -168,7 +168,7 @@ aside {
 .formulario-nuevo-proyecto .input-text {
   border-bottom: 1px solid var(--gris2);
   border-radius: 0;
-  background-color: var(--gris1);
+  background-color: var(--blanco);
 }
 .formulario-nuevo-proyecto .input-text::placeholder {
   color: var(--gris2);
