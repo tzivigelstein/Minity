@@ -30,7 +30,6 @@ const Projects = () => {
             <div className="contenedor-tareas">{!loadingProjects && <TasksList />}</div>
           </>
         </div>
-        )
       </div>
     </>
   )
