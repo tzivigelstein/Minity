@@ -3,6 +3,7 @@ import Project from '../projects/Project'
 import projectContext from '../../context/projects/projectContext'
 import AlertContext from '../../context/alerts/alertContext'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import Spinner from '../Spinner/Spinner'
 
 const List = () => {
   const alertContext = useContext(AlertContext)
@@ -14,7 +15,7 @@ const List = () => {
 
   //Extraer valores del context
 
-  const { PROJECTS, getProjects, msg } = projectsContext
+  const { PROJECTS, getProjects, msg, loading } = projectsContext
 
   //useEffect para cargar los Proyectos en cuanto se cargue el componente
 
@@ -29,7 +30,7 @@ const List = () => {
 
   //Validacion del array PROJECTS
 
-  if (PROJECTS.length === 0)
+  if (PROJECTS.length === 0 && !loading)
     return (
       <>
         <p>It seems you don't have projects. Try creating a new one.</p>
@@ -38,6 +39,8 @@ const List = () => {
         </div>
       </>
     )
+
+  if (loading) return <Spinner width={20} color="#2f3848" />
 
   return (
     <ul className="listado-proyectos">

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import React, { useContext } from 'react'
 import Task from './Task'
 import projectContext from '../../context/projects/projectContext'
 import tasksContext from '../../context/tasks/tasksContext'
@@ -36,7 +36,7 @@ const TasksList = () => {
   }
 
   return (
-    <Fragment>
+    <>
       <h2 style={{ margin: '2rem', marginTop: 0 }}>Project {actualProject.name}</h2>
       {tasksproject.length === 0 ? (
         <div className="no_tasks_container">
@@ -45,20 +45,18 @@ const TasksList = () => {
         </div>
       ) : (
         <ul className="listado-tareas">
-          <TransitionGroup>
-            {tasksproject.map(task => (
-              <CSSTransition key={task._id} timeout={200} classNames="tarea">
-                <Task task={task} />
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
+          {tasksproject.map(task => (
+            <div key={task._id} classNames="tarea">
+              <Task task={task} />
+            </div>
+          ))}
         </ul>
       )}
 
       <button type="button" className="btn btn-eliminar" onClick={onClick}>
         {actualProject.name} <Bin style={{ marginLeft: '0.5rem' }} width={16} height={16} />
       </button>
-    </Fragment>
+    </>
   )
 }
 

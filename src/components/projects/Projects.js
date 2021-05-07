@@ -5,13 +5,14 @@ import Sidebar from '../layout/Sidebar'
 import Bar from '../layout/Bar'
 import AuthContext from '../../context/auth/authContext'
 import projectContext from '../../context/projects/projectContext'
+import Spinner from '../Spinner/Spinner'
 
 const Projects = () => {
   //Extraccion del estado
   const authContext = useContext(AuthContext)
   const { authUser } = authContext
 
-  const { project } = useContext(projectContext)
+  const { project, loadingProjects } = useContext(projectContext)
 
   useEffect(() => {
     authUser()
@@ -24,13 +25,12 @@ const Projects = () => {
       <div className={project ? 'contenedor-app' : 'contenedor-app-proyectos'}>
         <Sidebar />
         <div className="seccion-principal">
-          <main>
+          <>
             <FormTask />
-            <div className="contenedor-tareas">
-              <TasksList />
-            </div>
-          </main>
+            <div className="contenedor-tareas">{!loadingProjects && <TasksList />}</div>
+          </>
         </div>
+        )
       </div>
     </>
   )

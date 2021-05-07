@@ -85,8 +85,9 @@ const AuthState = props => {
       })
       authUser()
     } catch (err) {
+      console.log(err)
       const alerta = {
-        msg: err.response.data.msg,
+        msg: err?.response ? err.response.data.msg : 'Error - Connection timeout',
         category: 'alerta-error',
       }
       dispatch({

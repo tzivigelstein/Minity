@@ -1,110 +1,85 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'
 import projectContext from '../../context/projects/projectContext'
 
 const NewProject = () => {
+  //Obtener state del context
 
-    //Obtener state del context
+  const projectsContext = useContext(projectContext)
 
-    const projectsContext = useContext(projectContext)
+  //Extraccion de los valores del context
 
-    //Extraccion de los valores del context
+  const { form, errorform, showForm, addProject, showError } = projectsContext
 
-    const {
-        form,
-        errorform,
-        showForm,
-        addProject,
-        showError
-    } = projectsContext
+  //State del form del proyecto
 
-    //State del form del proyecto
+  const [project, setProject] = useState({
+    name: '',
+  })
 
-    const [project, setProject] = useState({
-        name: ''
+  //Extraccion de los valores del state
+
+  const { name } = project
+
+  //Se añaden los valores del form al state
+
+  const onChangeProject = e => {
+    setProject({
+      ...project,
+      [e.target.name]: e.target.value,
     })
+  }
 
-    //Extraccion de los valores del state
+  //Funcion del submit al nuevo proyecto
 
-    const { name } = project
+  const onSubmit = e => {
+    e.preventDefault()
 
-    //Se añaden los valores del form al state
+    //Validacion del form proyecto
 
-    const onChangeProject = e => {
-        setProject({
-            ...project,
-            [e.target.name]: e.target.value
-        })
+    if (name === '') {
+      showError()
+      return
     }
 
-    //Funcion del submit al nuevo proyecto
+    //Añadir al state
 
-    const onSubmit = e => {
-        e.preventDefault()
+    addProject(project)
 
-        //Validacion del form proyecto
+    //Reiniciar el form
 
-        if (name === '') {
-            showError()
-            return
-        }
+    setProject({
+      name: '',
+    })
+  }
 
-        //Añadir al state
+  //Onclick añadir el form para un nuevo proyecto
 
-        addProject(project)
+  const onClick = () => {
+    showForm()
+  }
 
-        //Reiniciar el form
+  return (
+    <>
+      <button className="btn btn-block btn-primario" type="button" onClick={onClick}>
+        New Project
+      </button>
 
-        setProject({
-            name: ''
-        })
-    }
-
-    //Onclick añadir el form para un nuevo proyecto
-
-    const onClick = () => {
-        showForm()
-    }
-
-    return (
-        <Fragment>
-            <button
-                className='btn btn-block btn-primario'
-                type='button'
-                onClick={onClick}
-            >
-                New Project
-            </button>
-
-            {form ?
-                (
-                    <form
-                        className='formulario-nuevo-proyecto'
-                        onSubmit={onSubmit}
-                    >
-                        <input
-                            type="text"
-                            className='input-text'
-                            placeholder='Project name'
-                            name='name'
-                            value={name}
-                            onChange={onChangeProject}
-                        />
-                        <input
-                            type="submit"
-                            className='btn btn-block btn-primario'
-                            value='Add'
-                        />
-
-                    </form>
-                )
-                :
-                (
-                    null
-                )
-            }
-            {errorform ? <p className='mensaje error'>El nombre es obligatorio</p> : null}
-        </Fragment>
-    );
+      {form ? (
+        <form className="formulario-nuevo-proyecto" onSubmit={onSubmit}>
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Project name"
+            name="name"
+            value={name}
+            onChange={onChangeProject}
+          />
+          <input type="submit" className="btn btn-block btn-primario" value="Add" />
+        </form>
+      ) : null}
+      {errorform ? <p className="mensaje error">El nombre es obligatorio</p> : null}
+    </>
+  )
 }
 
-export default NewProject;
+export default NewProject
