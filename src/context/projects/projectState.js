@@ -41,7 +41,6 @@ const ProjectState = props => {
   //Obtencion de proyectos
 
   const getProjects = async () => {
-    console.log('trayendo proyectos')
     try {
       dispatch({
         type: GET_PROJECTS,
