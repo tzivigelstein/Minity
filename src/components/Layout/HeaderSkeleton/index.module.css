@@ -1,0 +1,35 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.welcomeMessage {
+  background: var(--loading-background);
+  background-size: var(--loading-background-size);
+  border-radius: 0.5rem;
+  animation: pulse 3s linear infinite;
+  box-shadow: var(--shadow-light);
+  height: 2.375rem;
+  margin: 0;
+  width: 40%;
+}
+
+.time {
+  background: var(--loading-background);
+  background-size: var(--loading-background-size);
+  border-radius: 0.5rem;
+  animation: pulse 3s linear infinite;
+  box-shadow: var(--shadow-light);
+  height: 1.8125rem;
+  width: 10%;
+}
+
+@keyframes pulse {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -135% 0;
+  }
+}

@@ -1,0 +1,57 @@
+.navbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.titleBold {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.titleLight {
+  color: var(--text-color);
+  font-size: inherit;
+  font-weight: 300;
+  margin: 0;
+}
+
+.navbarButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  outline: none;
+  padding: 0.5rem;
+  transition: 0.3s ease filter;
+  display: flex;
+  align-items: center;
+}
+
+.logoutText {
+  color: var(--text-secondary-color);
+  margin: 0 0.3rem;
+  transition: 0.3s ease color;
+}
+
+.logoutIcon {
+  stroke: var(--text-secondary-color);
+  transition: 0.3s ease stroke;
+}
+
+@media (hover) {
+  .navbarButton:hover {
+    filter: brightness(1.1);
+  }
+
+  .navbarButton:hover .logoutText {
+    color: var(--warning-light);
+  }
+
+  .navbarButton:hover .logoutIcon {
+    stroke: var(--warning-light);
+  }
+}
