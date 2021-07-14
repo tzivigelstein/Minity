@@ -28,7 +28,6 @@ function App() {
                   <Route exact path="/" component={Login} />
                   <Route exact path="/signup" component={SignUp} />
                   <PrivateRoute exact path="/projects" component={Main} />
-                  {/* <PrivateRoute exact path="/:projectId/tasks" component={Tasks} /> */}
                 </Switch>
               </Router>
             </TaskState>
