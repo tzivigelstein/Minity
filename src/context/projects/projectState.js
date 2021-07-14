@@ -7,30 +7,28 @@ import {
   FORM_PROJECT,
   GET_PROJECTS,
   GET_PROJECTS_SUCCESS,
+  SET_FILTERED_PROJECTS,
   ADD_PROJECTS,
   FORM_VALIDATION,
   ACTUAL_PROJECT,
   ACTUAL_PROJECT_UPDATE,
   DELETE_PROJECT,
   PROJECT_ERROR,
-} from '../../types'
+} from './types'
+
+const initialState = {
+  projects: [],
+  filteredProjects: [],
+  form: false,
+  errorform: false,
+  actualProject: null,
+  msg: null,
+  loading: false,
+  loadingProjects: false,
+}
 
 const ProjectState = props => {
-  const initialState = {
-    PROJECTS: [],
-    form: false,
-    errorform: false,
-    project: null,
-    msg: null,
-    loading: false,
-    loadingProjects: false,
-  }
-
-  //Dispatch para ejecutar las acciones
-
   const [state, dispatch] = useReducer(projectReducer, initialState)
-
-  //Serie de funciones para el CRUD
 
   const showForm = () => {
     dispatch({
@@ -38,8 +36,7 @@ const ProjectState = props => {
     })
   }
 
-  //Obtencion de proyectos
-
+  //Get all projects
   const getProjects = async () => {
     try {
       dispatch({
@@ -62,8 +59,15 @@ const ProjectState = props => {
     }
   }
 
-  //Añadir nuevo proyecto
+  //Search projects
+  const setFilteredProjects = projects => {
+    dispatch({
+      type: SET_FILTERED_PROJECTS,
+      payload: projects,
+    })
+  }
 
+  //Add new project
   const addProject = async project => {
     try {
       const query = await client.post('/api/projects', project)
@@ -83,33 +87,25 @@ const ProjectState = props => {
     }
   }
 
-  //Validacion del form mostrando error
-
+  //Show error on form validation
   const showError = () => {
     dispatch({
       type: FORM_VALIDATION,
     })
   }
 
-  //Seleccionar el proyecto en el cual se dio click
-
-  const actualProject = projectId => {
+  //Select project wich was clicked
+  const setActualProject = projectId => {
     dispatch({
       type: ACTUAL_PROJECT,
     })
-
-    const timeout = setTimeout(() => {
-      dispatch({
-        type: ACTUAL_PROJECT_UPDATE,
-        payload: projectId,
-      })
-    }, 100)
-
-    return () => clearTimeout(timeout)
+    dispatch({
+      type: ACTUAL_PROJECT_UPDATE,
+      payload: projectId,
+    })
   }
 
-  //Eliminar proyecto
-
+  //Delete project
   const deleteProject = async projectId => {
     try {
       await client.delete(`/api/projects/${projectId}`)
@@ -132,18 +128,20 @@ const ProjectState = props => {
   return (
     <projectContext.Provider
       value={{
-        PROJECTS: state.PROJECTS,
+        projects: state.projects,
+        filteredProjects: state.filteredProjects,
         form: state.form,
         errorform: state.errorform,
-        project: state.project,
+        actualProject: state.actualProject,
         msg: state.msg,
         loading: state.loading,
         loadingProjects: state.loadingProjects,
         showForm,
         getProjects,
+        setFilteredProjects,
         addProject,
         showError,
-        actualProject,
+        setActualProject,
         deleteProject,
       }}
     >

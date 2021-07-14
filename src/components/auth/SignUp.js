@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react'
 import AlertContext from '../../context/alerts/alertContext'
-import AuthContext from '../../context/auth/authContext'
 import { Link } from 'react-router-dom'
-import Spinner from '../Spinner/Spinner'
+import ActivityIndicator from '../ActivityIndicator/ActivityIndicator'
+import useAuth from '../../hooks/useAuth'
 
 const SignUp = props => {
-  const authContext = useContext(AuthContext)
-  const { msg, auth, registerUser, visualLoading } = authContext
+  const { msg, auth, registerUser, visualLoading } = useAuth()
 
   const alertContext = useContext(AlertContext)
   const { alert, showAlert } = alertContext
@@ -77,7 +76,12 @@ const SignUp = props => {
         </div>
       ) : null}
       <div className="contenedor-form sombra">
-        <h1 data-cy="title">Join us 🤗</h1>
+        <h1 data-cy="title">
+          Join us{' '}
+          <span role="img" aria-label="hug emoji">
+            🤗
+          </span>
+        </h1>
         <form data-cy="signup-form" onSubmit={onSubmit}>
           <div className="campo-form">
             <input
@@ -129,7 +133,7 @@ const SignUp = props => {
 
           <div className="campo-form">
             <button data-cy="submit-signup" type="submit" className="btn btn-primario btn-block">
-              {visualLoading ? <Spinner width={16} height={16} /> : 'Signup'}
+              {visualLoading ? <ActivityIndicator width={16} height={16} /> : 'Signup'}
             </button>
           </div>
         </form>

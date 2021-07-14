@@ -1,0 +1,63 @@
+.iconContainer {
+  border-radius: 100rem;
+  display: flex;
+  margin: 0 0.3rem;
+  width: max-content;
+  font-size: 0;
+  align-items: center;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.checkState {
+  background-color: var(--success-light);
+}
+
+.actionIcon {
+  background-color: var(--opacity-light);
+  border-radius: 100rem;
+  box-sizing: unset;
+  cursor: pointer;
+  padding: 0.5rem;
+  stroke: var(--text-color);
+  transition: 0.3s ease all;
+  width: max-content;
+  display: inline-block;
+}
+
+.actionIconText {
+  font-size: inherit;
+  flex: 1;
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 0 0.5rem 0 0.3rem;
+  transition: 0.05s ease font-size, 0.1s ease margin, 0.1s ease opacity;
+}
+
+.editButton {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0 0.3rem;
+}
+
+.deleteButton {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0 0.3rem;
+}
+
+.taskActionsContainer {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+@media (hover) {
+  .actionIcon:hover {
+    backdrop-filter: brightness(90%);
+  }
+}

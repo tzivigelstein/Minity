@@ -1,47 +1,57 @@
-import {
-    PROJECT_TASKS,
-    ADD_TASK,
-    TASK_ERROR,
-    DELETE_TASK,
-    ACTUAL_TASK,
-    UPDATE_TASK
-} from '../../types'
+import { GET_TASKS, ADD_TASK, DELETE_TASK, UPDATE_TASK, SET_SELECTED_TASK, TASK_ERROR, LOADING } from './types'
 
-export default (state, action) => {
-    switch (action.type) {
-        case PROJECT_TASKS:
-            return {
-                ...state,
-                tasksproject: action.payload
-            }
-        case ADD_TASK:
-            return {
-                ...state,
-                tasksproject: [action.payload, ...state.tasksproject],
-                taskerror: false
-            }
-        case TASK_ERROR:
-            return {
-                ...state,
-                taskerror: true
-            }
-        case DELETE_TASK:
-            return {
-                ...state,
-                tasksproject: state.tasksproject.filter(task => task._id !== action.payload)
-            }
-        case UPDATE_TASK:
-            return {
-                ...state,
-                tasksproject: state.tasksproject.map(task => task._id === action.payload._id ? action.payload : task),
-                selectedtask: null
-            }
-        case ACTUAL_TASK:
-            return {
-                ...state,
-                selectedtask: action.payload
-            }
-        default:
-            return state
-    }
+export default (state, { type, payload }) => {
+  switch (type) {
+    case GET_TASKS:
+      return {
+        ...state,
+        tasks: payload,
+        loading: false,
+      }
+
+    case ADD_TASK:
+      return {
+        ...state,
+        tasks: [payload, ...state.tasks],
+        taskError: false,
+        loading: false,
+      }
+
+    case TASK_ERROR:
+      return {
+        ...state,
+        taskError: true,
+        loading: false,
+      }
+
+    case DELETE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter(({ _id }) => _id !== payload),
+        loading: false,
+      }
+
+    case UPDATE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map(task => (task._id === payload._id ? payload : task)),
+        selectedTask: null,
+        loading: false,
+      }
+
+    case SET_SELECTED_TASK:
+      return {
+        ...state,
+        selectedTask: payload,
+      }
+
+    case LOADING:
+      return {
+        ...state,
+        loading: true,
+      }
+
+    default:
+      return state
+  }
 }

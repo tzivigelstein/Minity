@@ -1,0 +1,20 @@
+.dynamicButton {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  color: var(--white);
+  cursor: pointer;
+  transition: 0.3s ease filter;
+  margin-left: 1rem;
+}
+
+@media (hover) {
+  .dynamicButton:hover {
+    filter: brightness(1.1);
+  }
+}

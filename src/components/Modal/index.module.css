@@ -1,0 +1,50 @@
+.modalWrapper {
+  position: fixed;
+  inset: 0;
+  background-color: var(--opacity-strong);
+  display: grid;
+  place-items: center;
+}
+
+.modalContainer {
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+  animation: grow forwards ease 0.05s;
+}
+
+.timesButton {
+  border: none;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  top: 1rem;
+  cursor: pointer;
+  right: 1rem;
+}
+
+.timesIcon {
+  stroke: var(--text-secondary-color);
+}
+
+.modalTitle {
+  margin: 0.3rem 0;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.modalDescription {
+  margin: 0.3rem 0;
+  color: var(--text-secondary-color);
+  font-size: 1rem;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

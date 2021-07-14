@@ -1,11 +1,9 @@
 import React, { useContext, useEffect } from 'react'
-import AuthContext from '../../context/auth/authContext'
-import Logout from '../../Icons/Logout'
+import useAuth from '../../hooks/useAuth'
+import { Logout } from '../Icons'
 
 const Bar = () => {
-  //Extraccion del estado
-  const authContext = useContext(AuthContext)
-  const { logOut, authUser, user } = authContext
+  const { logOut, authUser, user } = useAuth()
 
   useEffect(() => {
     authUser()

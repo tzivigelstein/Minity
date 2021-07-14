@@ -1,0 +1,53 @@
+.projectChipContainer {
+  padding: 0.5rem;
+  display: flex;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  align-items: center;
+  transition: 0.2s ease transform, 0.3s ease box-shadow;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-light);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.chipWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.chipHeading {
+  display: flex;
+  align-items: center;
+}
+
+.projectColor {
+  border-radius: 25%;
+  height: 2rem;
+  margin-right: 1rem;
+  width: 2rem;
+  display: grid;
+  place-items: center;
+}
+
+.projectName {
+  color: var(--text-color);
+  margin: 0;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.charName {
+  font-size: bold;
+  color: var(--white);
+  font-size: 1rem;
+}
+
+@media (hover) {
+  .projectChipContainer:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: var(--shadow);
+  }
+}

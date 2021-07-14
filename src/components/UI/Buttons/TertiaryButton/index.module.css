@@ -1,0 +1,20 @@
+.tertiaryButton {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  font-weight: bold;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: 0.3s ease filter;
+}
+
+@media (hover) {
+  .tertiaryButton:hover {
+    filter: brightness(1.1);
+  }
+}

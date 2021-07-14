@@ -64,8 +64,8 @@ const AuthState = props => {
         type: GET_USER,
         payload: query.data.user,
       })
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
       dispatch({
         type: ERROR_LOGIN,
       })
@@ -73,21 +73,22 @@ const AuthState = props => {
   }
 
   //Login
-  const logIn = async info => {
+  const logIn = async data => {
     try {
       dispatch({
         type: VISUAL_LOADING,
       })
-      const query = await client.post('/api/auth', info)
+      const query = await client.post('/api/auth', data)
       dispatch({
         type: SUCCESS_LOGIN,
         payload: query.data,
       })
       authUser()
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      const errorJSON = error.toJSON()
+      const errorMessage = `${errorJSON.name} - ${errorJSON.message}`
       const alerta = {
-        msg: err?.response ? err.response.data.msg : 'Error - Connection timeout',
+        msg: errorMessage,
         category: 'alerta-error',
       }
       dispatch({

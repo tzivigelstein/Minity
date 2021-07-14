@@ -1,0 +1,73 @@
+.listContainer {
+  width: 100%;
+  padding-bottom: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  animation: fade 0.3s ease forwards;
+  opacity: 0;
+  padding: 1em;
+}
+
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  color: var(--white);
+  cursor: pointer;
+  transition: 0.3s ease filter;
+  margin-left: 1rem;
+}
+
+.addIcon {
+  margin-left: 0.3rem;
+  stroke: var(--white);
+  stroke-width: 0.1875rem;
+}
+
+.tasksList {
+  width: 100%;
+  margin: 0;
+  padding: 1rem 2rem;
+  display: grid;
+  gap: 1rem;
+  min-height: 0;
+  overflow: auto;
+  box-sizing: border-box;
+  max-height: 50vh;
+}
+
+.tasksList::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+.tasksList::-webkit-scrollbar-thumb {
+  background: var(--white);
+  border-radius: 100rem;
+  box-shadow: var(--shadow-light);
+}
+
+@media (hover) {
+  .addButton:hover {
+    filter: brightness(1.1);
+  }
+}

@@ -1,0 +1,20 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.welcomeMessage {
+  font-size: 2rem;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  width: max-content;
+  margin: 0;
+}
+
+.time {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}

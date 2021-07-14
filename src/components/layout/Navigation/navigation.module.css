@@ -1,0 +1,46 @@
+.inputWrapper {
+  width: max-content;
+  padding: 0.5rem;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.searchIcon {
+  stroke: var(--text-color);
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.timesButton {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.timesIcon {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input {
+  all: unset;
+  font-size: 1rem;
+  flex: 1 0 auto;
+}
+
+.input:placeholder {
+  color: var(--text-secondary-color);
+}

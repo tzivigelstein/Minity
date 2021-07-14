@@ -1,0 +1,54 @@
+.projectsContainer {
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.newButton {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(45deg, #1da0f2, lightgreen);
+  font-weight: bold;
+  color: var(--white);
+  cursor: pointer;
+  transition: 0.3s ease filter;
+}
+
+.addIcon {
+  margin-left: 0.3rem;
+  stroke: var(--white);
+  stroke-width: 0.1875rem;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-template-rows: auto;
+  width: 100%;
+  place-items: center;
+  gap: 1rem;
+}
+
+@media (hover) {
+  .newButton:hover {
+    filter: brightness(1.1);
+  }
+}

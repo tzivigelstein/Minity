@@ -2,16 +2,17 @@ import {
   FORM_PROJECT,
   GET_PROJECTS,
   GET_PROJECTS_SUCCESS,
+  SET_FILTERED_PROJECTS,
   ADD_PROJECTS,
   FORM_VALIDATION,
   ACTUAL_PROJECT,
   ACTUAL_PROJECT_UPDATE,
   DELETE_PROJECT,
   PROJECT_ERROR,
-} from '../../types/index'
+} from './types'
 
-export default (state, action) => {
-  switch (action.type) {
+export default (state, { type, payload }) => {
+  switch (type) {
     case FORM_PROJECT:
       return {
         ...state,
@@ -23,24 +24,34 @@ export default (state, action) => {
         ...state,
         loading: true,
       }
+
     case GET_PROJECTS_SUCCESS:
       return {
         ...state,
-        PROJECTS: action.payload,
+        projects: payload,
         loading: false,
       }
+
+    case SET_FILTERED_PROJECTS:
+      return {
+        ...state,
+        filteredProjects: payload,
+      }
+
     case ADD_PROJECTS:
       return {
         ...state,
-        PROJECTS: [...state.PROJECTS, action.payload],
+        projects: [...state.projects, payload],
         form: false,
         errorform: false,
       }
+
     case FORM_VALIDATION:
       return {
         ...state,
         errorform: true,
       }
+
     case ACTUAL_PROJECT:
       return {
         ...state,
@@ -51,19 +62,22 @@ export default (state, action) => {
       return {
         ...state,
         loadingProjects: false,
-        project: state.PROJECTS.filter(project => project._id === action.payload),
+        actualProject: state.projects.find(project => project._id === payload),
       }
+
     case DELETE_PROJECT:
       return {
         ...state,
-        PROJECTS: state.PROJECTS.filter(project => project._id !== action.payload),
+        projects: state.projects.filter(project => project._id !== payload),
         project: null,
       }
+
     case PROJECT_ERROR:
       return {
         ...state,
-        msg: action.payload,
+        msg: payload,
       }
+
     default:
       return state
   }

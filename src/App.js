@@ -1,16 +1,15 @@
-import React from 'react';
-import Login from './components/auth/Login';
-import SignUp from './components/auth/SignUp';
-import Projects from './components/projects/Projects';
+import React from 'react'
+import Login from './components/Auth/Login'
+import SignUp from './components/Auth/SignUp'
+import Main from './components/Main'
 import AuthState from './context/auth/authState'
-import TaskState from './context/tasks/tasksState';
 import AlertState from './context/alerts/alertState'
-import ProjectState from './context/projects/projectState';
-import PrivateRoute from './components/routes/PrivateRoute'
+import ModalState from './context/modal/modalState'
+import ProjectState from './context/projects/projectState'
+import TaskState from './context/tasks/tasksState'
+import PrivateRoute from './components/Routes/PrivateRoute'
 import tokenAuth from './config/token'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-//Revisar el token
 
 const token = localStorage.getItem('token')
 if (token) {
@@ -19,22 +18,25 @@ if (token) {
 
 function App() {
   return (
-    <ProjectState>
-      <TaskState>
-        <AlertState>
-          <AuthState>
-            <Router>
-              <Switch>
-                <Route exact path='/' component={Login} />
-                <Route exact path='/signup' component={SignUp} />
-                <PrivateRoute exact path='/projects' component={Projects} />
-              </Switch>
-            </Router>
-          </AuthState>
-        </AlertState>
-      </TaskState>
-    </ProjectState >
-  );
+    <AuthState>
+      <AlertState>
+        <ModalState>
+          <ProjectState>
+            <TaskState>
+              <Router>
+                <Switch>
+                  <Route exact path="/" component={Login} />
+                  <Route exact path="/signup" component={SignUp} />
+                  <PrivateRoute exact path="/projects" component={Main} />
+                  {/* <PrivateRoute exact path="/:projectId/tasks" component={Tasks} /> */}
+                </Switch>
+              </Router>
+            </TaskState>
+          </ProjectState>
+        </ModalState>
+      </AlertState>
+    </AuthState>
+  )
 }
 
-export default App;
+export default App

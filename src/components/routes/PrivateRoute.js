@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import AuthContext from '../../context/auth/authContext'
+import useAuth from '../../hooks/useAuth'
 
 const PrivateRoute = ({ component: Component, ...props }) => {
-  const authContext = useContext(AuthContext)
-  const { auth, loading, authUser } = authContext
+  const { auth, loading, authUser } = useAuth()
 
   useEffect(() => {
     authUser()

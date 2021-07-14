@@ -1,0 +1,32 @@
+.appWrapper {
+  height: 100%;
+}
+
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  padding: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.searchIcon {
+  stroke: var(--text-color);
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .container {
+    display: grid;
+  }
+}

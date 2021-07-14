@@ -3,26 +3,27 @@ import TasksContext from './tasksContext'
 import TasksReducer from './tasksReducer'
 import client from '../../config/axios'
 
-import { PROJECT_TASKS, ADD_TASK, TASK_ERROR, DELETE_TASK, ACTUAL_TASK, UPDATE_TASK } from '../../types'
+import { GET_TASKS, ADD_TASK, DELETE_TASK, UPDATE_TASK, SET_SELECTED_TASK, TASK_ERROR, LOADING } from './types'
 
 const TaskState = props => {
   const initialState = {
-    tasksproject: [],
-    taskerror: false,
-    selectedtask: null,
+    tasks: [],
+    taskError: false,
+    selectedTask: null,
+    loading: false,
   }
 
   const [state, dispatch] = useReducer(TasksReducer, initialState)
 
-  //Funciones
-
   //Obtencion de tareas de un proyecto
-
   const getTasks = async project => {
+    dispatch({
+      type: LOADING,
+    })
     try {
       const query = await client.get(`/api/tasks/`, { params: { project } })
       dispatch({
-        type: PROJECT_TASKS,
+        type: GET_TASKS,
         payload: query.data.tasks,
       })
     } catch (error) {
@@ -30,8 +31,7 @@ const TaskState = props => {
     }
   }
 
-  //Agregar tarea a el proyecto en cuestion
-
+  //Add task to the project
   const addTask = async task => {
     try {
       await client.post('/api/tasks', task)
@@ -44,14 +44,14 @@ const TaskState = props => {
     }
   }
 
-  //Validacion de error en la tarea
-
+  //Task error validation
   const showError = () => {
     dispatch({
       type: TASK_ERROR,
     })
   }
 
+  //Delete task
   const deleteTask = async (id, project) => {
     try {
       await client.delete(`/api/tasks/${id}`, { params: { project } })
@@ -64,16 +64,17 @@ const TaskState = props => {
     }
   }
 
-  const taskExtract = task => {
+  const setSelectedTask = task => {
     dispatch({
-      type: ACTUAL_TASK,
+      type: SET_SELECTED_TASK,
       payload: task,
     })
   }
 
   const updateTask = async task => {
+    const { _id } = task
     try {
-      const query = await client.put(`/api/tasks/${task._id}`, task)
+      const query = await client.put(`/api/tasks/${_id}`, task)
       dispatch({
         type: UPDATE_TASK,
         payload: query.data.task,
@@ -86,14 +87,15 @@ const TaskState = props => {
   return (
     <TasksContext.Provider
       value={{
-        tasksproject: state.tasksproject,
-        taskerror: state.taskerror,
-        selectedtask: state.selectedtask,
+        tasks: state.tasks,
+        taskError: state.taskError,
+        selectedTask: state.selectedTask,
+        loading: state.loading,
         getTasks,
         addTask,
         showError,
         deleteTask,
-        taskExtract,
+        setSelectedTask,
         updateTask,
       }}
     >
