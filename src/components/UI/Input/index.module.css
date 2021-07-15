@@ -6,7 +6,7 @@
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  margin: 0 0.5rem 0 0;
 }
 
 .inputContainer {

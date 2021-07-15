@@ -18,3 +18,9 @@
   font-size: 1.5rem;
   color: var(--text-color);
 }
+
+@media (max-width: 768px) {
+  .time {
+    display: none;
+  }
+}

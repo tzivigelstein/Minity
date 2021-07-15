@@ -1,3 +1,9 @@
+.taskActionsContainer {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
 .iconContainer {
   border-radius: 100rem;
   display: flex;
@@ -50,14 +56,14 @@
   margin: 0 0.3rem;
 }
 
-.taskActionsContainer {
-  display: flex;
-  align-items: center;
-  width: max-content;
-}
-
 @media (hover) {
   .actionIcon:hover {
     backdrop-filter: brightness(90%);
+  }
+}
+
+@media (max-width: 768px) {
+  .taskActionsContainer {
+    align-self: center;
   }
 }

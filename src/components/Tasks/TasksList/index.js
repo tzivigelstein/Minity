@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './index.module.css'
 import useProjects from '../../../hooks/useProjects'
 import useTasks from '../../../hooks/useTasks'
@@ -9,19 +9,13 @@ import DynamicButton from '../../UI/Buttons/DynamicButton'
 
 const TasksList = () => {
   const { actualProject } = useProjects()
-  const { tasks, loading, getTasks } = useTasks()
+  const { tasks, loading } = useTasks()
 
   const { accentColor, secondaryColor } = actualProject && actualProject.colors
 
   const backgrounGradient = {
     background: `linear-gradient(45deg, ${accentColor}, ${secondaryColor})`,
   }
-
-  const { _id } = actualProject
-
-  useEffect(() => {
-    getTasks(_id)
-  }, [])
 
   return (
     <div className={styles.listContainer}>

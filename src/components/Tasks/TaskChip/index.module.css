@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .taskName {
@@ -14,4 +15,15 @@
   width: max-content;
   margin: 0;
   font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .taskChipContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .taskName {
+    margin: 0 0 1rem 0;
+  }
 }

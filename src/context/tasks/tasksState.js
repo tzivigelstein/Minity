@@ -15,13 +15,16 @@ const TaskState = props => {
 
   const [state, dispatch] = useReducer(TasksReducer, initialState)
 
-  //Obtencion de tareas de un proyecto
+  //Get project tasks
   const getTasks = async project => {
     dispatch({
       type: LOADING,
     })
+
     try {
-      const query = await client.get(`/api/tasks/`, { params: { project } })
+      const config = { params: { project } }
+      const query = await client.get('/api/tasks/', config)
+
       dispatch({
         type: GET_TASKS,
         payload: query.data.tasks,

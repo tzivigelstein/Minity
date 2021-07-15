@@ -23,7 +23,6 @@ const initialState = {
   errorform: false,
   actualProject: null,
   msg: null,
-  loading: false,
   loadingProjects: false,
 }
 
@@ -38,6 +37,7 @@ const ProjectState = props => {
 
   //Get all projects
   const getProjects = async () => {
+    console.log('GETTING PROJECTS')
     try {
       dispatch({
         type: GET_PROJECTS,
@@ -47,6 +47,8 @@ const ProjectState = props => {
         type: GET_PROJECTS_SUCCESS,
         payload: query.data,
       })
+
+      console.log(query.data)
     } catch (error) {
       const alert = {
         msg: 'There was an error',
@@ -96,6 +98,8 @@ const ProjectState = props => {
 
   //Select project wich was clicked
   const setActualProject = projectId => {
+    console.log('SETTING PROJECT')
+
     dispatch({
       type: ACTUAL_PROJECT,
     })
@@ -134,7 +138,6 @@ const ProjectState = props => {
         errorform: state.errorform,
         actualProject: state.actualProject,
         msg: state.msg,
-        loading: state.loading,
         loadingProjects: state.loadingProjects,
         showForm,
         getProjects,

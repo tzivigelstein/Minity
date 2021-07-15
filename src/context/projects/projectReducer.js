@@ -22,14 +22,14 @@ export default (state, { type, payload }) => {
     case GET_PROJECTS:
       return {
         ...state,
-        loading: true,
+        loadingProjects: true,
       }
 
     case GET_PROJECTS_SUCCESS:
       return {
         ...state,
         projects: payload,
-        loading: false,
+        loadingProjects: false,
       }
 
     case SET_FILTERED_PROJECTS:
@@ -55,13 +55,11 @@ export default (state, { type, payload }) => {
     case ACTUAL_PROJECT:
       return {
         ...state,
-        loadingProjects: true,
       }
 
     case ACTUAL_PROJECT_UPDATE:
       return {
         ...state,
-        loadingProjects: false,
         actualProject: state.projects.find(project => project._id === payload),
       }
 

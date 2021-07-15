@@ -60,3 +60,9 @@
     stroke: var(--warning-light);
   }
 }
+
+@media (max-width: 768px) {
+  .titleBold {
+    display: none;
+  }
+}

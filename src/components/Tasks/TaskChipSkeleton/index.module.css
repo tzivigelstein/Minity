@@ -6,4 +6,14 @@
   box-shadow: var(--shadow-light);
   background: var(--loading-background);
   background-size: var(--loading-background-size);
+  animation: pulse 3s linear infinite;
+}
+
+@keyframes pulse {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -135% 0;
+  }
 }

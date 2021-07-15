@@ -1,0 +1,13 @@
+.simpleLink {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+@media (hover) {
+  .simpleLink:hover {
+    filter: brightness(1.1);
+  }
+}

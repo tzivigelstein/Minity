@@ -17,7 +17,6 @@ const ProjectChip = ({ project }) => {
   const { accentColor, secondaryColor } = colors
 
   const { actualProject, setActualProject } = useProjects()
-  const { getTasks } = useTasks()
 
   const actualProjectId = actualProject ? actualProject._id : null
 
@@ -25,7 +24,6 @@ const ProjectChip = ({ project }) => {
 
   const handleClick = id => {
     setActualProject(id)
-    getTasks(id)
     history.push(`/${id}/tasks`)
   }
 

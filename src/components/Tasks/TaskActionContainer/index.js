@@ -67,10 +67,10 @@ const TaskActionContainer = ({ task }) => {
           </span>
         </button>
 
-        <button onClick={handleEdit} className={styles.editButton}>
+        <button onClick={handleEdit} className={styles.iconContainer}>
           <Edit className={styles.actionIcon} width={21} height={21} />
         </button>
-        <button className={styles.deleteButton}>
+        <button className={styles.iconContainer}>
           <Bin className={styles.actionIcon} width={21} height={21} />
         </button>
       </div>

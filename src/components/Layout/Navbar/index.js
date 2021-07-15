@@ -1,16 +1,22 @@
 import React, { useEffect } from 'react'
 import styles from './index.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import { Logout } from '../../Icons'
 
 const Navbar = ({ componentLeft }) => {
   const { logOut, authUser } = useAuth()
 
+  const history = useHistory()
+
   useEffect(() => {
     authUser()
     //eslint-disable-next-line
   }, [])
+
+  const handleBack = () => {
+    history.push('/projects')
+  }
 
   return (
     <nav className={styles.navbar}>
