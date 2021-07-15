@@ -12,9 +12,9 @@
 
 .taskName {
   color: var(--text-color);
-  width: max-content;
   margin: 0;
   font-size: 1rem;
+  flex: 1;
 }
 
 @media (max-width: 768px) {

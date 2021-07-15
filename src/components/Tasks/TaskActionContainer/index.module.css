@@ -8,7 +8,6 @@
   border-radius: 100rem;
   display: flex;
   margin: 0 0.3rem;
-  width: max-content;
   font-size: 0;
   align-items: center;
   border: none;
@@ -29,8 +28,6 @@
   padding: 0.5rem;
   stroke: var(--text-color);
   transition: 0.3s ease all;
-  width: max-content;
-  display: inline-block;
 }
 
 .actionIconText {
