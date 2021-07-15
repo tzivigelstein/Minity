@@ -12,6 +12,7 @@
   --warning-light: hsl(355, 64%, 70%);
   --text-color: #222;
   --text-secondary-color: #333;
+  --text-tertiary-color: #777;
   --opacity-light: rgba(0, 0, 0, 0.1);
   --opacity-strong: rgba(0, 0, 0, 0.6);
   --shadow-light: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 8%);

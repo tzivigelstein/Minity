@@ -1,5 +1,5 @@
 .projectChipContainer {
-  padding: 0.5rem;
+  padding: 1rem;
   display: flex;
   border: none;
   outline: none;
@@ -19,24 +19,22 @@
 }
 
 .chipHeading {
-  display: flex;
-  align-items: center;
+  display: grid;
+  place-items: center start;
+  grid-template-columns: 1fr auto;
 }
 
 .projectColor {
   border-radius: 25%;
   height: 2rem;
-  margin-right: 1rem;
   width: 2rem;
   display: grid;
   place-items: center;
 }
 
-.projectName {
-  color: var(--text-color);
-  margin: 0;
-  text-align: left;
-  font-size: 1rem;
+.projectNameContainer {
+  display: inline-block;
+  padding: 0 0 0 1rem;
 }
 
 .charName {

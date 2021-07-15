@@ -15,6 +15,7 @@
   margin: 0;
   font-size: 1rem;
   flex: 1;
+  transition: 0.3s ease all;
 }
 
 @media (max-width: 768px) {
