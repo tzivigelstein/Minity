@@ -5,11 +5,16 @@
   padding: 1rem;
 }
 
+.leftComponentContainer {
+  display: flex;
+  align-items: center;
+}
+
 .titleBold {
   color: var(--text-color);
   font-size: 1.5rem;
   font-weight: 800;
-  margin: 0;
+  margin: 0 0 0 1rem;
 }
 
 .titleLight {

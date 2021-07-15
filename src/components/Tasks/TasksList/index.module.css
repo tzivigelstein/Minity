@@ -7,7 +7,7 @@
   flex: 1;
   animation: fade 0.3s ease forwards;
   opacity: 0;
-  padding: 1em;
+  margin: 2rem 0;
 }
 
 @keyframes fade {
@@ -20,7 +20,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 1rem;
 }
 
 .addButton {
@@ -42,6 +41,8 @@
   margin-left: 0.3rem;
   stroke: var(--white);
   stroke-width: 0.1875rem;
+  width: 1.3125rem;
+  height: 1.3125rem;
 }
 
 .tasksList {
@@ -53,7 +54,7 @@
   min-height: 0;
   overflow: auto;
   box-sizing: border-box;
-  max-height: 50vh;
+  max-height: 75vh;
 }
 
 .tasksList::-webkit-scrollbar {

@@ -1,0 +1,14 @@
+.wrapper {
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}

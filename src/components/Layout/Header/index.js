@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styles from './header.module.css'
+import styles from './index.module.css'
 import useAuth from '../../../hooks/useAuth'
 import useProjects from '../../../hooks/useProjects'
 import useTime from '../../../hooks/useTime'

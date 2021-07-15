@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './index.module.css'
+import { useHistory } from 'react-router-dom'
 import useProjects from '../../../hooks/useProjects'
 import useTasks from '../../../hooks/useTasks'
 import HelperText from '../../UI/Text/HelperText'
@@ -20,9 +21,12 @@ const ProjectChip = ({ project }) => {
 
   const actualProjectId = actualProject ? actualProject._id : null
 
+  const history = useHistory()
+
   const handleClick = id => {
     setActualProject(id)
     getTasks(id)
+    history.push(`/${id}/tasks`)
   }
 
   const colorGradient = {

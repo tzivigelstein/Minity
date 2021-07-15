@@ -30,7 +30,7 @@ const TasksList = () => {
           {tasks && tasks.length} {tasks && tasks.length === 1 ? 'task' : 'tasks'}
         </span>
         <DynamicButton style={backgrounGradient}>
-          Add <Add width={18} height={18} className={styles.addIcon} />
+          Add <Add className={styles.addIcon} />
         </DynamicButton>
       </div>
       {loading ? (

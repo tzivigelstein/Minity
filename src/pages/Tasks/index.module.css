@@ -1,0 +1,22 @@
+.backArrowContainer {
+  display: flex;
+  align-items: center;
+}
+
+.backArrow {
+  margin: 0 0.3rem 0 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke: var(--text-color);
+}
+
+.backText {
+  color: var(--text-color);
+  font-size: 0.85rem;
+}
+
+@media (hover) {
+  .backArrowContainer:hover {
+    filter: brightness(1.5);
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react'
 import Login from './components/Authentication/Login'
 import SignUp from './components/Authentication/SignUp'
-import Main from './components/Main'
+import Main from './pages/Main'
+import Tasks from './pages/Tasks'
 import AuthState from './context/auth/authState'
 import AlertState from './context/alerts/alertState'
 import ModalState from './context/modal/modalState'
@@ -12,11 +13,12 @@ import tokenAuth from './config/token'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const token = localStorage.getItem('token')
+
 if (token) {
   tokenAuth(token)
 }
 
-function App() {
+export default function App() {
   return (
     <AuthState>
       <AlertState>
@@ -28,6 +30,7 @@ function App() {
                   <Route exact path="/" component={Login} />
                   <Route exact path="/signup" component={SignUp} />
                   <PrivateRoute exact path="/projects" component={Main} />
+                  <PrivateRoute exact path="/:projectId/tasks" component={Tasks} />
                 </Switch>
               </Router>
             </TaskState>
@@ -37,5 +40,3 @@ function App() {
     </AuthState>
   )
 }
-
-export default App
