@@ -1,20 +1,22 @@
-.tertiaryButton {
+.secondaryButton {
   align-items: center;
   background-color: transparent;
   border-radius: 0.5rem;
-  border: none;
+  border: 0.09375rem solid var(--text-color);
   color: var(--text-color);
   cursor: pointer;
   display: flex;
   font-size: 1.1rem;
   font-weight: bold;
+  justify-content: center;
   outline: none;
   padding: 0.6rem 1.5rem;
   transition: 0.3s ease filter;
+  width: 100%;
 }
 
 @media (hover) {
-  .tertiaryButton:hover {
+  .primaryButton:hover {
     filter: brightness(1.1);
   }
 }

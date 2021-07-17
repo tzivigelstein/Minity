@@ -3,14 +3,16 @@ import { Route, Redirect } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 
 const PrivateRoute = ({ component: Component, ...props }) => {
-  const { auth, loading, authUser } = useAuth()
+  const { loading, isAuth, authUser } = useAuth()
 
   useEffect(() => {
-    authUser()
+    if (!isAuth) authUser()
     //eslint-disable-next-line
   }, [])
 
-  return <Route {...props} render={props => (!auth && !loading ? <Redirect to="/" /> : <Component {...props} />)} />
+  return (
+    <Route render={props => (!isAuth && !loading ? <Redirect to="/login" /> : <Component {...props} />)} {...props} />
+  )
 }
 
 export default PrivateRoute

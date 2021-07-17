@@ -10,9 +10,7 @@ const ProjectChip = ({ project }) => {
   const parsedDate = new Date(date).toLocaleDateString()
   const { accentColor, secondaryColor } = colors
 
-  const { actualProject, setActualProject } = useProjects()
-
-  const actualProjectId = actualProject ? actualProject._id : null
+  const { setActualProject } = useProjects()
 
   const history = useHistory()
 

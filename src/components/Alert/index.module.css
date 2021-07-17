@@ -1,0 +1,61 @@
+.alertWrapper {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+}
+
+.alertContainer {
+  animation: slide-top 5s ease forwards;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  color: var(--text-color);
+  transition: 0.3s ease box-shadow;
+}
+
+.errorIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke: var(--text-color);
+  margin: 0 0 0 1rem;
+}
+
+@keyframes slide-top {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  5% {
+    transform: translateY(0%);
+  }
+
+  95% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@media (min-width: 769px) {
+  .alertWrapper {
+    justify-content: center;
+  }
+
+  .alertContainer {
+    width: max-content;
+  }
+}
+
+@media (hover) {
+  .alertContainer:hover {
+    box-shadow: var(--active-shadow);
+  }
+}

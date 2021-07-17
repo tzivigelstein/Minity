@@ -1,0 +1,54 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.headingContainer {
+  padding: 0 2rem;
+}
+
+.formContainer {
+  padding: 3rem 1rem;
+}
+
+.form {
+  padding: 1rem 0;
+}
+
+.inputContainer {
+  margin: 1rem 0;
+}
+
+.iconButton {
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: var(--white);
+  stroke: var(--text-secondary-color);
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.linkContainer {
+  display: grid;
+  place-items: center;
+  margin: 1rem 0;
+}
+
+@media (min-width: 769px) {
+  .container {
+    width: 40%;
+    margin: 0 auto;
+  }
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const fifteenSeconds = 15 * 1000
+const fifteenSeconds = 60 * 1000
 const timeParseOptions = {
   hour: 'numeric',
   minute: 'numeric',

@@ -1,46 +1,32 @@
 .inputWrapper {
-  width: max-content;
-  padding: 0.5rem;
+  width: 100%;
+  padding: 0.6rem;
   background-color: var(--white);
   box-shadow: var(--shadow);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  margin: 0 0.5rem 0 0;
 }
 
 .inputContainer {
   position: relative;
   padding: 0 1.3rem 0 0;
   margin: 0 0 0 0.3rem;
+  width: 100%;
 }
 
-.searchIcon {
-  stroke: var(--text-color);
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-
-.timesButton {
-  border: none;
-  outline: none;
-  padding: 0;
-}
-
-.timesIcon {
-  background-color: var(--white);
+.icon {
+  width: 1.125rem;
+  height: 1.125rem;
   stroke: var(--text-secondary-color);
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-right: 0.5rem;
 }
 
 .input {
   border: none;
   outline: none;
   width: 100%;
+  flex: 1;
   box-sizing: border-box;
   font-size: 1rem;
   background-color: transparent;

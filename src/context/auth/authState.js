@@ -2,21 +2,22 @@ import React, { useReducer } from 'react'
 import AuthContext from './authContext'
 import AuthReducer from './authReducer'
 import client from '../../config/axios'
-import tokenAuth from '../../config/token'
+import setTokenAuthInHeaders from '../../config/token'
 import {
   SUCCESS_REGISTER,
   ERROR_REGISTER,
   SUCCESS_LOGIN,
   ERROR_LOGIN,
-  GET_USER,
+  AUTH_USER,
   LOG_OUT,
   VISUAL_LOADING,
-} from '../../types/index'
+  alertTypes,
+} from '../../types'
 
 const AuthState = props => {
   const initialState = {
     token: localStorage.getItem('token'),
-    auth: null,
+    isAuth: null,
     user: null,
     msg: null,
     loading: true,
@@ -26,7 +27,7 @@ const AuthState = props => {
   const [state, dispatch] = useReducer(AuthReducer, initialState)
 
   //Registro
-  const registerUser = async info => {
+  const signup = async info => {
     try {
       dispatch({
         type: VISUAL_LOADING,
@@ -41,7 +42,7 @@ const AuthState = props => {
     } catch (err) {
       const alerta = {
         msg: err.response.data.msg,
-        category: 'alerta-error',
+        category: alertTypes.alertError,
       }
       dispatch({
         type: ERROR_REGISTER,
@@ -54,15 +55,16 @@ const AuthState = props => {
   const authUser = async () => {
     const token = localStorage.getItem('token')
     if (token) {
-      //Funcion para enviar el token por headers
-      tokenAuth(token)
+      setTokenAuthInHeaders(token)
     }
 
     try {
       const query = await client.get('/api/auth')
+      const { user } = query.data
+
       dispatch({
-        type: GET_USER,
-        payload: query.data.user,
+        type: AUTH_USER,
+        payload: user,
       })
     } catch (error) {
       console.log(error)
@@ -72,8 +74,7 @@ const AuthState = props => {
     }
   }
 
-  //Login
-  const logIn = async data => {
+  const login = async data => {
     try {
       dispatch({
         type: VISUAL_LOADING,
@@ -85,11 +86,10 @@ const AuthState = props => {
       })
       authUser()
     } catch (error) {
-      const errorJSON = error.toJSON()
-      const errorMessage = `${errorJSON.name} - ${errorJSON.message}`
+      const msg = error.response.data.msg
       const alerta = {
-        msg: errorMessage,
-        category: 'alerta-error',
+        msg,
+        category: alertTypes.alertError,
       }
       dispatch({
         type: ERROR_LOGIN,
@@ -98,8 +98,7 @@ const AuthState = props => {
     }
   }
 
-  //Cerrar sesion
-  const logOut = () => {
+  const logout = () => {
     dispatch({
       type: LOG_OUT,
     })
@@ -109,15 +108,15 @@ const AuthState = props => {
     <AuthContext.Provider
       value={{
         token: state.token,
-        auth: state.auth,
+        isAuth: state.isAuth,
         user: state.user,
         msg: state.msg,
         loading: state.loading,
         visualLoading: state.visualLoading,
-        registerUser,
-        logIn,
+        signup,
+        login,
         authUser,
-        logOut,
+        logout,
       }}
     >
       {props.children}

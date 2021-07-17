@@ -3,33 +3,33 @@ import {
   ERROR_REGISTER,
   SUCCESS_LOGIN,
   ERROR_LOGIN,
-  GET_USER,
+  AUTH_USER,
   LOG_OUT,
   VISUAL_LOADING,
 } from '../../types'
 
-export default (state, action) => {
-  switch (action.type) {
+export default (state, { type, payload }) => {
+  switch (type) {
     case VISUAL_LOADING:
       return {
         visualLoading: true,
       }
     case SUCCESS_REGISTER:
     case SUCCESS_LOGIN:
-      localStorage.setItem('token', action.payload.token)
+      localStorage.setItem('token', payload.token)
       return {
         ...state,
-        auth: true,
+        isAuth: true,
         msg: null,
         loading: false,
         visualLoading: false,
       }
-    case GET_USER:
+    case AUTH_USER:
       return {
         ...state,
-        auth: true,
-        user: action.payload,
+        user: payload,
         loading: false,
+        isAuth: true,
       }
     case LOG_OUT:
     case ERROR_LOGIN:
@@ -39,8 +39,8 @@ export default (state, action) => {
         ...state,
         token: null,
         user: null,
-        msg: action.payload,
-        auth: null,
+        msg: payload,
+        isAuth: false,
         loading: false,
         visualLoading: false,
       }

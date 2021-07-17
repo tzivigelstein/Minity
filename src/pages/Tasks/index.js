@@ -3,16 +3,16 @@ import styles from './index.module.css'
 import Wrapper from '../../components/Wrapper'
 import { BackArrow } from '../../components/Icons'
 import TasksList from '../../components/Tasks/TasksList'
-import useProjects from '../../hooks/useProjects'
 import useTasks from '../../hooks/useTasks'
 import NestedLink from '../../components/UI/Links/NestedLink'
 
 const Tasks = ({ match }) => {
   const { projectId } = match.params
   const { getTasks } = useTasks()
-  
+
   useEffect(() => {
     getTasks(projectId)
+    //eslint-disable-next-line
   }, [])
 
   return (

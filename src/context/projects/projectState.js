@@ -15,6 +15,7 @@ import {
   DELETE_PROJECT,
   PROJECT_ERROR,
 } from './types'
+import { alertTypes } from '../../types'
 
 const initialState = {
   projects: [],
@@ -37,7 +38,6 @@ const ProjectState = props => {
 
   //Get all projects
   const getProjects = async () => {
-    console.log('GETTING PROJECTS')
     try {
       dispatch({
         type: GET_PROJECTS,
@@ -47,12 +47,10 @@ const ProjectState = props => {
         type: GET_PROJECTS_SUCCESS,
         payload: query.data,
       })
-
-      console.log(query.data)
     } catch (error) {
       const alert = {
         msg: 'There was an error',
-        category: 'alerta-error',
+        category: alertTypes.alertError,
       }
       dispatch({
         type: PROJECT_ERROR,
@@ -70,7 +68,7 @@ const ProjectState = props => {
   }
 
   //Add new project
-  const addProject = async project => {
+  const createProject = async project => {
     try {
       const query = await client.post('/api/projects', project)
       dispatch({
@@ -80,7 +78,7 @@ const ProjectState = props => {
     } catch (error) {
       const alert = {
         msg: 'There was an error',
-        category: 'alerta-error',
+        category: alertTypes.alertError,
       }
       dispatch({
         type: PROJECT_ERROR,
@@ -98,8 +96,6 @@ const ProjectState = props => {
 
   //Select project wich was clicked
   const setActualProject = projectId => {
-    console.log('SETTING PROJECT')
-
     dispatch({
       type: ACTUAL_PROJECT,
     })
@@ -120,7 +116,7 @@ const ProjectState = props => {
     } catch (error) {
       const alert = {
         msg: 'There was an error',
-        category: 'alerta-error',
+        category: alertTypes.alertError,
       }
       dispatch({
         type: PROJECT_ERROR,
@@ -142,7 +138,7 @@ const ProjectState = props => {
         showForm,
         getProjects,
         setFilteredProjects,
-        addProject,
+        createProject,
         showError,
         setActualProject,
         deleteProject,

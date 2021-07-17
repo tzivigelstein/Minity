@@ -1,6 +1,8 @@
 import React from 'react'
-import Login from './components/Authentication/Login'
-import SignUp from './components/Authentication/SignUp'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Welcome from './pages/Welcome'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 import Main from './pages/Main'
 import Tasks from './pages/Tasks'
 import AuthState from './context/auth/authState'
@@ -10,7 +12,6 @@ import ProjectState from './context/projects/projectState'
 import TaskState from './context/tasks/tasksState'
 import PrivateRoute from './components/Routes/PrivateRoute'
 import tokenAuth from './config/token'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const token = localStorage.getItem('token')
 
@@ -27,8 +28,9 @@ export default function App() {
             <TaskState>
               <Router>
                 <Switch>
-                  <Route exact path="/" component={Login} />
-                  <Route exact path="/signup" component={SignUp} />
+                  <Route exact path="/" component={Welcome} />
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/signup" component={Signup} />
                   <PrivateRoute exact path="/projects" component={Main} />
                   <PrivateRoute exact path="/:projectId/tasks" component={Tasks} />
                 </Switch>

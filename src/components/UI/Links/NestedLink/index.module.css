@@ -1,7 +1,7 @@
 .nestedLink {
   display: flex;
   align-items: center;
-  color: var(--text-color);
+  color: var(--text-secondary-color);
   font-size: 0.95rem;
   text-decoration: none;
 }

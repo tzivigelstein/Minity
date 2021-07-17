@@ -12,17 +12,18 @@ const Projects = () => {
   return (
     <div className={styles.projectsContainer}>
       <div className={styles.heading}>
-        <h3 className={styles.title}>Projects</h3>
         <Input
+          Icon={Search}
           inputProps={{
             onChange: () => console.log('search top header'),
             placeholder: 'Search projects',
           }}
-          icon={<Search width={18} height={18} className={styles.searchIcon} />}
         />
-        <PrimaryButton>
-          New <Add width={21} height={21} className={styles.addIcon} />
-        </PrimaryButton>
+        <div className={styles.buttonContainer}>
+          <PrimaryButton>
+            New <Add width={21} height={21} className={styles.addIcon} />
+          </PrimaryButton>
+        </div>
       </div>
       <ul className={styles.list}>
         {filteredProjects.length !== 0

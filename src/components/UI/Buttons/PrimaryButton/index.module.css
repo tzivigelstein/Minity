@@ -1,20 +1,27 @@
 .primaryButton {
-  display: flex;
   align-items: center;
-  font-size: 1.1rem;
+  background: linear-gradient(45deg, #1da0f2, lightgreen);
   border-radius: 0.5rem;
   border: none;
-  outline: none;
-  padding: 0.5rem 1.5rem;
-  background: linear-gradient(45deg, #1da0f2, lightgreen);
-  font-weight: bold;
   color: var(--white);
   cursor: pointer;
+  display: flex;
+  font-size: 1.1rem;
+  font-weight: bold;
+  justify-content: center;
+  outline: none;
+  padding: 0.6rem 1.5rem;
   transition: 0.3s ease filter;
+  width: 100%;
+}
+
+.primaryButton:disabled {
+  filter: contrast(0.5);
+  cursor: progress;
 }
 
 @media (hover) {
-  .primaryButton:hover {
+  .primaryButton:hover:enabled {
     filter: brightness(1.1);
   }
 }
