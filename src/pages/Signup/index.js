@@ -91,7 +91,7 @@ const Signup = props => {
         {alert ? <Alert text={alert.msg} type={alert.category} /> : null}
         <div className={styles.headingContainer}>
           <HeadingA>Create account</HeadingA>
-          <HeadingC muted>Fill in the requested fields to create your account and use our application.</HeadingC>
+          <HeadingC muted>Fill in the requested fields to create your account and minity.</HeadingC>
         </div>
         <div className={styles.formContainer}>
           <form className={styles.form}>
@@ -162,7 +162,7 @@ const Signup = props => {
 
             <div className={styles.helperContainer}>
               <HelperText>
-                By registering, you are allowing the use of your data provided to be used in this application.
+                By registering, you are allowing the use of your provided data in this application.
               </HelperText>
             </div>
           </form>

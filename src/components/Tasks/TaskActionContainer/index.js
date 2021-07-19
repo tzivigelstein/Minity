@@ -52,7 +52,11 @@ const TaskActionContainer = ({ task }) => {
     <>
       <div className={styles.taskActionsContainer}>
         <input className={styles.inputCheckbox} type="checkbox" name="checkbox" id={_id} checked={state} />
-        <label onClick={handleChangeTaskState} className={styles.checkbox} htmlFor={_id}>
+        <label
+          onClick={handleChangeTaskState}
+          className={`${styles.checkbox} ${state && styles.activeCheckbox}`}
+          htmlFor={_id}
+        >
           {state && <Check className={styles.checkIcon} />}
         </label>
 
