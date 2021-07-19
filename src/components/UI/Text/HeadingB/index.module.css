@@ -1,0 +1,7 @@
+.headingB {
+  color: var(--text-color);
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+  font-weight: normal;
+  text-align: left;
+}

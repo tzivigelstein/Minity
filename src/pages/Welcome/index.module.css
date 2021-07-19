@@ -1,9 +1,22 @@
-.container {
+.wrapper {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.headingContainer {
+  padding: 0 1rem;
 }
 
 .buttonsContainer {
   display: grid;
   gap: 1rem;
+}
+
+@media (min-width: 769px) {
+  .container {
+    width: 40%;
+    margin: 0 auto;
+  }
 }

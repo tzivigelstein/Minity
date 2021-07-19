@@ -11,6 +11,8 @@ import { Check, ClosedEye, Email, Lock, OpenEye } from '../../components/Icons'
 import PrimaryButton from '../../components/UI/Buttons/PrimaryButton'
 import Alert from '../../components/Alert'
 import { alertTypes, EMAIL_PATTERN as emailPattern } from '../../types'
+import AuthWrapper from '../../components/AuthWrapper'
+import AuthContainer from '../../components/AuthContainer'
 
 const INPUT_TYPE = {
   text: 'text',
@@ -72,62 +74,64 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div className={styles.container}>
-      {alert ? <Alert text={alert.msg} type={alert.category} /> : null}
-      <div className={styles.headingContainer}>
-        <HeadingA>Welcome back</HeadingA>
-      </div>
-      <div className={styles.formContainer}>
-        <form className={styles.form}>
-          <div className={styles.inputContainer}>
-            <Input
-              Icon={Email}
-              inputProps={{
-                type: 'email',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-                value: email,
-                onChange: handleChange,
-              }}
-              actionButton={
-                isValidEmail(email) && (
-                  <button onClick={e => e.preventDefault()} className={styles.iconButton}>
-                    <Check className={styles.icon} />
-                  </button>
-                )
-              }
-            />
-          </div>
-          <div className={styles.inputContainer}>
-            <Input
-              Icon={Lock}
-              inputProps={{
-                type: isPasswordShown ? typeText : typePassword,
-                id: 'password',
-                name: 'password',
-                placeholder: 'Password',
-                value: password,
-                onChange: handleChange,
-              }}
-              actionButton={
-                <button className={styles.iconButton} onClick={handleShowPassword}>
-                  {isPasswordShown ? <ClosedEye className={styles.icon} /> : <OpenEye className={styles.icon} />}
-                </button>
-              }
-            />
-          </div>
-          <PrimaryButton disabled={visualLoading} onClick={handleLogin}>
-            {visualLoading ? <ActivityIndicator color="verde" width={21} height={21} /> : 'Login'}
-          </PrimaryButton>
-        </form>
-        <div className={styles.linkContainer}>
-          <Link to="/signup">
-            <SimpleLink>Don't have an account? Signup</SimpleLink>
-          </Link>
+    <AuthWrapper>
+      <AuthContainer>
+        {alert ? <Alert text={alert.msg} type={alert.category} /> : null}
+        <div className={styles.headingContainer}>
+          <HeadingA>Welcome back</HeadingA>
         </div>
-      </div>
-    </div>
+        <div className={styles.formContainer}>
+          <form className={styles.form}>
+            <div className={styles.inputContainer}>
+              <Input
+                Icon={Email}
+                inputProps={{
+                  type: 'email',
+                  id: 'email',
+                  name: 'email',
+                  placeholder: 'Email',
+                  value: email,
+                  onChange: handleChange,
+                }}
+                actionButton={
+                  isValidEmail(email) && (
+                    <button onClick={e => e.preventDefault()} className={styles.iconButton}>
+                      <Check className={styles.icon} />
+                    </button>
+                  )
+                }
+              />
+            </div>
+            <div className={styles.inputContainer}>
+              <Input
+                Icon={Lock}
+                inputProps={{
+                  type: isPasswordShown ? typeText : typePassword,
+                  id: 'password',
+                  name: 'password',
+                  placeholder: 'Password',
+                  value: password,
+                  onChange: handleChange,
+                }}
+                actionButton={
+                  <button className={styles.iconButton} onClick={handleShowPassword}>
+                    {isPasswordShown ? <ClosedEye className={styles.icon} /> : <OpenEye className={styles.icon} />}
+                  </button>
+                }
+              />
+            </div>
+            <PrimaryButton disabled={visualLoading} onClick={handleLogin}>
+              {visualLoading ? <ActivityIndicator color="verde" width={21} height={21} /> : 'Login'}
+            </PrimaryButton>
+          </form>
+          <div className={styles.linkContainer}>
+            <Link to="/signup">
+              <SimpleLink>Don't have an account? Signup</SimpleLink>
+            </Link>
+          </div>
+        </div>
+      </AuthContainer>
+    </AuthWrapper>
   )
 }
 

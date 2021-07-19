@@ -11,6 +11,8 @@ import PrimaryButton from '../../components/UI/Buttons/PrimaryButton'
 import Input from '../../components/UI/Input'
 import HeadingA from '../../components/UI/Text/HeadingA'
 import { Check, ClosedEye, Email, Lock, OpenEye, User } from '../../components/Icons'
+import AuthWrapper from '../../components/AuthWrapper'
+import AuthContainer from '../../components/AuthContainer'
 
 const INPUT_TYPE = {
   text: 'text',
@@ -82,85 +84,87 @@ const Signup = props => {
   }
 
   return (
-    <div className={styles.container}>
-      {alert ? <Alert text={alert.msg} type={alert.category} /> : null}
-      <div className={styles.headingContainer}>
-        <HeadingA>Create account</HeadingA>
-      </div>
-      <div className={styles.formContainer}>
-        <form className={styles.form}>
-          <div className={styles.inputContainer}>
-            <Input
-              Icon={User}
-              inputProps={{
-                type: 'text',
-                id: 'name',
-                name: 'name',
-                placeholder: 'Name',
-                value: name,
-                onChange: handleChange,
-              }}
-              actionButton={
-                name.length > 3 && (
-                  <button onClick={e => e.preventDefault()} className={styles.iconButton}>
-                    <Check className={styles.icon} />
-                  </button>
-                )
-              }
-            />
-          </div>
-
-          <div className={styles.inputContainer}>
-            <Input
-              Icon={Email}
-              inputProps={{
-                type: 'email',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email',
-                value: email,
-                pattern: emailPattern,
-                onChange: handleChange,
-              }}
-              actionButton={
-                isValidEmail(email) && (
-                  <button onClick={e => e.preventDefault()} className={styles.iconButton}>
-                    <Check className={styles.icon} />
-                  </button>
-                )
-              }
-            />
-          </div>
-
-          <div className={styles.inputContainer}>
-            <Input
-              Icon={Lock}
-              inputProps={{
-                type: isPasswordShown ? typeText : typePassword,
-                id: 'password',
-                name: 'password',
-                placeholder: 'Password',
-                value: password,
-                onChange: handleChange,
-              }}
-              actionButton={
-                <button className={styles.iconButton} onClick={handleShowPassword}>
-                  {isPasswordShown ? <ClosedEye className={styles.icon} /> : <OpenEye className={styles.icon} />}
-                </button>
-              }
-            />
-          </div>
-          <PrimaryButton disabled={visualLoading} onClick={handleSignup}>
-            {visualLoading ? <ActivityIndicator color="light" width={21} height={21} /> : 'Signup'}
-          </PrimaryButton>
-        </form>
-        <div className={styles.linkContainer}>
-          <Link to="/login">
-            <SimpleLink>You have an account? Login</SimpleLink>
-          </Link>
+    <AuthWrapper>
+      <AuthContainer>
+        {alert ? <Alert text={alert.msg} type={alert.category} /> : null}
+        <div className={styles.headingContainer}>
+          <HeadingA>Create account</HeadingA>
         </div>
-      </div>
-    </div>
+        <div className={styles.formContainer}>
+          <form className={styles.form}>
+            <div className={styles.inputContainer}>
+              <Input
+                Icon={User}
+                inputProps={{
+                  type: 'text',
+                  id: 'name',
+                  name: 'name',
+                  placeholder: 'Name',
+                  value: name,
+                  onChange: handleChange,
+                }}
+                actionButton={
+                  name.length > 3 && (
+                    <button onClick={e => e.preventDefault()} className={styles.iconButton}>
+                      <Check className={styles.icon} />
+                    </button>
+                  )
+                }
+              />
+            </div>
+
+            <div className={styles.inputContainer}>
+              <Input
+                Icon={Email}
+                inputProps={{
+                  type: 'email',
+                  id: 'email',
+                  name: 'email',
+                  placeholder: 'Email',
+                  value: email,
+                  pattern: emailPattern,
+                  onChange: handleChange,
+                }}
+                actionButton={
+                  isValidEmail(email) && (
+                    <button onClick={e => e.preventDefault()} className={styles.iconButton}>
+                      <Check className={styles.icon} />
+                    </button>
+                  )
+                }
+              />
+            </div>
+
+            <div className={styles.inputContainer}>
+              <Input
+                Icon={Lock}
+                inputProps={{
+                  type: isPasswordShown ? typeText : typePassword,
+                  id: 'password',
+                  name: 'password',
+                  placeholder: 'Password',
+                  value: password,
+                  onChange: handleChange,
+                }}
+                actionButton={
+                  <button className={styles.iconButton} onClick={handleShowPassword}>
+                    {isPasswordShown ? <ClosedEye className={styles.icon} /> : <OpenEye className={styles.icon} />}
+                  </button>
+                }
+              />
+            </div>
+            <PrimaryButton disabled={visualLoading} onClick={handleSignup}>
+              {visualLoading ? <ActivityIndicator color="light" width={21} height={21} /> : 'Signup'}
+            </PrimaryButton>
+          </form>
+          <div className={styles.linkContainer}>
+            <Link to="/login">
+              <SimpleLink>You have an account? Login</SimpleLink>
+            </Link>
+          </div>
+        </div>
+      </AuthContainer>
+    </AuthWrapper>
   )
 }
 
