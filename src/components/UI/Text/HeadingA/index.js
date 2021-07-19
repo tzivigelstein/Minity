@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './index.module.css'
 
-const HeadingA = ({ children }) => {
-  return <h1 className={styles.headingA}>{children}</h1>
+const HeadingA = ({ children, muted }) => {
+  return <h1 className={`${styles.headingA} ${muted && styles.muted}`}>{children}</h1>
 }
 
 export default HeadingA

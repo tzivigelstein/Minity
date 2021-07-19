@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth'
 import useAlert from '../../hooks/useAlert'
 import ActivityIndicator from '../../components/ActivityIndicator'
 import HeadingA from '../../components/UI/Text/HeadingA'
+import HeadingC from '../../components/UI/Text/HeadingC'
 import SimpleLink from '../../components/UI/Links/SimpleLink'
 import Input from '../../components/UI/Input'
 import { Check, ClosedEye, Email, Lock, OpenEye } from '../../components/Icons'
@@ -13,6 +14,7 @@ import Alert from '../../components/Alert'
 import { alertTypes, EMAIL_PATTERN as emailPattern } from '../../types'
 import AuthWrapper from '../../components/AuthWrapper'
 import AuthContainer from '../../components/AuthContainer'
+import HelperText from '../../components/UI/Text/HelperText'
 
 const INPUT_TYPE = {
   text: 'text',
@@ -79,6 +81,7 @@ const Login = ({ history }) => {
         {alert ? <Alert text={alert.msg} type={alert.category} /> : null}
         <div className={styles.headingContainer}>
           <HeadingA>Welcome back</HeadingA>
+          <HeadingC muted>Login and start from where you left it.</HeadingC>
         </div>
         <div className={styles.formContainer}>
           <form className={styles.form}>
@@ -123,10 +126,13 @@ const Login = ({ history }) => {
             <PrimaryButton disabled={visualLoading} onClick={handleLogin}>
               {visualLoading ? <ActivityIndicator color="verde" width={21} height={21} /> : 'Login'}
             </PrimaryButton>
+            <div className={styles.helperContainer}>
+              <HelperText>Session lasts 5 hours. You can then login again.</HelperText>
+            </div>
           </form>
           <div className={styles.linkContainer}>
             <Link to="/signup">
-              <SimpleLink>Don't have an account? Signup</SimpleLink>
+              <SimpleLink>New here? Create an account</SimpleLink>
             </Link>
           </div>
         </div>

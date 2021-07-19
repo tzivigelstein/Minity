@@ -3,3 +3,7 @@
   font-weight: bold;
   color: var(--text-color);
 }
+
+.muted {
+  color: var(--text-tertiary-color);
+}

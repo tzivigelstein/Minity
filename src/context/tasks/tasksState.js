@@ -37,10 +37,10 @@ const TaskState = props => {
   //Add task to the project
   const addTask = async task => {
     try {
-      await client.post('/api/tasks', task)
+      const query = await client.post('/api/tasks', task)
       dispatch({
         type: ADD_TASK,
-        payload: task,
+        payload: query.data,
       })
     } catch (error) {
       console.log(error)

@@ -40,6 +40,10 @@
   transform: translateY(-50%);
 }
 
+.helperContainer {
+  margin: 1rem 0 2rem 0;
+}
+
 .linkContainer {
   display: grid;
   place-items: center;

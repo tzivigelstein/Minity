@@ -17,3 +17,9 @@
     background-position: -135% 0;
   }
 }
+
+@media (max-width: 768px) {
+  .taskChipContainer {
+    height: 5.5rem;
+  }
+}

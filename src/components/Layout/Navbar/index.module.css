@@ -13,7 +13,8 @@
 .titleBold {
   color: var(--text-color);
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: normal;
+  font-family: 'Rubik', sans-serif;
   margin: 0 0 0 1rem;
 }
 

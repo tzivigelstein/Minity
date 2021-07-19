@@ -10,9 +10,11 @@ import SimpleLink from '../../components/UI/Links/SimpleLink'
 import PrimaryButton from '../../components/UI/Buttons/PrimaryButton'
 import Input from '../../components/UI/Input'
 import HeadingA from '../../components/UI/Text/HeadingA'
+import HeadingC from '../../components/UI/Text/HeadingC'
 import { Check, ClosedEye, Email, Lock, OpenEye, User } from '../../components/Icons'
 import AuthWrapper from '../../components/AuthWrapper'
 import AuthContainer from '../../components/AuthContainer'
+import HelperText from '../../components/UI/Text/HelperText'
 
 const INPUT_TYPE = {
   text: 'text',
@@ -89,6 +91,7 @@ const Signup = props => {
         {alert ? <Alert text={alert.msg} type={alert.category} /> : null}
         <div className={styles.headingContainer}>
           <HeadingA>Create account</HeadingA>
+          <HeadingC muted>Fill in the requested fields to create your account and use our application.</HeadingC>
         </div>
         <div className={styles.formContainer}>
           <form className={styles.form}>
@@ -156,10 +159,16 @@ const Signup = props => {
             <PrimaryButton disabled={visualLoading} onClick={handleSignup}>
               {visualLoading ? <ActivityIndicator color="light" width={21} height={21} /> : 'Signup'}
             </PrimaryButton>
+
+            <div className={styles.helperContainer}>
+              <HelperText>
+                By registering, you are allowing the use of your data provided to be used in this application.
+              </HelperText>
+            </div>
           </form>
           <div className={styles.linkContainer}>
             <Link to="/login">
-              <SimpleLink>You have an account? Login</SimpleLink>
+              <SimpleLink>Already have an account? Login</SimpleLink>
             </Link>
           </div>
         </div>

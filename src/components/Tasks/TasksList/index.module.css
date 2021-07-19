@@ -1,14 +1,12 @@
 .listContainer {
   width: 100%;
-  padding-bottom: 1rem;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  flex: 1;
   animation: fade 0.3s ease forwards;
   opacity: 0;
-  margin: 2rem 0;
   box-sizing: border-box;
+  margin: 2rem 0;
 }
 
 @keyframes fade {
@@ -53,7 +51,7 @@
   display: grid;
   gap: 1rem;
   min-height: 0;
-  overflow: auto;
+  overflow-y: auto;
   box-sizing: border-box;
   max-height: 75vh;
 }
@@ -71,11 +69,5 @@
 @media (hover) {
   .addButton:hover {
     filter: brightness(1.1);
-  }
-}
-
-@media (max-width: 480px) {
-  .tasksList {
-    padding: 0;
   }
 }

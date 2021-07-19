@@ -12,7 +12,7 @@ const disabledState = { fontSize: 0, margin: 0, opacity: 0 }
 
 const TaskActionContainer = ({ task }) => {
   const { updateTask, selectedTask, setSelectedTask } = useTasks()
-  const { name, state } = task
+  const { _id, name, state } = task
 
   const [isOpen, setIsOpen] = useState(false)
   const [newTaskName, setNewTaskName] = useState(name)
@@ -40,11 +40,6 @@ const TaskActionContainer = ({ task }) => {
     setIsOpen(false)
   }
 
-  const handleKeyUp = e => {
-    e.preventDefault()
-    if (e.key === 'Enter') handleAccept(newTaskName)
-  }
-
   const handleChange = e => {
     setNewTaskName(e.target.value)
   }
@@ -56,16 +51,10 @@ const TaskActionContainer = ({ task }) => {
   return (
     <>
       <div className={styles.taskActionsContainer}>
-        <button onClick={handleChangeTaskState} className={`${styles.iconContainer} ${state && styles.checkState}`}>
-          {state ? (
-            <Check className={styles.actionIcon} width={21} height={21} />
-          ) : (
-            <Times onClick={handleChangeTaskState} className={styles.actionIcon} width={21} height={21} />
-          )}
-          <span style={state ? {} : disabledState} className={styles.actionIconText}>
-            Done
-          </span>
-        </button>
+        <input className={styles.inputCheckbox} type="checkbox" name="checkbox" id={_id} checked={state} />
+        <label onClick={handleChangeTaskState} className={styles.checkbox} htmlFor={_id}>
+          {state && <Check className={styles.checkIcon} />}
+        </label>
 
         <button onClick={handleEdit} className={styles.iconContainer}>
           <Edit className={styles.actionIcon} width={21} height={21} />
@@ -81,10 +70,9 @@ const TaskActionContainer = ({ task }) => {
               onClick: handleClean,
             }}
             inputProps={{
-              onKeyUp: handleKeyUp,
               onChange: handleChange,
               value: newTaskName,
-              placeholder: 'Edit task',
+              placeholder: 'Task name',
             }}
           />
           <ButtonsContainer justify="end">

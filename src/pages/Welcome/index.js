@@ -7,15 +7,19 @@ import PrimaryButton from '../../components/UI/Buttons/PrimaryButton'
 import SecondaryButton from '../../components/UI/Buttons/SecondaryButton'
 import HeadingA from '../../components/UI/Text/HeadingA'
 import HeadingB from '../../components/UI/Text/HeadingB'
+import Demo from '../../components/Demo'
 
 const Welcome = () => {
   return (
     <AuthWrapper>
       <AuthContainer>
         <div className={styles.headingContainer}>
-          <HeadingA>MERNTasks</HeadingA>
-          <HeadingB>Manage your whole life in one place</HeadingB>
+          <HeadingA>Manage your whole life in one place</HeadingA>
+          <HeadingB muted>Keep your tasks organized</HeadingB>
         </div>
+
+        <Demo />
+
         <div className={styles.buttonsContainer}>
           <Link to="/login">
             <PrimaryButton>Login</PrimaryButton>

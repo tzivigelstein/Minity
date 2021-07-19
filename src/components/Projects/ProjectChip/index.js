@@ -6,9 +6,9 @@ import HelperText from '../../UI/Text/HelperText'
 import HeadingC from '../../UI/Text/HeadingC'
 
 const ProjectChip = ({ project }) => {
-  const { _id, name, colors, date } = project
+  const { _id, name, colors = {}, date } = project
   const parsedDate = new Date(date).toLocaleDateString()
-  const { accentColor, secondaryColor } = colors
+  const { accentColor = '', secondaryColor = '' } = colors
 
   const { setActualProject } = useProjects()
 

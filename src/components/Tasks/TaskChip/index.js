@@ -7,7 +7,7 @@ const TaskChip = ({ task }) => {
 
   return (
     <div className={styles.taskChipContainer}>
-      <p className={styles.taskName}>{name}</p>
+      <span className={styles.taskName}>{name}</span>
       <TaskActionsContainer task={task} />
     </div>
   )
