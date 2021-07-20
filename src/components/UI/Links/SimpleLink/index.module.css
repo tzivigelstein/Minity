@@ -4,6 +4,7 @@
   color: var(--text-secondary-color);
   font-size: 0.95rem;
   text-decoration: none;
+  cursor: pointer;
 }
 
 @media (hover) {

@@ -1,5 +1,8 @@
-const { NODE_ENV, REACT_APP_PRODUCTION_BACKEND_URL, REACT_APP_DEVELOPMENT_BACKEND_URL } = process.env
+const enviroment = process.env.NODE_ENV
 
-const baseURL = NODE_ENV === 'production' ? REACT_APP_PRODUCTION_BACKEND_URL : REACT_APP_DEVELOPMENT_BACKEND_URL
+const productionBackendUrl = process.env.NEXT_PUBLIC_PRODUCTION_BACKEND_URL
+const developmentBackendUrl = process.env.NEXT_PUBLIC_DEVELOPMENT_BACKEND_URL
+
+const baseURL = enviroment === 'production' ? productionBackendUrl : developmentBackendUrl
 
 export { baseURL }

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.module.css'
-import { useHistory } from 'react-router-dom'
+import { useRouter } from 'next/router'
 import useProjects from '../../../hooks/useProjects'
 import HelperText from '../../UI/Text/HelperText'
 import HeadingC from '../../UI/Text/HeadingC'
@@ -12,11 +12,11 @@ const ProjectChip = ({ project }) => {
 
   const { setActualProject } = useProjects()
 
-  const history = useHistory()
+  const router = useRouter()
 
   const handleClick = id => {
     setActualProject(id)
-    history.push(`/${id}/tasks`)
+    router.replace(`/${id}/tasks`)
   }
 
   const colorGradient = {

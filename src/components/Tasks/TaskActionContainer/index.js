@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import styles from './index.module.css'
 import useTasks from '../../../hooks/useTasks'
-import { Bin, Edit, Check, Times } from '../../Icons'
+import { Bin, Edit, Check } from '../../Icons'
 import Input from '../../UI/Input'
 import Modal from '../../Modal'
 import TertiaryButton from '../../UI/Buttons/TertiaryButton'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 
-const disabledState = { fontSize: 0, margin: 0, opacity: 0 }
-
 const TaskActionContainer = ({ task }) => {
   const { updateTask, selectedTask, setSelectedTask } = useTasks()
+
+  /*  const updateTask = () => {}
+  const setSelectedTask = () => {}
+  const selectedTask = {} */
+
   const { _id, name, state } = task
 
   const [isOpen, setIsOpen] = useState(false)

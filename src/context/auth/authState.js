@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import AuthContext from './authContext'
 import AuthReducer from './authReducer'
 import client from '../../config/axios'
+import useToken from '../../hooks/useToken'
 import setTokenAuthInHeaders from '../../config/token'
 import {
   SUCCESS_REGISTER,
@@ -15,9 +16,10 @@ import {
 } from '../../types'
 
 const AuthState = props => {
+  const [token] = useToken('token')
   const initialState = {
-    token: localStorage.getItem('token'),
-    isAuth: null,
+    token,
+    isAuth: false,
     user: null,
     msg: null,
     loading: true,
@@ -53,7 +55,6 @@ const AuthState = props => {
 
   //Retorna user autenticado
   const authUser = async () => {
-    const token = localStorage.getItem('token')
     if (token) {
       setTokenAuthInHeaders(token)
     }
@@ -86,6 +87,7 @@ const AuthState = props => {
       })
       authUser()
     } catch (error) {
+      console.log(error)
       const msg = error.response.data.msg
       const alerta = {
         msg,

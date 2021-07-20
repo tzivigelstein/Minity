@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.module.css'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import useAuth from '../../../hooks/useAuth'
 import { Logout } from '../../Icons'
 
@@ -10,9 +10,9 @@ const Navbar = ({ componentLeft }) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.leftComponentContainer}>
-        {componentLeft && <Link to="/projects">{componentLeft}</Link>}
-        <Link to="/projects">
-          <h1 className={styles.titleBold}>minity</h1>
+        {componentLeft && <Link href="/projects">{componentLeft}</Link>}
+        <Link href="/projects">
+          <h1 className={styles.title}>minity</h1>
         </Link>
       </div>
       {isAuth && (

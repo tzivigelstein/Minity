@@ -1,4 +1,3 @@
-import React from 'react'
 import useTime from '../../hooks/useClock'
 import styles from './index.module.css'
 

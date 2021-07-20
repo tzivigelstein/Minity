@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styles from './index.module.css'
-import useProjects from '../../../hooks/useProjects'
 import useTasks from '../../../hooks/useTasks'
 import TaskChip from '../TaskChip'
 import TaskChipSkeleton from '../TaskChipSkeleton'
@@ -12,12 +11,11 @@ import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import TertiaryButton from '../../UI/Buttons/TertiaryButton'
 
-const TasksList = () => {
-  const { actualProject } = useProjects()
+const TasksList = ({ actualProject }) => {
   const { tasks, loading, addTask } = useTasks()
 
   const [isOpen, setIsOpen] = useState(false)
-  const [newTask, setNewTask] = useState({ name: '', state: false, project: actualProject._id })
+  const [newTask, setNewTask] = useState({ name: '', state: false, project: actualProject })
 
   const { accentColor, secondaryColor } = actualProject && actualProject.colors
 

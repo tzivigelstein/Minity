@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import TasksContext from './tasksContext'
-import TasksReducer from './tasksReducer'
+import tasksReducer from './tasksReducer'
 import client from '../../config/axios'
 
 import { GET_TASKS, ADD_TASK, DELETE_TASK, UPDATE_TASK, SET_SELECTED_TASK, TASK_ERROR, LOADING } from './types'
@@ -13,7 +13,7 @@ const TaskState = props => {
     loading: false,
   }
 
-  const [state, dispatch] = useReducer(TasksReducer, initialState)
+  const [state, dispatch] = useReducer(tasksReducer, initialState)
 
   //Get project tasks
   const getTasks = async project => {
