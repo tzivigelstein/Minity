@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "CI= next build",
+    "build": "next build",
     "start": "next start"
   },
   "eslintConfig": {
