@@ -17,6 +17,7 @@
   padding: 1rem;
   color: var(--text-color);
   transition: 0.3s ease box-shadow;
+  background-color: var(--white);
 }
 
 .errorIcon {
