@@ -38,11 +38,13 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   grid-template-rows: auto;
   width: 100%;
   place-items: center;
   gap: 1rem;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 @media (hover) {

@@ -56,16 +56,6 @@
   max-height: 75vh;
 }
 
-.tasksList::-webkit-scrollbar {
-  width: 0.7rem;
-}
-
-.tasksList::-webkit-scrollbar-thumb {
-  background: var(--white);
-  border-radius: 100rem;
-  box-shadow: var(--shadow-light);
-}
-
 @media (hover) {
   .addButton:hover {
     filter: brightness(1.1);

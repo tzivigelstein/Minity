@@ -25,9 +25,6 @@ const ProjectChip = ({ project }) => {
 
   return (
     <button onClick={() => handleClick(_id)} className={styles.projectChipContainer}>
-      <div>
-        <span></span>
-      </div>
       <div className={styles.chipWrapper}>
         <div className={styles.chipHeading}>
           <div style={colorGradient} className={styles.projectColor}>
@@ -37,7 +34,7 @@ const ProjectChip = ({ project }) => {
             <HeadingC>{name}</HeadingC>
           </div>
         </div>
-        <HelperText>Created {parsedDate}</HelperText>
+        <HelperText>Created on {parsedDate}</HelperText>
       </div>
     </button>
   )

@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import styles from './index.module.css'
 import useProjects from '../../../hooks/useProjects'
 import ProjectChip from '../ProjectChip'
-import { Add, Search } from '../../Icons'
+import { Add } from '../../Icons'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import Input from '../../UI/Input'
 import Modal from '../../Modal'
 import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 import TertiaryButton from '../../UI/Buttons/TertiaryButton'
+import Navigation from '../../Layout/Navigation/Navigation'
 
 const Projects = () => {
   const { projects, filteredProjects, createProject } = useProjects()
@@ -35,13 +36,7 @@ const Projects = () => {
     <>
       <div className={styles.projectsContainer}>
         <div className={styles.heading}>
-          <Input
-            Icon={Search}
-            inputProps={{
-              onChange: () => console.log('search top header'),
-              placeholder: 'Search projects',
-            }}
-          />
+          <Navigation />
           <div className={styles.buttonContainer}>
             <PrimaryButton onClick={handleNewProjectModal}>
               New <Add width={21} height={21} className={styles.addIcon} />

@@ -21,7 +21,7 @@
 .chipHeading {
   display: grid;
   place-items: center start;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr;
 }
 
 .projectColor {
