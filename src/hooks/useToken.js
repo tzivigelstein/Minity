@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 const hasLocalStorage = typeof window !== 'undefined'
 
@@ -15,10 +15,9 @@ const useToken = (key, defaultValue) => {
     hasLocalStorage && localStorage.setItem(key, token)
   }, [key, token])
 
-  const handleSetToken = newValue => {
-    if (value === newValue) return
+  const handleSetToken = useCallback(newValue => {
     setToken(newValue)
-  }
+  }, [])
 
   return [token, handleSetToken]
 }

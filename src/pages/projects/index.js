@@ -5,7 +5,7 @@ import ProjectList from '../../components/Projects/ProjectList'
 import Wrapper from '../../components/Wrapper'
 import useAuth from '../../hooks/useAuth'
 
-const Index = () => {
+const Projects = () => {
   const { isAuth, authUser } = useAuth()
   const { getProjects } = useProjects()
 
@@ -30,4 +30,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Projects

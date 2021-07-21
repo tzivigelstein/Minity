@@ -12,7 +12,6 @@ import Head from 'next/head'
 
 const Tasks = ({ id }) => {
   const { isAuth, authUser } = useAuth()
-  const { projects, loading, getProjects, setActualProject } = useProjects()
   const { getTasks } = useTasks()
 
   console.log(id)
@@ -24,7 +23,7 @@ const Tasks = ({ id }) => {
       authUser()
     }
     //eslint-disable-next-line
-  }, [isAuth, loading])
+  }, [isAuth])
 
   return (
     <>

@@ -1,3 +1,4 @@
+import useToken from '../../hooks/useToken'
 import {
   SUCCESS_REGISTER,
   ERROR_REGISTER,
@@ -8,7 +9,7 @@ import {
   VISUAL_LOADING,
 } from '../../types'
 
-export default (state, { type, payload }) => {
+const AuthReducer = (state, { type, payload }) => {
   switch (type) {
     case VISUAL_LOADING:
       return {
@@ -16,7 +17,7 @@ export default (state, { type, payload }) => {
       }
     case SUCCESS_REGISTER:
     case SUCCESS_LOGIN:
-      localStorage.setItem('token', payload.token)
+      // setToken(payload.token)
       return {
         ...state,
         isAuth: true,
@@ -48,3 +49,5 @@ export default (state, { type, payload }) => {
       return state
   }
 }
+
+export default AuthReducer

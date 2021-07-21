@@ -26,7 +26,7 @@ const INPUT_TYPE = {
 const { text: typeText, password: typePassword } = INPUT_TYPE
 
 const Login = () => {
-  const { login, isAuth, msg, visualLoading } = useAuth()
+  const { isAuth, msg, visualLoading, login, authUser } = useAuth()
   const { alert, showAlert } = useAlert()
 
   const router = useRouter()
@@ -68,6 +68,8 @@ const Login = () => {
       email,
       password,
     })
+
+    authUser()
   }
 
   const isValidEmail = email => {

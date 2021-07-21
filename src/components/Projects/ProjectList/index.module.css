@@ -1,4 +1,4 @@
-.projectsContainer {
+.container {
   width: 100%;
 }
 
@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem 0;
+  margin: 2rem 0 1rem 0;
 }
 
 .buttonContainer {
@@ -36,7 +36,7 @@
 
 .list {
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   grid-template-rows: auto;

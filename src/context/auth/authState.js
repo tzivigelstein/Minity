@@ -16,7 +16,7 @@ import {
 } from '../../types'
 
 const AuthState = props => {
-  const [token] = useToken('token')
+  const [token, setToken] = useToken('token')
   const initialState = {
     token,
     isAuth: false,
@@ -39,6 +39,8 @@ const AuthState = props => {
         type: SUCCESS_REGISTER,
         payload: query.data,
       })
+
+      setToken(query.data)
 
       authUser()
     } catch (err) {
@@ -85,7 +87,7 @@ const AuthState = props => {
         type: SUCCESS_LOGIN,
         payload: query.data,
       })
-      authUser()
+      setToken(query.data.token)
     } catch (error) {
       console.log(error)
       const msg = error.response.data.msg

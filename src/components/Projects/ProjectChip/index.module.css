@@ -11,6 +11,62 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+.menuButton {
+  box-sizing: initial;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  display: flex;
+  cursor: pointer;
+  transition: 0.3s ease background-color;
+  border-radius: 100rem;
+  padding: 0;
+  margin: 0;
+  padding: 0.3rem;
+}
+
+.moreIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke: var(--text-tertiary-color);
+}
+
+.menuList {
+  display: grid;
+  place-items: stretch start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  gap: 0.1rem;
+  animation: grow 0.2s ease forwards;
+  top: 2rem;
+  right: 1rem;
+  z-index: 1;
+  box-shadow: var(--active-shadow);
+}
+
+.menuItem {
+  font-size: 1rem;
+  color: var(--text-color);
+  border-radius: 0.3rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.3rem;
+  transition: 0.2s ease background-color;
+}
+
+.warningMenuItem {
+  color: var(--warning);
 }
 
 .chipWrapper {
@@ -43,9 +99,26 @@
   font-size: 1rem;
 }
 
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+    transform-origin: 100% 0;
+  }
+}
+
 @media (hover) {
   .projectChipContainer:hover {
-    transform: translateY(-0.3rem);
     box-shadow: var(--shadow);
+  }
+
+  .menuButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .menuItem:hover {
+    background-color: rgba(0, 0, 0, 0.08);
   }
 }

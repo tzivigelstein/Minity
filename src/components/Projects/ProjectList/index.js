@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './index.module.css'
 import useProjects from '../../../hooks/useProjects'
 import ProjectChip from '../ProjectChip'
-import { Add } from '../../Icons'
+import { Add, MoreVertical } from '../../Icons'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import Input from '../../UI/Input'
 import Modal from '../../Modal'
@@ -34,7 +34,7 @@ const Projects = () => {
 
   return (
     <>
-      <div className={styles.projectsContainer}>
+      <div className={styles.container}>
         <div className={styles.heading}>
           <Navigation />
           <div className={styles.buttonContainer}>
