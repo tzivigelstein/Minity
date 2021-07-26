@@ -3,7 +3,11 @@ import styles from './index.module.css'
 
 const Clock = () => {
   const { time } = useTime()
-  return <span className={styles.clock}>{time}</span>
+  return (
+    <time dateTime={time} className={styles.clock}>
+      {time}
+    </time>
+  )
 }
 
 export default Clock
