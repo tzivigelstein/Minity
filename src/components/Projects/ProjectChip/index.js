@@ -30,6 +30,8 @@ const ProjectChip = ({ project }) => {
     setProjectMenuOpen(!projectMenuOpen)
   }
 
+  const char = name.charAt(0)
+
   return (
     <Link href={`/${_id}/tasks`}>
       <a onClick={() => handleClick(_id)} className={styles.projectChipContainer}>
@@ -45,7 +47,7 @@ const ProjectChip = ({ project }) => {
         <div className={styles.chipWrapper}>
           <div className={styles.chipHeading}>
             <div style={colorGradient} className={styles.projectColor}>
-              <span className={styles.charName}>{name.charAt(0)}</span>
+              <span className={styles.charName}>{char}</span>
             </div>
             <div className={styles.projectNameContainer}>
               <HeadingC>{name}</HeadingC>
