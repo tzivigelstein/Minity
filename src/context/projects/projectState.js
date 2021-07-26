@@ -106,7 +106,7 @@ const ProjectState = props => {
   }
 
   //Delete project
-  const deleteProject = async projectId => {
+  const removeProject = async projectId => {
     try {
       await client.delete(`/api/projects/${projectId}`)
       dispatch({
@@ -141,7 +141,7 @@ const ProjectState = props => {
         createProject,
         showError,
         setActualProject,
-        deleteProject,
+        removeProject,
       }}
     >
       {props.children}

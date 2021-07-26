@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styles from './index.module.css'
 import useProjects from '../../../hooks/useProjects'
-import ProjectChip from '../ProjectChip'
-import { Add, MoreVertical } from '../../Icons'
+import ProjectCard from '../ProjectCard'
+import { Add } from '../../Icons'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import Input from '../../UI/Input'
 import Modal from '../../Modal'
@@ -45,8 +45,8 @@ const Projects = () => {
         </div>
         <ul className={styles.list}>
           {filteredProjects.length !== 0
-            ? filteredProjects.map(project => <ProjectChip key={project._id} project={project} />)
-            : projects.map(project => <ProjectChip key={project._id} project={project} />)}
+            ? filteredProjects.map(project => <ProjectCard key={project._id} project={project} />)
+            : projects.map(project => <ProjectCard key={project._id} project={project} />)}
         </ul>
       </div>
       {isOpen && (

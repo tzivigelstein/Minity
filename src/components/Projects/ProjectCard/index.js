@@ -7,7 +7,7 @@ import HeadingC from '../../UI/Text/HeadingC'
 import { MoreVertical } from '../../Icons'
 import ProjectCardMenu from '../ProjectCardMenu'
 
-const ProjectChip = ({ project }) => {
+const ProjectCard = ({ project }) => {
   const { _id, name, colors = {}, date } = project
   const parsedDate = new Date(date).toLocaleDateString()
   const { accentColor = '', secondaryColor = '' } = colors
@@ -37,7 +37,7 @@ const ProjectChip = ({ project }) => {
         <button onClick={handleProjectMenu} className={styles.menuButton}>
           <MoreVertical className={styles.moreIcon} />
         </button>
-        <ProjectCardMenu isActive={projectMenuOpen} />
+        <ProjectCardMenu isActive={projectMenuOpen} projectId={_id} />
         <div className={styles.chipWrapper}>
           <div className={styles.chipHeading}>
             <div style={colorGradient} className={styles.projectColor}>
@@ -54,4 +54,4 @@ const ProjectChip = ({ project }) => {
   )
 }
 
-export default ProjectChip
+export default ProjectCard

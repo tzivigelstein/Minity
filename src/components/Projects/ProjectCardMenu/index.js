@@ -1,12 +1,20 @@
 import { CSSTransition } from 'react-transition-group'
 import styles from './index.module.css'
+import useProjects from '../../../hooks/useProjects'
 
-const ProjectCardMenu = ({ isActive }) => {
-  const handleDelete = () => {
-    console.log('delete')
+const ProjectCardMenu = ({ isActive, projectId }) => {
+  const { removeProject } = useProjects()
+
+  const handleRemove = e => {
+    e.preventDefault()
+    e.stopPropagation()
+    removeProject(projectId)
+    console.log('remove')
   }
 
-  const handleEdit = () => {
+  const handleEdit = e => {
+    e.preventDefault()
+    e.stopPropagation()
     console.log('edit')
   }
 
@@ -28,7 +36,7 @@ const ProjectCardMenu = ({ isActive }) => {
           </button>
         </li>
         <li className={styles.menuItem}>
-          <button className={`${styles.menuButton} ${styles.removeMenuButton}`} onClick={handleDelete}>
+          <button className={`${styles.menuButton} ${styles.removeMenuButton}`} onClick={handleRemove}>
             Remove
           </button>
         </li>
