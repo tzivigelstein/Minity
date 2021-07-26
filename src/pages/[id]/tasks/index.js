@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import styles from './index.module.css'
+import Head from 'next/head'
+import Link from 'next/link'
 import Wrapper from '../../../components/Wrapper'
 import { BackArrow } from '../../../components/Icons'
 import TasksList from '../../../components/Tasks/TasksList'
 import useTasks from '../../../hooks/useTasks'
-import NestedLink from '../../../components/UI/Links/NestedLink'
+import SimpleLink from '../../../components/UI/Links/SimpleLink'
 import useAuth from '../../../hooks/useAuth'
 import client from '../../../config/axios'
 import useProjects from '../../../hooks/useProjects'
-import Head from 'next/head'
 
 const Tasks = ({ id }) => {
   const { isAuth, authUser } = useAuth()
@@ -32,10 +33,12 @@ const Tasks = ({ id }) => {
       </Head>
       <Wrapper
         componentLeft={
-          <NestedLink>
-            <BackArrow className={styles.backArrow} />
-            <span className={styles.backText}>Projects</span>
-          </NestedLink>
+          <Link href="/projects">
+            <SimpleLink>
+              <BackArrow className={styles.backArrow} />
+              <span className={styles.backText}>Projects</span>
+            </SimpleLink>
+          </Link>
         }
       >
         {/* {!loading && <TasksList actualProject={id} />} */}
