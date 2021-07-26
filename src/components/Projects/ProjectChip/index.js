@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Link from 'next/link'
 import styles from './index.module.css'
 import { useRouter } from 'next/router'
 import useProjects from '../../../hooks/useProjects'
@@ -18,7 +19,6 @@ const ProjectChip = ({ project }) => {
 
   const handleClick = id => {
     setActualProject(id)
-    router.replace(`/${id}/tasks`)
   }
 
   const colorGradient = {
@@ -31,28 +31,30 @@ const ProjectChip = ({ project }) => {
   }
 
   return (
-    <button onClick={() => handleClick(_id)} className={styles.projectChipContainer}>
-      <button onClick={handleProjectMenu} className={styles.menuButton}>
-        <MoreVertical className={styles.moreIcon} />
-      </button>
-      {projectMenuOpen && (
-        <ul className={styles.menuList}>
-          <li className={styles.menuItem}>Edit</li>
-          <li className={`${styles.menuItem} ${styles.warningMenuItem}`}>Remove</li>
-        </ul>
-      )}
-      <div className={styles.chipWrapper}>
-        <div className={styles.chipHeading}>
-          <div style={colorGradient} className={styles.projectColor}>
-            <span className={styles.charName}>{name.charAt(0)}</span>
+    <Link href={`/${_id}/tasks`}>
+      <a onClick={() => handleClick(_id)} className={styles.projectChipContainer}>
+        <button onClick={handleProjectMenu} className={styles.menuButton}>
+          <MoreVertical className={styles.moreIcon} />
+        </button>
+        {projectMenuOpen && (
+          <ul className={styles.menuList}>
+            <li className={styles.menuItem}>Edit</li>
+            <li className={`${styles.menuItem} ${styles.warningMenuItem}`}>Remove</li>
+          </ul>
+        )}
+        <div className={styles.chipWrapper}>
+          <div className={styles.chipHeading}>
+            <div style={colorGradient} className={styles.projectColor}>
+              <span className={styles.charName}>{name.charAt(0)}</span>
+            </div>
+            <div className={styles.projectNameContainer}>
+              <HeadingC>{name}</HeadingC>
+            </div>
           </div>
-          <div className={styles.projectNameContainer}>
-            <HeadingC>{name}</HeadingC>
-          </div>
+          <HelperText>Created on {parsedDate}</HelperText>
         </div>
-        <HelperText>Created on {parsedDate}</HelperText>
-      </div>
-    </button>
+      </a>
+    </Link>
   )
 }
 
