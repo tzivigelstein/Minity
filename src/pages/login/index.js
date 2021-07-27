@@ -26,31 +26,32 @@ const INPUT_TYPE = {
 const { text: typeText, password: typePassword } = INPUT_TYPE
 
 const Login = () => {
-  const { isAuth, msg, visualLoading, login, authUser } = useAuth()
+  const { msg, visualLoading, login, authUser, user } = useAuth()
   const { alert, showAlert } = useAlert()
 
   const router = useRouter()
 
   const [isPasswordShown, setIsPasswordShown] = useState(false)
-  const [user, setUser] = useState({
+  const [userData, setUserData] = useState({
     email: '',
     password: '',
   })
-  const { email, password } = user
+
+  const { email, password } = userData
 
   useEffect(() => {
-    if (isAuth) {
+    if (user) {
       router.replace('/projects')
     } else if (msg) {
       showAlert(msg.msg, msg.category)
     }
     //eslint-disable-next-line
-  }, [msg, isAuth])
+  }, [msg, user])
 
   //Lectura de datos del form
   const handleChange = e => {
-    setUser({
-      ...user,
+    setUserData({
+      ...userData,
       [e.target.name]: e.target.value,
     })
   }

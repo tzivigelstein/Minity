@@ -1,7 +1,23 @@
-import { GET_TASKS, ADD_TASK, DELETE_TASK, UPDATE_TASK, SET_SELECTED_TASK, TASK_ERROR, LOADING } from './types'
+import {
+  GET_TASKS,
+  ADD_TASK,
+  DELETE_TASK,
+  UPDATE_TASK,
+  SET_SELECTED_TASK,
+  TASK_ERROR,
+  LOADING,
+  SET_TASKS,
+} from './types'
 
 export default (state, { type, payload }) => {
   switch (type) {
+    case SET_TASKS:
+      return {
+        ...state,
+        tasks: payload,
+        loading: false,
+      }
+
     case GET_TASKS:
       return {
         ...state,

@@ -4,27 +4,24 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Wrapper from '../../../components/Wrapper'
 import { BackArrow } from '../../../components/Icons'
-import TasksList from '../../../components/Tasks/TasksList'
-import useTasks from '../../../hooks/useTasks'
 import SimpleLink from '../../../components/UI/Links/SimpleLink'
 import useAuth from '../../../hooks/useAuth'
 import client from '../../../config/axios'
-import useProjects from '../../../hooks/useProjects'
+import TasksList from '../../../components/Tasks/TasksList'
+import useTasks from '../../../hooks/useTasks'
 
-const Tasks = ({ id }) => {
-  const { isAuth, authUser } = useAuth()
-  const { getTasks } = useTasks()
-
-  console.log(id)
+const Tasks = ({ tasks }) => {
+  const { user, authUser } = useAuth()
+  const { setTasks } = useTasks()
 
   useEffect(() => {
-    if (isAuth) {
-      getTasks(id)
+    if (user) {
+      setTasks(tasks)
     } else {
       authUser()
     }
     //eslint-disable-next-line
-  }, [isAuth])
+  }, [user])
 
   return (
     <>
@@ -41,17 +38,33 @@ const Tasks = ({ id }) => {
           </Link>
         }
       >
-        {/* {!loading && <TasksList actualProject={id} />} */}
+        {user && <TasksList />}
       </Wrapper>
     </>
   )
 }
 
-export async function getServerSideProps({ query: { id } }) {
-  //TODO fetch items to render on server side
-  // const query = await client.get('/api/tasks/')
+export async function getServerSideProps(context) {
+  const { params, req } = context
+  const { id } = params
+  const { cookies } = req
 
-  return { props: { id } }
+  const token = cookies.tk || null
+
+  //TODO fetch items to render on server side
+  try {
+    const config = {
+      params: { project: id },
+      headers: {
+        'x-auth-token': token,
+      },
+    }
+    const query = await client.get('/api/tasks/', config)
+    const tasks = query.data.tasks
+    return { props: { tasks } }
+  } catch (error) {
+    return { props: { tasks: null } }
+  }
 }
 
 export default Tasks

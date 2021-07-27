@@ -9,7 +9,6 @@ const ProjectCardMenu = ({ isActive, projectId }) => {
     e.preventDefault()
     e.stopPropagation()
     removeProject(projectId)
-    console.log('remove')
   }
 
   const handleEdit = e => {

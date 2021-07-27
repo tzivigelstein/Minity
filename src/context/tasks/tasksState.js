@@ -3,7 +3,16 @@ import TasksContext from './tasksContext'
 import tasksReducer from './tasksReducer'
 import client from '../../config/axios'
 
-import { GET_TASKS, ADD_TASK, DELETE_TASK, UPDATE_TASK, SET_SELECTED_TASK, TASK_ERROR, LOADING } from './types'
+import {
+  GET_TASKS,
+  ADD_TASK,
+  DELETE_TASK,
+  UPDATE_TASK,
+  SET_SELECTED_TASK,
+  TASK_ERROR,
+  LOADING,
+  SET_TASKS,
+} from './types'
 
 const TaskState = props => {
   const initialState = {
@@ -14,6 +23,17 @@ const TaskState = props => {
   }
 
   const [state, dispatch] = useReducer(tasksReducer, initialState)
+
+  const setTasks = async tasks => {
+    dispatch({
+      type: LOADING,
+    })
+
+    dispatch({
+      type: SET_TASKS,
+      payload: tasks,
+    })
+  }
 
   //Get project tasks
   const getTasks = async project => {
@@ -94,6 +114,7 @@ const TaskState = props => {
         taskError: state.taskError,
         selectedTask: state.selectedTask,
         loading: state.loading,
+        setTasks,
         getTasks,
         addTask,
         showError,

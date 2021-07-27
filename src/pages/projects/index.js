@@ -6,17 +6,17 @@ import Wrapper from '../../components/Wrapper'
 import useAuth from '../../hooks/useAuth'
 
 const Projects = () => {
-  const { isAuth, authUser } = useAuth()
+  const { authUser, user } = useAuth()
   const { getProjects } = useProjects()
 
   useEffect(() => {
-    if (isAuth) {
+    if (user) {
       getProjects()
     } else {
       authUser()
     }
     //eslint-disable-next-line
-  }, [isAuth])
+  }, [user])
 
   return (
     <>

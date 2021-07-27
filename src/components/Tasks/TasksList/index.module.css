@@ -15,35 +15,6 @@
   }
 }
 
-.heading {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.addButton {
-  display: flex;
-  align-items: center;
-  font-size: 0.95rem;
-  border-radius: 0.5rem;
-  border: none;
-  outline: none;
-  padding: 0.5rem 1.5rem;
-  font-weight: bold;
-  color: var(--white);
-  cursor: pointer;
-  transition: 0.3s ease filter;
-  margin-left: 1rem;
-}
-
-.addIcon {
-  margin-left: 0.3rem;
-  stroke: var(--white);
-  stroke-width: 0.1875rem;
-  width: 1.3125rem;
-  height: 1.3125rem;
-}
-
 .tasksList {
   width: 100%;
   margin: 0;
@@ -54,10 +25,4 @@
   overflow-y: auto;
   box-sizing: border-box;
   max-height: 75vh;
-}
-
-@media (hover) {
-  .addButton:hover {
-    filter: brightness(1.1);
-  }
 }

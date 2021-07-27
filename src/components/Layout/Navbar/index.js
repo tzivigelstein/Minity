@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth'
 import { Logout } from '../../Icons'
 
 const Navbar = ({ componentLeft }) => {
-  const { isAuth, logout } = useAuth()
+  const { user, logout } = useAuth()
 
   return (
     <nav className={styles.navbar}>
@@ -15,7 +15,7 @@ const Navbar = ({ componentLeft }) => {
           <h1 className={styles.title}>minity</h1>
         </Link>
       </div>
-      {isAuth && (
+      {user && (
         <button onClick={logout} className={styles.navbarButton}>
           <span className={styles.logoutText}>Logout</span>
           <Logout className={styles.logoutIcon} width={18} height={18} />
