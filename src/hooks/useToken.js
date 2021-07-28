@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 
 const hasLocalStorage = typeof window !== 'undefined'
+const hasDocument = typeof document !== 'undefined'
 
 const useToken = (key, defaultValue) => {
   let initial = ''
@@ -13,6 +14,9 @@ const useToken = (key, defaultValue) => {
 
   useEffect(() => {
     hasLocalStorage && localStorage.setItem(key, token)
+    if (hasDocument) {
+      document.cookie = `${key} = ${token}; path=/`
+    }
   }, [key, token])
 
   const handleSetToken = useCallback(newValue => {

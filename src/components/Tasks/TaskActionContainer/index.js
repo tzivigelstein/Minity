@@ -11,10 +11,6 @@ import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 const TaskActionContainer = ({ task }) => {
   const { updateTask, selectedTask, setSelectedTask } = useTasks()
 
-  /*  const updateTask = () => {}
-  const setSelectedTask = () => {}
-  const selectedTask = {} */
-
   const { _id, name, state } = task
 
   const [isOpen, setIsOpen] = useState(false)

@@ -22,13 +22,13 @@
   padding: 0.1rem;
   position: relative;
   border-radius: 0.35rem;
-  border: 0.124rem solid var(--text-tertiary-color);
+  border: 2px solid var(--text-tertiary-color);
   cursor: pointer;
   display: flex;
   height: 1.15rem;
   align-items: center;
   justify-content: center;
-  transition: 0.3s ease border-color, 0.3s ease background-color;
+  transition: 0.2s ease border-color, 0.2s ease background-color;
   width: 1.15rem;
   margin: 0 0.5rem;
 }
@@ -48,6 +48,7 @@
 }
 
 .checkIcon {
+  padding: 0.125rem;
   stroke-width: 0.2rem;
   position: absolute;
   width: 100%;
@@ -61,20 +62,6 @@
   width: 1.125rem;
   height: 1.125rem;
   transition: 0.3s ease all;
-}
-
-.actionIconText {
-  font-size: inherit;
-  flex: 1;
-  text-align: center;
-  font-size: 0.8rem;
-  margin: 0 0.5rem 0 0.3rem;
-  transition: 0.05s ease font-size, 0.1s ease margin, 0.1s ease opacity;
-}
-
-@media (hover) {
-  .iconContainer:hover > .actionIcon {
-  }
 }
 
 @media (max-width: 768px) {

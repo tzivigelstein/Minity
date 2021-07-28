@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
   const { id } = params
   const { cookies } = req
 
-  const token = cookies.tk || null
+  const token = cookies.token || null
 
   //TODO fetch items to render on server side
   try {
