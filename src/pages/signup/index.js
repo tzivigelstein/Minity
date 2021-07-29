@@ -26,7 +26,7 @@ const INPUT_TYPE = {
 const { text: typeText, password: typePassword } = INPUT_TYPE
 
 const Signup = () => {
-  const { msg, signup, visualLoading, user } = useAuth()
+  const { msg, signup, loading, user } = useAuth()
   const { alert, showAlert } = useAlert()
 
   const router = useRouter()
@@ -164,8 +164,8 @@ const Signup = () => {
                   }
                 />
               </div>
-              <PrimaryButton disabled={visualLoading} onClick={handleSignup}>
-                {visualLoading ? <ActivityIndicator color="light" width={21} height={21} /> : 'Signup'}
+              <PrimaryButton disabled={loading} onClick={handleSignup}>
+                {loading ? <ActivityIndicator color="light" width={21} height={21} /> : 'Signup'}
               </PrimaryButton>
 
               <div className={styles.helperContainer}>

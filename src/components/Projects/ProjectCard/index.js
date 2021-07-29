@@ -29,7 +29,7 @@ const ProjectCard = ({ project }) => {
     setProjectMenuOpen(!projectMenuOpen)
   }
 
-  const char = name.charAt(0)
+  const char = name.charAt(0).toUpperCase()
 
   return (
     <Link href={`/${_id}/tasks`}>

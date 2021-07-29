@@ -26,7 +26,7 @@ const INPUT_TYPE = {
 const { text: typeText, password: typePassword } = INPUT_TYPE
 
 const Login = () => {
-  const { msg, visualLoading, login, authUser, user } = useAuth()
+  const { msg, loading, login, authUser, user } = useAuth()
   const { alert, showAlert } = useAlert()
 
   const router = useRouter()
@@ -134,8 +134,8 @@ const Login = () => {
                   }
                 />
               </div>
-              <PrimaryButton disabled={visualLoading} onClick={handleLogin}>
-                {visualLoading ? <ActivityIndicator color="verde" width={21} height={21} /> : 'Login'}
+              <PrimaryButton disabled={loading} onClick={handleLogin}>
+                {loading ? <ActivityIndicator color="verde" width={21} height={21} /> : 'Login'}
               </PrimaryButton>
               <div className={styles.helperContainer}>
                 <HelperText>Session lasts 5 hours. You can then login again.</HelperText>

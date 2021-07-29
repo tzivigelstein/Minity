@@ -10,8 +10,10 @@ import {
   SUCCESS_LOGIN,
   ERROR_LOGIN,
   AUTH_USER,
+  ERROR_AUTH,
   LOG_OUT,
   VISUAL_LOADING,
+  LOADING,
   alertTypes,
 } from '../../types'
 
@@ -22,8 +24,7 @@ const AuthState = props => {
     isAuth: false,
     user: null,
     msg: null,
-    loading: true,
-    visualLoading: false,
+    loading: false,
   }
 
   const [state, dispatch] = useReducer(AuthReducer, initialState)
@@ -61,6 +62,10 @@ const AuthState = props => {
       setTokenAuthInHeaders(token)
     }
 
+    dispatch({
+      type: LOADING,
+    })
+
     try {
       const query = await client.get('/api/auth')
       const { user } = query.data
@@ -72,7 +77,7 @@ const AuthState = props => {
     } catch (error) {
       console.log(error)
       dispatch({
-        type: ERROR_LOGIN,
+        type: ERROR_AUTH,
       })
     }
   }
@@ -116,7 +121,6 @@ const AuthState = props => {
         user: state.user,
         msg: state.msg,
         loading: state.loading,
-        visualLoading: state.visualLoading,
         signup,
         login,
         authUser,

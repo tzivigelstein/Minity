@@ -5,8 +5,10 @@ import {
   SUCCESS_LOGIN,
   ERROR_LOGIN,
   AUTH_USER,
+  ERROR_AUTH,
   LOG_OUT,
   VISUAL_LOADING,
+  LOADING,
 } from '../../types'
 
 const AuthReducer = (state, { type, payload }) => {
@@ -15,6 +17,12 @@ const AuthReducer = (state, { type, payload }) => {
       return {
         visualLoading: true,
       }
+
+    case LOADING:
+      return {
+        loading: true,
+      }
+
     case SUCCESS_REGISTER:
     case SUCCESS_LOGIN:
       // setToken(payload.token)
@@ -33,6 +41,7 @@ const AuthReducer = (state, { type, payload }) => {
         isAuth: true,
       }
     case LOG_OUT:
+    case ERROR_AUTH:
     case ERROR_LOGIN:
     case ERROR_REGISTER:
       localStorage.removeItem('token')

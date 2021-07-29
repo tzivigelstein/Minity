@@ -4,19 +4,25 @@ import useProjects from '../../hooks/useProjects'
 import ProjectList from '../../components/Projects/ProjectList'
 import Wrapper from '../../components/Wrapper'
 import useAuth from '../../hooks/useAuth'
+import { useRouter } from 'next/router'
 
 const Projects = () => {
-  const { authUser, user } = useAuth()
+  const { authUser, user, isAuth } = useAuth()
   const { getProjects } = useProjects()
 
+  const router = useRouter()
+
   useEffect(() => {
-    if (user) {
+    authUser()
+    if (isAuth) {
       getProjects()
+      console.log('aca entro cuando ya esta auth')
     } else {
-      authUser()
+      router.replace('/login')
     }
+
     //eslint-disable-next-line
-  }, [user])
+  }, [])
 
   return (
     <>

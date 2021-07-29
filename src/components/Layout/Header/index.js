@@ -6,17 +6,17 @@ import Clock from '../../Clock'
 import HeaderTitle from './HeaderTitle'
 
 const Header = () => {
-  const { loading } = useAuth()
+  const { isAuth } = useAuth()
 
   return (
     <>
-      {loading ? (
-        <HeaderSkeleton />
-      ) : (
+      {isAuth ? (
         <header className={styles.header}>
           <HeaderTitle />
           <Clock />
         </header>
+      ) : (
+        <HeaderSkeleton />
       )}
     </>
   )

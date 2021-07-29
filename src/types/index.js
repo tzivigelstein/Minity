@@ -15,6 +15,7 @@ export const ERROR_REGISTER = 'ERROR_REGISTER'
 export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
 export const ERROR_LOGIN = 'ERROR_LOGIN'
 export const AUTH_USER = 'AUTH_USER'
+export const ERROR_AUTH = 'ERROR_AUTH'
 export const LOG_OUT = 'LOG_OUT'
 
 export const LOADING = 'LOADING'
