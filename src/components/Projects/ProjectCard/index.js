@@ -47,7 +47,9 @@ const ProjectCard = ({ project }) => {
               <HeadingC>{name}</HeadingC>
             </div>
           </div>
-          <HelperText>Created on {parsedDate}</HelperText>
+          <HelperText>
+            <time dateTime={parsedDate}>Created on {parsedDate}</time>
+          </HelperText>
         </div>
       </a>
     </Link>
