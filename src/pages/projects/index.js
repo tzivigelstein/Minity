@@ -7,22 +7,25 @@ import useAuth from '../../hooks/useAuth'
 import { useRouter } from 'next/router'
 
 const Projects = () => {
-  const { authUser, user, isAuth } = useAuth()
+  const { authUser, loading, isAuth } = useAuth()
   const { getProjects } = useProjects()
 
   const router = useRouter()
 
   useEffect(() => {
-    authUser()
+    if (!isAuth) {
+      authUser()
+    }
     if (isAuth) {
       getProjects()
-      console.log('aca entro cuando ya esta auth')
-    } else {
+    } else if (!isAuth && !loading) {
       router.replace('/login')
     }
 
     //eslint-disable-next-line
   }, [])
+
+  if (loading) return <p>Loading...</p>
 
   return (
     <>

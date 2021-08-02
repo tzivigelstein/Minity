@@ -43,14 +43,14 @@ export default (state, { type, payload }) => {
     case DELETE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter(({ _id }) => _id !== payload),
+        tasks: state.tasks.filter(({ id }) => id !== payload),
         loading: false,
       }
 
     case UPDATE_TASK:
       return {
         ...state,
-        tasks: state.tasks.map(task => (task._id === payload._id ? payload : task)),
+        tasks: state.tasks.map(task => (task.id === payload.id ? payload : task)),
         selectedTask: null,
         loading: false,
       }

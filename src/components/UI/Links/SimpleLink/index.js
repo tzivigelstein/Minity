@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from './index.module.css'
+import Link from 'next/link'
 
 const SimpleLink = props => {
-  const { children } = props
+  const { children, to = '/' } = props
   return (
-    <span className={styles.simpleLink} {...props}>
-      {children}
-    </span>
+    <Link href={to}>
+      <a className={styles.simpleLink} {...props}>
+        {children}
+      </a>
+    </Link>
   )
 }
 

@@ -60,13 +60,13 @@ export default (state, { type, payload }) => {
     case ACTUAL_PROJECT_UPDATE:
       return {
         ...state,
-        actualProject: state.projects.find(project => project._id === payload),
+        actualProject: state.projects.find(project => project.id === payload),
       }
 
     case DELETE_PROJECT:
       return {
         ...state,
-        projects: state.projects.filter(project => project._id !== payload),
+        projects: state.projects.filter(project => project.id !== payload),
         project: null,
       }
 

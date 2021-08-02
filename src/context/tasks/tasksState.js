@@ -47,7 +47,7 @@ const TaskState = props => {
 
       dispatch({
         type: GET_TASKS,
-        payload: query.data.tasks,
+        payload: query.data,
       })
     } catch (error) {
       console.log(error)
@@ -95,12 +95,12 @@ const TaskState = props => {
   }
 
   const updateTask = async task => {
-    const { _id } = task
+    const { id } = task
     try {
-      const query = await client.put(`/api/tasks/${_id}`, task)
+      const query = await client.put(`/api/tasks/${id}`, task)
       dispatch({
         type: UPDATE_TASK,
-        payload: query.data.task,
+        payload: query.data,
       })
     } catch (error) {
       console.log(error)

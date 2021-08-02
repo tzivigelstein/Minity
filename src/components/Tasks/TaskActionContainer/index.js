@@ -11,7 +11,7 @@ import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 const TaskActionContainer = ({ task }) => {
   const { updateTask, selectedTask, setSelectedTask } = useTasks()
 
-  const { _id, name, state } = task
+  const { id, name, state } = task
 
   const [isOpen, setIsOpen] = useState(false)
   const [newTaskName, setNewTaskName] = useState(name)
@@ -50,12 +50,15 @@ const TaskActionContainer = ({ task }) => {
   return (
     <>
       <div className={styles.taskActionsContainer}>
-        <input className={styles.inputCheckbox} type="checkbox" name="checkbox" id={_id} checked={state} />
-        <label
-          onClick={handleChangeTaskState}
-          className={`${styles.checkbox} ${state && styles.activeCheckbox}`}
-          htmlFor={_id}
-        >
+        <input
+          className={styles.inputCheckbox}
+          onChange={handleChangeTaskState}
+          type="checkbox"
+          name="checkbox"
+          id={id}
+          checked={state}
+        />
+        <label className={`${styles.checkbox} ${state && styles.activeCheckbox}`} htmlFor={id}>
           {state && <Check className={styles.checkIcon} />}
         </label>
 

@@ -45,8 +45,8 @@ const Projects = () => {
         </div>
         <ul className={styles.list}>
           {filteredProjects.length !== 0
-            ? filteredProjects.map(project => <ProjectCard key={project._id} project={project} />)
-            : projects.map(project => <ProjectCard key={project._id} project={project} />)}
+            ? filteredProjects.map(project => <ProjectCard key={project.id} project={project} />)
+            : projects.map(project => <ProjectCard key={project.id} project={project} />)}
         </ul>
       </div>
       {isOpen && (

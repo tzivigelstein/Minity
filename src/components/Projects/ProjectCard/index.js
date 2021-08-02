@@ -8,7 +8,7 @@ import { MoreVertical } from '../../Icons'
 import ProjectCardMenu from '../ProjectCardMenu'
 
 const ProjectCard = ({ project }) => {
-  const { _id, name, colors = {}, date } = project
+  const { id, name, colors = {}, date } = project
   const parsedDate = new Date(date).toLocaleDateString()
   const { accentColor = '', secondaryColor = '' } = colors
   const { setActualProject } = useProjects()
@@ -32,12 +32,12 @@ const ProjectCard = ({ project }) => {
   const char = name.charAt(0).toUpperCase()
 
   return (
-    <Link href={`/${_id}/tasks`}>
-      <a onClick={() => handleClick(_id)} className={styles.projectChipContainer}>
+    <Link href={`/${id}/tasks`}>
+      <a onClick={() => handleClick(id)} className={styles.projectChipContainer}>
         <button onClick={handleProjectMenu} className={styles.menuButton}>
           <MoreVertical className={styles.moreIcon} />
         </button>
-        <ProjectCardMenu isActive={projectMenuOpen} projectId={_id} />
+        <ProjectCardMenu isActive={projectMenuOpen} projectId={id} />
         <div className={styles.chipWrapper}>
           <div className={styles.chipHeading}>
             <div style={colorGradient} className={styles.projectColor}>

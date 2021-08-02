@@ -44,7 +44,7 @@ const TasksList = () => {
         ) : (
           <ul className={styles.tasksList}>
             {tasks.map(task => (
-              <TaskChip key={task._id} task={task} />
+              <TaskChip key={task.id} task={task} />
             ))}
           </ul>
         )}

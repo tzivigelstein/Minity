@@ -30,12 +30,10 @@ const Tasks = ({ tasks }) => {
       </Head>
       <Wrapper
         componentLeft={
-          <Link href="/projects">
-            <SimpleLink>
-              <BackArrow className={styles.backArrow} />
-              <span className={styles.backText}>Projects</span>
-            </SimpleLink>
-          </Link>
+          <SimpleLink to="/projects">
+            <BackArrow className={styles.backArrow} />
+            <span className={styles.backText}>Projects</span>
+          </SimpleLink>
         }
       >
         {user && <TasksList />}
@@ -60,7 +58,7 @@ export async function getServerSideProps(context) {
       },
     }
     const query = await client.get('/api/tasks/', config)
-    const tasks = query.data.tasks
+    const tasks = query.data
     return { props: { tasks } }
   } catch (error) {
     return { props: { tasks: null } }

@@ -142,9 +142,7 @@ const Login = () => {
               </div>
             </form>
             <div className={styles.linkContainer}>
-              <Link href="/signup">
-                <SimpleLink>New here? Create an account</SimpleLink>
-              </Link>
+              <SimpleLink to="/signup">New here? Create an account</SimpleLink>
             </div>
           </div>
         </AuthContainer>
