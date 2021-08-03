@@ -4,15 +4,18 @@ import Link from 'next/link'
 import useAuth from '../../../hooks/useAuth'
 import { Logout } from '../../Icons'
 
-const Navbar = ({ componentLeft }) => {
+const Navbar = ({ title = '', componentLeft }) => {
   const { user, logout } = useAuth()
-
   return (
     <nav className={styles.navbar}>
-      <div className={styles.leftComponentContainer}>
-        {componentLeft && <Link href="/projects">{componentLeft}</Link>}
+      <div className={styles.leftContainer}>
+        {componentLeft && (
+          <div className={styles.leftComponentContainer}>
+            <Link href="/projects">{componentLeft}</Link>
+          </div>
+        )}
         <Link href="/projects">
-          <h1 className={styles.title}>minity</h1>
+          <h1 className={styles.title}>{title}</h1>
         </Link>
       </div>
       {user && (

@@ -5,6 +5,11 @@
   padding: 1rem;
 }
 
+.leftContainer {
+  display: flex;
+  align-items: center;
+}
+
 .leftComponentContainer {
   display: flex;
   align-items: center;

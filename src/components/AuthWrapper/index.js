@@ -5,7 +5,7 @@ import Navbar from '../Layout/Navbar'
 const AuthWrapper = ({ children }) => {
   return (
     <div className={styles.wrapper}>
-      <Navbar />
+      <Navbar title="minity" />
       <div className={styles.childrenWrapper}>{children}</div>
     </div>
   )

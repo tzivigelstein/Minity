@@ -32,7 +32,7 @@ const Projects = () => {
       <Head>
         <title>Minity | Projects</title>
       </Head>
-      <Wrapper>
+      <Wrapper title="minity">
         <ProjectList />
       </Wrapper>
     </>
