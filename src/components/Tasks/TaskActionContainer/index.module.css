@@ -4,22 +4,10 @@
   width: max-content;
 }
 
-.iconContainer {
-  border-radius: 100rem;
-  display: flex;
-  margin: 0 0.3rem;
-  font-size: 0;
-  align-items: center;
-  border: none;
-  outline: none;
-  padding: 0.3rem;
-  cursor: pointer;
-}
-
 .checkbox {
   padding: 0.1rem;
   position: relative;
-  border-radius: 0.35rem;
+  border-radius: 0.2rem;
   border: 2px solid var(--text-tertiary-color);
   cursor: pointer;
   display: flex;
@@ -55,11 +43,30 @@
   stroke: var(--white);
 }
 
+.iconContainer {
+  border-radius: 100rem;
+  display: flex;
+  margin: 0 0.3rem;
+  font-size: 0;
+  align-items: center;
+  border: none;
+  outline: none;
+  padding: 0.3rem;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.15s ease background-color;
+}
+
 .actionIcon {
   stroke: var(--text-secondary-color);
   width: 1.3125rem;
   height: 1.3125rem;
-  transition: 0.3s ease all;
+}
+
+@media (hover) {
+  .iconContainer:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
 
 @media (max-width: 768px) {
