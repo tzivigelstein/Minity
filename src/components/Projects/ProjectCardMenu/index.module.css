@@ -8,8 +8,7 @@
   background-color: var(--white);
   border-radius: 0.5rem;
   padding: 0.5rem;
-  gap: 0.1rem;
-  /* animation: grow 0.2s ease forwards; */
+  gap: 0.3rem;
   top: 2rem;
   right: 1rem;
   z-index: 1;
@@ -28,7 +27,10 @@
   width: 100%;
   text-align: left;
   padding: 0.3rem;
-  transition: 0.2s ease background-color;
+  padding-left: 0.5rem;
+  padding-right: 1.5rem;
+  transition: 0.15s ease background-color;
+  background-color: rgba(0, 0, 0, 0.03);
   border: none;
   outline: none;
   cursor: pointer;

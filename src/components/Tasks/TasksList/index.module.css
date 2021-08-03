@@ -1,6 +1,5 @@
 .listContainer {
   width: 100%;
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   animation: fade 0.3s ease forwards;
@@ -18,11 +17,12 @@
 .tasksList {
   width: 100%;
   margin: 0;
-  padding: 1rem;
+  margin-top: 1rem;
+  padding: .7rem;
   display: grid;
   gap: 1rem;
   min-height: 0;
-  overflow-y: auto;
   box-sizing: border-box;
-  max-height: 75vh;
+  max-height: 70vh;
+  overflow-y: auto;
 }

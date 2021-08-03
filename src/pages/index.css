@@ -1,5 +1,5 @@
 :root {
-  --white: #eee;
+  --white: #fafafa;
   --light-gray: #d6d6d6;
   --medium-gray: #2f3848;
   --dark-gray: #1a202d;
@@ -33,12 +33,12 @@
 
 html {
   box-sizing: inherit;
-  height: 100vh;
+  height: 100%;
 }
 
 body {
   all: unset;
-  height: 100vh;
+  height: 100%;
   background-color: var(--white);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -51,7 +51,7 @@ body {
 }
 
 #root {
-  height: 100vh;
+  height: 100%;
 }
 
 a {

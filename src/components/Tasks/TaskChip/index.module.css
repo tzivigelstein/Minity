@@ -1,7 +1,7 @@
 .taskChipContainer {
   width: 100%;
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem .7rem;
   box-shadow: var(--shadow-light);
   background-color: var(--white);
   display: flex;

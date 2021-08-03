@@ -16,7 +16,7 @@ const TasksList = () => {
   const { tasks, loading, addTask } = useTasks()
 
   const [isOpen, setIsOpen] = useState(false)
-  const [newTask, setNewTask] = useState({ name: '', state: false, project: actualProject })
+  const [newTask, setNewTask] = useState({ name: '', state: false, project: actualProject?.id })
 
   const handleChange = e => {
     setNewTask({ ...newTask, name: e.target.value })
@@ -35,19 +35,18 @@ const TasksList = () => {
     <>
       <div className={styles.listContainer}>
         <TasksListHeading tasks={tasks} setIsOpen={setIsOpen} />
-        {loading ? (
-          <ul className={styles.tasksList}>
-            <TaskChipSkeleton />
-            <TaskChipSkeleton />
-            <TaskChipSkeleton />
-          </ul>
-        ) : (
-          <ul className={styles.tasksList}>
-            {tasks.map(task => (
-              <TaskChip key={task.id} task={task} />
-            ))}
-          </ul>
-        )}
+
+        <ul className={styles.tasksList}>
+          {loading ? (
+            <>
+              <TaskChipSkeleton />
+              <TaskChipSkeleton />
+              <TaskChipSkeleton />
+            </>
+          ) : (
+            tasks.map(task => <TaskChip key={task.id} task={task} />)
+          )}
+        </ul>
       </div>
       {isOpen && (
         <Modal title="Add task" description="Add task name" setIsOpen={setIsOpen}>

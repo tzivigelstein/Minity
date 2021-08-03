@@ -3,6 +3,7 @@
   inset: 0;
   background-color: var(--opacity-strong);
   display: grid;
+  z-index: 3;
   place-items: center;
 }
 
