@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import AuthContext from './authContext'
-import AuthReducer from './authReducer'
+import authReducer from './authReducer'
 import client from '../../config/axios'
 import useToken from '../../hooks/useToken'
 import setTokenAuthInHeaders from '../../config/token'
@@ -27,7 +27,7 @@ const AuthState = props => {
     loading: false,
   }
 
-  const [state, dispatch] = useReducer(AuthReducer, initialState)
+  const [state, dispatch] = useReducer(authReducer, initialState)
 
   //Registro
   const signup = async info => {

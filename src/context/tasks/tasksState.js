@@ -98,6 +98,7 @@ const TaskState = props => {
     const { id } = task
     try {
       const query = await client.put(`/api/tasks/${id}`, task)
+
       dispatch({
         type: UPDATE_TASK,
         payload: query.data,

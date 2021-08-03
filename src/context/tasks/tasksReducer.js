@@ -9,65 +9,56 @@ import {
   SET_TASKS,
 } from './types'
 
-export default (state, { type, payload }) => {
-  switch (type) {
-    case SET_TASKS:
-      return {
-        ...state,
-        tasks: payload,
-        loading: false,
-      }
+export default function tasksReducer(state, { type, payload }) {
+  const TASKS_REDUCERS = {
+    [SET_TASKS]: {
+      ...state,
+      tasks: payload,
+      loading: false,
+    },
 
-    case GET_TASKS:
-      return {
-        ...state,
-        tasks: payload,
-        loading: false,
-      }
+    [GET_TASKS]: {
+      ...state,
+      tasks: payload,
+      loading: false,
+    },
 
-    case ADD_TASK:
-      return {
-        ...state,
-        tasks: [payload, ...state.tasks],
-        taskError: false,
-        loading: false,
-      }
+    [ADD_TASK]: {
+      ...state,
+      tasks: [payload, ...state.tasks],
+      taskError: false,
+      loading: false,
+    },
 
-    case TASK_ERROR:
-      return {
-        ...state,
-        taskError: true,
-        loading: false,
-      }
+    [TASK_ERROR]: {
+      ...state,
+      taskError: true,
+      loading: false,
+    },
 
-    case DELETE_TASK:
-      return {
-        ...state,
-        tasks: state.tasks.filter(({ id }) => id !== payload),
-        loading: false,
-      }
+    [DELETE_TASK]: {
+      ...state,
+      tasks: state.tasks.filter(({ id }) => id !== payload),
+      loading: false,
+    },
 
-    case UPDATE_TASK:
-      return {
-        ...state,
-        tasks: state.tasks.map(task => (task.id === payload.id ? payload : task)),
-        selectedTask: null,
-        loading: false,
-      }
+    [UPDATE_TASK]: {
+      ...state,
+      tasks: state.tasks.map(task => (task.id === payload?.id ? payload : task)),
+      selectedTask: null,
+      loading: false,
+    },
 
-    case SET_SELECTED_TASK:
-      return {
-        ...state,
-        selectedTask: payload,
-      }
+    [SET_SELECTED_TASK]: {
+      ...state,
+      selectedTask: payload,
+    },
 
-    case LOADING:
-      return {
-        ...state,
-        loading: true,
-      }
-
-    default:
-      return state
+    [LOADING]: {
+      ...state,
+      loading: true,
+    },
   }
+
+  return TASKS_REDUCERS[type] || state
 }

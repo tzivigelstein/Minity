@@ -11,7 +11,7 @@ import {
   LOADING,
 } from '../../types'
 
-const AuthReducer = (state, { type, payload }) => {
+const authReducer = (state, { type, payload }) => {
   switch (type) {
     case VISUAL_LOADING:
       return {
@@ -59,4 +59,4 @@ const AuthReducer = (state, { type, payload }) => {
   }
 }
 
-export default AuthReducer
+export default authReducer
