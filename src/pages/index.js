@@ -5,7 +5,6 @@ import Link from 'next/link'
 
 import AuthContainer from '../components/AuthContainer'
 import AuthWrapper from '../components/AuthWrapper'
-import Demo from '../components/Demo'
 import HeadingA from '../components/UI/Text/HeadingA'
 import HeadingB from '../components/UI/Text/HeadingB'
 import PrimaryButton from '../components/UI/Buttons/PrimaryButton'
@@ -23,9 +22,6 @@ const Welcome = () => {
             <HeadingA>Manage your whole life in one place</HeadingA>
             <HeadingB muted>Keep your tasks organized</HeadingB>
           </div>
-
-          <Demo />
-
           <div className={styles.buttonsContainer}>
             <Link href="/login">
               <PrimaryButton>Login</PrimaryButton>
