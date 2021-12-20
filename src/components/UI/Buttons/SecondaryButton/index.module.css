@@ -2,7 +2,7 @@
   align-items: center;
   background-color: transparent;
   border-radius: 0.5rem;
-  border: 0.09375rem solid var(--text-color);
+  border: 0.0625rem solid var(--text-tertiary-color);
   color: var(--text-color);
   cursor: pointer;
   display: flex;
