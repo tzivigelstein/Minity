@@ -25,7 +25,8 @@ const TaskActionContainer = ({ task }) => {
     updateTask(newTask)
   }
 
-  const handleEdit = () => {
+  const handleEdit = e => {
+    e.stopPropagation()
     setIsOpen(true)
     setSelectedTask(task)
   }
@@ -61,7 +62,6 @@ const TaskActionContainer = ({ task }) => {
         <label className={`${styles.checkbox} ${state && styles.activeCheckbox}`} htmlFor={id}>
           {state && <Check className={styles.checkIcon} />}
         </label>
-
         <button onClick={handleEdit} className={styles.iconContainer}>
           <Edit className={styles.actionIcon} width={21} height={21} />
         </button>
