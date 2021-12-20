@@ -21,8 +21,6 @@ const Projects = () => {
     } else if (!isAuth && !loading) {
       router.replace('/login')
     }
-
-    //eslint-disable-next-line
   }, [])
 
   if (loading) return <p>Loading...</p>
