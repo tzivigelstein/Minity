@@ -1,12 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const updateTime = 60 * 1000
-const timeParseOptions = {
-  hour: 'numeric',
-  minute: 'numeric',
-}
-
-let unsuscribe = () => {}
+const updateTime = 30 * 1000
 
 const useTime = () => {
   const [time, setTime] = useState({
@@ -14,22 +8,26 @@ const useTime = () => {
     humanTime: '',
   })
 
-  const { time: actualTime } = time
+  useEffect(() => {
+    time.time === '' && setTimeState()
 
-  if (actualTime === '') {
-    setTimeState()
-  } else {
-    unsuscribe = setInterval(() => {
-      setTimeState()
-    }, updateTime)
-  }
+    const unsuscribeID = setInterval(() => setTimeState(), updateTime)
+
+    return () => clearInterval(unsuscribeID)
+  }, [])
 
   function setTimeState() {
     const [newTime, humanTime] = getTime()
+    console.log({ newTime })
     setTime({ ...time, time: newTime, humanTime })
   }
 
   function getTime() {
+    const timeParseOptions = {
+      hour: 'numeric',
+      minute: 'numeric',
+    }
+
     const millis = Date.now()
     const newTime = new Date(millis).toLocaleTimeString([], timeParseOptions)
 
@@ -47,7 +45,7 @@ const useTime = () => {
     return [newTime, humanTime]
   }
 
-  return [time, () => clearInterval(unsuscribe)]
+  return [time]
 }
 
 export default useTime
