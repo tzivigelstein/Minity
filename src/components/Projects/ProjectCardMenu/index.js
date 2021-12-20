@@ -14,7 +14,6 @@ const ProjectCardMenu = ({ isActive, projectId }) => {
   const handleEdit = e => {
     e.preventDefault()
     e.stopPropagation()
-    console.log('edit')
   }
 
   return (

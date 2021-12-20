@@ -18,7 +18,6 @@ const useTime = () => {
 
   function setTimeState() {
     const [newTime, humanTime] = getTime()
-    console.log({ newTime })
     setTime({ ...time, time: newTime, humanTime })
   }
 
