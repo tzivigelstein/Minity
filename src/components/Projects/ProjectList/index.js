@@ -7,7 +7,7 @@ import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import Input from '../../UI/Input'
 import Modal from '../../Modal'
 import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
-import TertiaryButton from '../../UI/Buttons/TertiaryButton'
+import SecondaryButton from '../../UI/Buttons/SecondaryButton'
 import Navigation from '../../Layout/Navigation/Navigation'
 
 const Projects = () => {
@@ -59,7 +59,7 @@ const Projects = () => {
             }}
           />
           <ButtonsContainer justify="end">
-            <TertiaryButton onClick={handleDecline}>Cancel</TertiaryButton>
+            <SecondaryButton onClick={handleDecline}>Cancel</SecondaryButton>
             <PrimaryButton onClick={handleAccept}>Create</PrimaryButton>
           </ButtonsContainer>
         </Modal>
