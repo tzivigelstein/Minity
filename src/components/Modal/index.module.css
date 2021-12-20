@@ -10,9 +10,11 @@
 .modalContainer {
   background-color: var(--white);
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 2rem;
   position: relative;
   animation: grow forwards ease 0.05s;
+  display: grid;
+  gap: 2rem;
 }
 
 .timesButton {
@@ -23,6 +25,7 @@
   top: 1rem;
   cursor: pointer;
   right: 1rem;
+  background-color: transparent;
 }
 
 .timesIcon {
