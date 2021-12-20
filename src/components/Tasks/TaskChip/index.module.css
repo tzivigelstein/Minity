@@ -1,13 +1,23 @@
 .taskChipContainer {
   width: 100%;
   border-radius: 0.5rem;
-  padding: 0.5rem .7rem;
+  padding: 0.5rem 0.7rem;
   box-shadow: var(--shadow-light);
   background-color: var(--white);
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+@media (hover) {
+  .taskChipContainer:hover {
+    box-shadow: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 12%);
+  }
 }
 
 .taskName {
