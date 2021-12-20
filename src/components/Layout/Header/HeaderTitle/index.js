@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useAuth from '../../../../hooks/useAuth'
 import useClock from '../../../../hooks/useClock'
 import styles from './index.module.css'
 
 const HeaderTitle = () => {
   const { user } = useAuth()
-  const [time, unsuscribe] = useClock()
-
-  useEffect(() => {
-    return () => unsuscribe()
-  }, [])
+  const [time] = useClock()
 
   return (
     <h1 className={styles.headerTitle}>
