@@ -1,10 +1,12 @@
 import { useState } from 'react'
 
-const fifteenSeconds = 60 * 1000
+const updateTime = 60 * 1000
 const timeParseOptions = {
   hour: 'numeric',
   minute: 'numeric',
 }
+
+let unsuscribe = () => {}
 
 const useTime = () => {
   const [time, setTime] = useState({
@@ -17,9 +19,9 @@ const useTime = () => {
   if (actualTime === '') {
     setTimeState()
   } else {
-    setInterval(() => {
+    unsuscribe = setInterval(() => {
       setTimeState()
-    }, fifteenSeconds)
+    }, updateTime)
   }
 
   function setTimeState() {
@@ -45,7 +47,7 @@ const useTime = () => {
     return [newTime, humanTime]
   }
 
-  return time
+  return [time, () => clearInterval(unsuscribe)]
 }
 
 export default useTime
