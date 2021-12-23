@@ -95,7 +95,6 @@ const TaskState = props => {
   }
 
   const updateTask = async task => {
-    console.log(task)
     const { id } = task
     try {
       const query = await client.put(`/api/tasks/${id}`, task)
