@@ -8,15 +8,21 @@ import Modal from '../../Modal'
 import Input from '../../UI/Input'
 import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
-import TertiaryButton from '../../UI/Buttons/TertiaryButton'
 import TasksListHeading from '../TasksListHeading'
+import SecondaryButton from '../../UI/Buttons/SecondaryButton'
 
 const TasksList = () => {
   const { actualProject } = useProjects()
   const { tasks, loading, addTask } = useTasks()
 
+  const intialNewTaskState = {
+    name: '',
+    state: false,
+    project: actualProject?.id,
+  }
+
   const [isOpen, setIsOpen] = useState(false)
-  const [newTask, setNewTask] = useState({ name: '', state: false, project: actualProject?.id })
+  const [newTask, setNewTask] = useState(intialNewTaskState)
 
   const handleChange = e => {
     setNewTask({ ...newTask, name: e.target.value })
@@ -48,21 +54,20 @@ const TasksList = () => {
           )}
         </ul>
       </div>
-      {isOpen && (
-        <Modal title="Add task" description="Add task name" setIsOpen={setIsOpen}>
-          <Input
-            inputProps={{
-              value: newTask.name,
-              placeholder: 'Task name',
-              onChange: handleChange,
-            }}
-          />
-          <ButtonsContainer>
-            <TertiaryButton onClick={handleDecline}>Cancel</TertiaryButton>
-            <PrimaryButton onClick={handleAccept}>Add</PrimaryButton>
-          </ButtonsContainer>
-        </Modal>
-      )}
+
+      <Modal isOpen={isOpen} title="Add task" description="Add task name" setIsOpen={setIsOpen}>
+        <Input
+          inputProps={{
+            value: newTask.name,
+            placeholder: 'Task name',
+            onChange: handleChange,
+          }}
+        />
+        <ButtonsContainer>
+          <SecondaryButton onClick={handleDecline}>Cancel</SecondaryButton>
+          <PrimaryButton onClick={handleAccept}>Add</PrimaryButton>
+        </ButtonsContainer>
+      </Modal>
     </>
   )
 }
