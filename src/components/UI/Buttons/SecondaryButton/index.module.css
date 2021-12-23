@@ -3,7 +3,7 @@
   background-color: transparent;
   border-radius: 0.5rem;
   border: 0.0625rem solid var(--text-tertiary-color);
-  color: var(--text-color);
+  color: var(--text-secondary-color);
   cursor: pointer;
   display: flex;
   font-size: 1.1rem;
