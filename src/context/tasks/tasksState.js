@@ -75,7 +75,7 @@ const TaskState = props => {
   }
 
   //Delete task
-  const removeTask = async (id, project) => {
+  const deleteTask = async (id, project) => {
     try {
       await client.delete(`/api/tasks/${id}`, { params: { project } })
       dispatch({
@@ -95,6 +95,7 @@ const TaskState = props => {
   }
 
   const updateTask = async task => {
+    console.log(task)
     const { id } = task
     try {
       const query = await client.put(`/api/tasks/${id}`, task)
@@ -119,7 +120,7 @@ const TaskState = props => {
         getTasks,
         addTask,
         showError,
-        removeTask,
+        deleteTask,
         setSelectedTask,
         updateTask,
       }}
