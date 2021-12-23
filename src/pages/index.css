@@ -1,5 +1,6 @@
 :root {
   --white: #fafafa;
+  --white-active: hsl(0, 0%, 95%);
   --light-gray: #d6d6d6;
   --medium-gray: #2f3848;
   --dark-gray: #1a202d;
@@ -16,15 +17,13 @@
   --opacity-light: rgba(0, 0, 0, 0.1);
   --opacity-strong: rgba(0, 0, 0, 0.6);
   --shadow-light: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 8%);
-  --shadow: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 16%);
+  --shadow: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 10%);
   --active-shadow: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 22%);
   --loading-background: linear-gradient(-90deg, #e8e8e8 0%, #f8f8f8 50%, #e8e8e8 100%);
   --loading-background-size: 400% 400%;
 }
 
-*,
-*:before,
-*:after {
+* {
   box-sizing: border-box;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,7 +36,8 @@ html {
 }
 
 body {
-  all: unset;
+  margin: 0;
+  padding: 0;
   height: 100%;
   background-color: var(--white);
   -webkit-touch-callout: none;
