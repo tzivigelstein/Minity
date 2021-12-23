@@ -12,12 +12,17 @@
   outline: none;
   text-align: left;
   cursor: pointer;
+  transition: 0.15s ease-in-out box-shadow, 0.15s ease-in-out background-color;
 }
 
 @media (hover) {
   .taskChipContainer:hover {
     box-shadow: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 12%);
   }
+}
+
+.taskChipContainer:active {
+  background-color: var(--white-active);
 }
 
 .taskName {
