@@ -4,16 +4,17 @@ import useTasks from '../../../hooks/useTasks'
 import { Bin, Edit, Check } from '../../Icons'
 import Input from '../../UI/Input'
 import Modal from '../../Modal'
-import TertiaryButton from '../../UI/Buttons/TertiaryButton'
+import SecondaryButton from '../../UI/Buttons/SecondaryButton'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 
 const TaskActionContainer = ({ task }) => {
-  const { updateTask, selectedTask, setSelectedTask } = useTasks()
+  const { updateTask, deleteTask } = useTasks()
 
-  const { id, name, state } = task
+  const { id, project, name, state } = task
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [newTaskName, setNewTaskName] = useState(name)
 
   const handleChangeTaskState = () => {
@@ -25,27 +26,42 @@ const TaskActionContainer = ({ task }) => {
     updateTask(newTask)
   }
 
-  const handleEdit = e => {
+  const handleEditPetition = e => {
     e.stopPropagation()
-    setIsOpen(true)
-    setSelectedTask(task)
+    setIsEditOpen(true)
   }
 
-  const handleAccept = () => {
-    updateTask({ ...selectedTask, name: newTaskName })
-    setIsOpen(false)
-  }
-
-  const handleDecline = () => {
-    setIsOpen(false)
+  const handleDeletePetition = e => {
+    e.stopPropagation()
+    setIsDeleteOpen(true)
   }
 
   const handleChange = e => {
+    e.stopPropagation()
     setNewTaskName(e.target.value)
   }
 
   const handleClean = () => {
     setNewTaskName('')
+  }
+
+  const handleAcceptEdit = () => {
+    updateTask({ ...task, name: newTaskName })
+    setIsEditOpen(false)
+  }
+
+  const handleDeclineEdit = () => {
+    setIsEditOpen(false)
+  }
+
+  const handleAcceptDelete = () => {
+    deleteTask(id, project)
+    console.log(task)
+    setIsEditOpen(false)
+  }
+
+  const handleDeclineDelete = () => {
+    setIsDeleteOpen(false)
   }
 
   return (
@@ -62,31 +78,42 @@ const TaskActionContainer = ({ task }) => {
         <label className={`${styles.checkbox} ${state && styles.activeCheckbox}`} htmlFor={id}>
           {state && <Check className={styles.checkIcon} />}
         </label>
-        <button onClick={handleEdit} className={styles.iconContainer}>
+        <button onClick={handleEditPetition} className={styles.iconContainer}>
           <Edit className={styles.actionIcon} width={21} height={21} />
         </button>
-        <button className={styles.iconContainer}>
+        <button onClick={handleDeletePetition} className={styles.iconContainer}>
           <Bin className={styles.actionIcon} width={21} height={21} />
         </button>
       </div>
-      {isOpen && (
-        <Modal title="Edit task" description="Change task name" setIsOpen={setIsOpen}>
-          <Input
-            cleanButtonProps={{
-              onClick: handleClean,
-            }}
-            inputProps={{
-              onChange: handleChange,
-              value: newTaskName,
-              placeholder: 'Task name',
-            }}
-          />
-          <ButtonsContainer justify="end">
-            <TertiaryButton onClick={handleDecline}>Cancel</TertiaryButton>
-            <PrimaryButton onClick={handleAccept}>Edit</PrimaryButton>
-          </ButtonsContainer>
-        </Modal>
-      )}
+
+      <Modal isOpen={isEditOpen} title="Edit task" description="Change task name" setIsOpen={setIsEditOpen}>
+        <Input
+          cleanButtonProps={{
+            onClick: handleClean,
+          }}
+          inputProps={{
+            onChange: handleChange,
+            value: newTaskName,
+            placeholder: 'Task name',
+          }}
+        />
+        <ButtonsContainer justify="end">
+          <SecondaryButton onClick={handleDeclineEdit}>Cancel</SecondaryButton>
+          <PrimaryButton onClick={handleAcceptEdit}>Edit</PrimaryButton>
+        </ButtonsContainer>
+      </Modal>
+
+      <Modal
+        isOpen={isDeleteOpen}
+        title="Delete task"
+        description="Are you sure you want to delete?"
+        setIsOpen={setIsDeleteOpen}
+      >
+        <ButtonsContainer justify="end">
+          <SecondaryButton onClick={handleDeclineDelete}>Cancel</SecondaryButton>
+          <PrimaryButton onClick={handleAcceptDelete}>Delete</PrimaryButton>
+        </ButtonsContainer>
+      </Modal>
     </>
   )
 }
