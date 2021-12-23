@@ -9,9 +9,20 @@ const TaskChip = ({ task }) => {
 
   const { state } = task
 
+  const handleChangeTaskState = () => {
+    const newTask = {
+      ...task,
+      state: !state,
+    }
+
+    updateTask(newTask)
+  }
+
   return (
     <div className={styles.taskChipContainer}>
-      <span className={styles.taskName}>{name}</span>
+      <button onClick={handleChangeTaskState} className={styles.taskNameButton}>
+        {name}
+      </button>
       <TaskActionsContainer task={task} />
     </div>
   )

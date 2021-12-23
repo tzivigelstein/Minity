@@ -1,7 +1,6 @@
 .taskChipContainer {
   width: 100%;
   border-radius: 0.5rem;
-  padding: 0.5rem 0.7rem;
   box-shadow: var(--shadow-light);
   background-color: var(--white);
   display: flex;
@@ -10,8 +9,6 @@
   overflow: hidden;
   border: none;
   outline: none;
-  text-align: left;
-  cursor: pointer;
   transition: 0.15s ease-in-out box-shadow, 0.15s ease-in-out background-color;
 }
 
@@ -25,10 +22,17 @@
   background-color: var(--white-active);
 }
 
-.taskName {
+.taskNameButton {
+  background-color: transparent;
+  border: none;
   color: var(--text-color);
-  margin: 0;
-  font-size: 1rem;
+  cursor: pointer;
   flex: 1;
+  font-size: 1rem;
+  margin: 0;
+  outline: none;
+  padding: 0.5rem 0.7rem;
+  text-align: left;
   transition: 0.3s ease all;
+  width: 100%;
 }
