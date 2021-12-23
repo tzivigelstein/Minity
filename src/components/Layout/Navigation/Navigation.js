@@ -24,7 +24,7 @@ const Navigation = () => {
     <Input
       Icon={Search}
       inputProps={{
-        placeholder: 'Search projects',
+        placeholder: 'Search',
         value: searchTerm,
         type: 'text',
         onChange: handleSearch,
