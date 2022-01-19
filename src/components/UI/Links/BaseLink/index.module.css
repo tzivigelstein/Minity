@@ -1,4 +1,4 @@
-.simpleLink {
+.baseLink {
   display: flex;
   align-items: center;
   color: var(--text-secondary-color);
@@ -8,7 +8,7 @@
 }
 
 @media (hover) {
-  .simpleLink:hover {
+  .baseLink:hover {
     filter: brightness(1.1);
   }
 }
