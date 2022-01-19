@@ -8,7 +8,7 @@ import useAlert from '../../hooks/useAlert'
 import ActivityIndicator from '../../components/ActivityIndicator'
 import HeadingA from '../../components/UI/Text/HeadingA'
 import HeadingC from '../../components/UI/Text/HeadingC'
-import SimpleLink from '../../components/UI/Links/SimpleLink'
+import BaseLink from '../../components/UI/Links/BaseLink'
 import Input from '../../components/UI/Input'
 import { Check, ClosedEye, Email, Lock, OpenEye } from '../../components/Icons'
 import PrimaryButton from '../../components/UI/Buttons/PrimaryButton'
@@ -20,7 +20,7 @@ import HelperText from '../../components/UI/Text/HelperText'
 
 const INPUT_TYPE = {
   text: 'text',
-  password: 'password',
+  password: 'password'
 }
 
 const { text: typeText, password: typePassword } = INPUT_TYPE
@@ -34,7 +34,7 @@ const Login = () => {
   const [isPasswordShown, setIsPasswordShown] = useState(false)
   const [userData, setUserData] = useState({
     email: '',
-    password: '',
+    password: ''
   })
 
   const { email, password } = userData
@@ -52,7 +52,7 @@ const Login = () => {
   const handleChange = e => {
     setUserData({
       ...userData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   }
 
@@ -67,7 +67,7 @@ const Login = () => {
 
     login({
       email,
-      password,
+      password
     })
 
     authUser()
@@ -105,7 +105,7 @@ const Login = () => {
                     name: 'email',
                     placeholder: 'Email',
                     value: email,
-                    onChange: handleChange,
+                    onChange: handleChange
                   }}
                   actionButton={
                     isValidEmail(email) && (
@@ -125,7 +125,7 @@ const Login = () => {
                     name: 'password',
                     placeholder: 'Password',
                     value: password,
-                    onChange: handleChange,
+                    onChange: handleChange
                   }}
                   actionButton={
                     <button className={styles.iconButton} onClick={handleShowPassword}>
@@ -142,7 +142,9 @@ const Login = () => {
               </div>
             </form>
             <div className={styles.linkContainer}>
-              <SimpleLink to="/signup">New here? Create an account</SimpleLink>
+              <Link href="/signup" passHref>
+                <BaseLink>New here? Create an account</BaseLink>
+              </Link>
             </div>
           </div>
         </AuthContainer>

@@ -8,7 +8,7 @@ import useAuth from '../../hooks/useAuth'
 import useAlert from '../../hooks/useAlert'
 import { alertTypes, EMAIL_PATTERN as emailPattern } from '../../types'
 import Alert from '../../components/Alert'
-import SimpleLink from '../../components/UI/Links/SimpleLink'
+import BaseLink from '../../components/UI/Links/BaseLink'
 import PrimaryButton from '../../components/UI/Buttons/PrimaryButton'
 import Input from '../../components/UI/Input'
 import HeadingA from '../../components/UI/Text/HeadingA'
@@ -20,7 +20,7 @@ import HelperText from '../../components/UI/Text/HelperText'
 
 const INPUT_TYPE = {
   text: 'text',
-  password: 'password',
+  password: 'password'
 }
 
 const { text: typeText, password: typePassword } = INPUT_TYPE
@@ -43,7 +43,7 @@ const Signup = () => {
   const [userData, setUserData] = useState({
     email: '',
     password: '',
-    name: '',
+    name: ''
   })
 
   const [isPasswordShown, setIsPasswordShown] = useState(false)
@@ -53,7 +53,7 @@ const Signup = () => {
   const handleChange = e => {
     setUserData({
       ...userData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   }
 
@@ -76,7 +76,7 @@ const Signup = () => {
     signup({
       name,
       email,
-      password,
+      password
     })
   }
 
@@ -112,7 +112,7 @@ const Signup = () => {
                     name: 'name',
                     placeholder: 'Name',
                     value: name,
-                    onChange: handleChange,
+                    onChange: handleChange
                   }}
                   actionButton={
                     name.length > 3 && (
@@ -134,7 +134,7 @@ const Signup = () => {
                     placeholder: 'Email',
                     value: email,
                     pattern: emailPattern,
-                    onChange: handleChange,
+                    onChange: handleChange
                   }}
                   actionButton={
                     isValidEmail(email) && (
@@ -155,7 +155,7 @@ const Signup = () => {
                     name: 'password',
                     placeholder: 'Password',
                     value: password,
-                    onChange: handleChange,
+                    onChange: handleChange
                   }}
                   actionButton={
                     <button className={styles.iconButton} onClick={handleShowPassword}>
@@ -175,7 +175,9 @@ const Signup = () => {
               </div>
             </form>
             <div className={styles.linkContainer}>
-              <SimpleLink to="/login">Already have an account? Login</SimpleLink>
+              <Link href="/login" passHref>
+                <BaseLink>Already have an account? Login</BaseLink>
+              </Link>
             </div>
           </div>
         </AuthContainer>

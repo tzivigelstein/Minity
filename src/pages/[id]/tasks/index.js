@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Wrapper from '../../../components/Wrapper'
 import { BackArrow } from '../../../components/Icons'
-import SimpleLink from '../../../components/UI/Links/SimpleLink'
+import BaseLink from '../../../components/UI/Links/BaseLink'
 import useAuth from '../../../hooks/useAuth'
 import client from '../../../config/axios'
 import TasksList from '../../../components/Tasks/TasksList'
@@ -30,10 +30,12 @@ const Tasks = ({ tasks }) => {
       </Head>
       <Wrapper
         componentLeft={
-          <SimpleLink to="/projects">
-            <BackArrow className={styles.backArrow} />
-            <span className={styles.backText}>Projects</span>
-          </SimpleLink>
+          <Link href="/projects" passHref>
+            <BaseLink>
+              <BackArrow className={styles.backArrow} />
+              <span className={styles.backText}>Projects</span>
+            </BaseLink>
+          </Link>
         }
       >
         {user && <TasksList />}
@@ -54,8 +56,8 @@ export async function getServerSideProps(context) {
     const config = {
       params: { project: id },
       headers: {
-        'x-auth-token': token,
-      },
+        'x-auth-token': token
+      }
     }
     const query = await client.get('/api/tasks/', config)
     const tasks = query.data
