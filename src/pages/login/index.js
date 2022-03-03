@@ -17,6 +17,8 @@ import { alertTypes, EMAIL_PATTERN as emailPattern } from '../../types'
 import AuthWrapper from '../../components/AuthWrapper'
 import AuthContainer from '../../components/AuthContainer'
 import HelperText from '../../components/UI/Text/HelperText'
+import { useSession, signIn, signOut } from 'next-auth/react'
+import GithubSignInButton from '../../components/GithubSignInButton'
 
 const INPUT_TYPE = {
   text: 'text',
@@ -29,6 +31,8 @@ const Login = () => {
   const { msg, loading, login, authUser, user } = useAuth()
   const { alert, showAlert } = useAlert()
 
+  const { data: session } = useSession()
+
   const router = useRouter()
 
   const [isPasswordShown, setIsPasswordShown] = useState(false)
@@ -40,13 +44,13 @@ const Login = () => {
   const { email, password } = userData
 
   useEffect(() => {
-    if (user) {
+    if (session) {
       router.replace('/projects')
     } else if (msg) {
       showAlert(msg.msg, msg.category)
     }
     //eslint-disable-next-line
-  }, [msg, user])
+  }, [msg, session])
 
   //Lectura de datos del form
   const handleChange = e => {
@@ -134,13 +138,18 @@ const Login = () => {
                   }
                 />
               </div>
-              <PrimaryButton disabled={loading} onClick={handleLogin}>
+              <PrimaryButton
+                // disabled={loading}
+                disabled={true}
+                onClick={() => signIn()}
+              >
                 {loading ? <ActivityIndicator color="verde" width={21} height={21} /> : 'Login'}
               </PrimaryButton>
               <div className={styles.helperContainer}>
                 <HelperText>Session lasts 5 hours. You can then login again.</HelperText>
               </div>
             </form>
+            <GithubSignInButton onClick={signIn} title="Login with Github" />
             <div className={styles.linkContainer}>
               <Link href="/signup" passHref>
                 <BaseLink>New here? Create an account</BaseLink>

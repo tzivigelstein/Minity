@@ -5,22 +5,18 @@ import ProjectList from '../../components/Projects/ProjectList'
 import Wrapper from '../../components/Wrapper'
 import useAuth from '../../hooks/useAuth'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 const Projects = () => {
-  const { authUser, loading, isAuth } = useAuth()
+  const { loading } = useAuth()
   const { getProjects } = useProjects()
 
   const router = useRouter()
+  const { data: session } = useSession()
 
   useEffect(() => {
-    if (!isAuth) {
-      authUser()
-    }
-    if (isAuth) {
-      getProjects()
-    } else if (!isAuth && !loading) {
-      router.replace('/login')
-    }
+    if (session) getProjects()
+    else router.replace('/login')
   }, [])
 
   if (loading) return <p>Loading...</p>
