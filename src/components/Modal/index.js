@@ -1,8 +1,13 @@
-import React from 'react'
 import { Times } from '../Icons'
 import styles from './index.module.css'
 
-const Modal = ({ children, isOpen, title = 'Modal title', description = 'Modal description', setIsOpen }) => {
+export default function Modal({
+  children,
+  isOpen,
+  title = 'Modal title',
+  description = 'Modal description',
+  setIsOpen
+}) {
   const handleCloseModal = () => {
     setIsOpen(false)
   }
@@ -30,5 +35,3 @@ const Modal = ({ children, isOpen, title = 'Modal title', description = 'Modal d
     </>
   )
 }
-
-export default Modal
