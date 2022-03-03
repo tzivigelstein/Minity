@@ -1,15 +1,15 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: ['plugin:react/recommended', 'standard', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   plugins: ['react'],
   rules: {
@@ -17,5 +17,6 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'no-unused-vars': 0,
     'spaced-comment': 0,
-  },
+    'no-case-declarations': 0
+  }
 }
