@@ -11,16 +11,16 @@ const ProjectCard = ({ project }) => {
   const { id, name, colors = {}, date } = project
   const parsedDate = new Date(date).toLocaleDateString()
   const { accentColor = '', secondaryColor = '' } = colors
-  const { setActualProject } = useProjects()
+  const { setCurrentProject } = useProjects()
 
   const [projectMenuOpen, setProjectMenuOpen] = useState(false)
 
   const handleClick = id => {
-    setActualProject(id)
+    setCurrentProject(id)
   }
 
   const colorGradient = {
-    background: `linear-gradient(45deg, ${accentColor}, ${secondaryColor})`,
+    background: `linear-gradient(45deg, ${accentColor}, ${secondaryColor})`
   }
 
   const handleProjectMenu = e => {
@@ -32,7 +32,7 @@ const ProjectCard = ({ project }) => {
   const char = name.charAt(0).toUpperCase()
 
   return (
-    <Link href={`/${id}/tasks`}>
+    <Link href={`/${id}`}>
       <a onClick={() => handleClick(id)} className={styles.projectChipContainer}>
         <button onClick={handleProjectMenu} className={styles.menuButton}>
           <MoreVertical className={styles.moreIcon} />
