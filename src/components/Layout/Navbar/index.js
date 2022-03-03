@@ -1,11 +1,11 @@
-import React from 'react'
 import styles from './index.module.css'
 import Link from 'next/link'
-import useAuth from '../../../hooks/useAuth'
 import { Logout } from '../../Icons'
+import { useSession, signOut } from 'next-auth/react'
 
 const Navbar = ({ title = '', componentLeft }) => {
-  const { user, logout } = useAuth()
+  const { data: session } = useSession()
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.leftContainer}>
@@ -18,12 +18,15 @@ const Navbar = ({ title = '', componentLeft }) => {
           <h1 className={styles.title}>{title}</h1>
         </Link>
       </div>
-      {user && (
-        <button onClick={logout} className={styles.navbarButton}>
-          <span className={styles.logoutText}>Logout</span>
-          <Logout className={styles.logoutIcon} width={18} height={18} />
-        </button>
+      {session && (
+        <picture onClick={signOut} className={styles.pictureContainer}>
+          <img className={styles.picture} src={session.user.image} alt={`${session.user.name} image`} />
+        </picture>
       )}
+      {/* <button onClick={signOut} className={styles.navbarButton}>
+        <span className={styles.logoutText}>Logout</span>
+        <Logout className={styles.logoutIcon} width={18} height={18} />
+      </button> */}
     </nav>
   )
 }
