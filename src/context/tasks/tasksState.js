@@ -4,107 +4,156 @@ import tasksReducer from './tasksReducer'
 import client from '../../config/axios'
 
 import {
-  GET_TASKS,
-  ADD_TASK,
+  GET_TASKS_SUCCESSFUL,
+  ADD_TASKS_LOADING,
   DELETE_TASK,
   UPDATE_TASK,
   SET_SELECTED_TASK,
   TASK_ERROR,
-  LOADING,
-  SET_TASKS,
+  GET_TASKS_LOADING,
+  SET_TASKS_LOADING,
+  SET_TASKS_SUCCESSFUL,
+  GET_TASKS_ERROR,
+  ADD_TASK_FINALLY,
+  ADD_TASK_SUCCESSFUL,
+  DELETE_TASK_ERROR,
+  UPDATE_TASK_LOADING
 } from './types'
 
 const TaskState = props => {
   const initialState = {
     tasks: [],
+    cachedTasks: [],
     taskError: false,
     selectedTask: null,
-    loading: false,
+    getTasksLoading: false,
+    addTaskLoading: false,
+    updateTaskLoading: false
   }
 
   const [state, dispatch] = useReducer(tasksReducer, initialState)
 
   const setTasks = async tasks => {
     dispatch({
-      type: LOADING,
+      type: SET_TASKS_LOADING
     })
 
     dispatch({
-      type: SET_TASKS,
-      payload: tasks,
+      type: SET_TASKS_SUCCESSFUL,
+      payload: tasks
     })
   }
 
   //Get project tasks
   const getTasks = async project => {
     dispatch({
-      type: LOADING,
+      type: GET_TASKS_LOADING
     })
 
-    try {
-      const config = { params: { project } }
-      const query = await client.get('/api/tasks/', config)
-
-      dispatch({
-        type: GET_TASKS,
-        payload: query.data,
+    fetch(`/api/tasks/${project}`)
+      .then(res => res.json())
+      .then(({ tasks }) => {
+        dispatch({
+          type: GET_TASKS_SUCCESSFUL,
+          payload: tasks
+        })
       })
-    } catch (error) {
-      console.log(error)
-    }
+      .catch(error => {
+        console.error(error)
+        dispatch({ type: GET_TASKS_ERROR })
+      })
   }
 
   //Add task to the project
-  const addTask = async task => {
-    try {
-      const query = await client.post('/api/tasks', task)
-      dispatch({
-        type: ADD_TASK,
-        payload: query.data,
-      })
-    } catch (error) {
-      console.log(error)
+  const addTask = async (task, project) => {
+    const options = {
+      body: JSON.stringify(task),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }
+
+    dispatch({
+      type: ADD_TASKS_LOADING
+    })
+
+    fetch(`/api/tasks/${project}`, options)
+      .then(res => res.json())
+      .then(task => {
+        dispatch({
+          type: ADD_TASK_SUCCESSFUL,
+          payload: task
+        })
+      })
+      .catch(console.error)
+      .finally(() => {
+        dispatch({
+          type: ADD_TASK_FINALLY
+        })
+      })
   }
 
   //Task error validation
   const showError = () => {
     dispatch({
-      type: TASK_ERROR,
+      type: TASK_ERROR
     })
   }
 
   //Delete task
-  const deleteTask = async (id, project) => {
-    try {
-      await client.delete(`/api/tasks/${id}`, { params: { project } })
-      dispatch({
-        type: DELETE_TASK,
-        payload: id,
-      })
-    } catch (error) {
-      console.log(error)
+  const deleteTask = async (task, project) => {
+    // Pre deleting the task from cache
+    dispatch({
+      type: DELETE_TASK,
+      payload: task
+    })
+
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE',
+      body: JSON.stringify({ project })
     }
+
+    fetch(`/api/tasks/${task.id}`, options)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText)
+        }
+      })
+      .catch(error => {
+        console.error(error)
+        dispatch({
+          type: DELETE_TASK_ERROR
+        })
+      })
   }
 
   const setSelectedTask = task => {
     dispatch({
       type: SET_SELECTED_TASK,
-      payload: task,
+      payload: task
     })
   }
 
   const updateTask = async task => {
     const { id } = task
+
+    dispatch({
+      type: UPDATE_TASK_LOADING
+    })
+
     try {
       const query = await client.put(`/api/tasks/${id}`, task)
 
       dispatch({
         type: UPDATE_TASK,
-        payload: query.data,
+        payload: query.data
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -114,14 +163,17 @@ const TaskState = props => {
         tasks: state.tasks,
         taskError: state.taskError,
         selectedTask: state.selectedTask,
-        loading: state.loading,
+        getTasksLoading: state.getTasksLoading,
+        setTasksLoading: state.setTasksLoading,
+        addTaskLoading: state.addTaskLoading,
+        updateTaskLoading: state.updateTaskLoading,
         setTasks,
         getTasks,
         addTask,
         showError,
         deleteTask,
         setSelectedTask,
-        updateTask,
+        updateTask
       }}
     >
       {props.children}

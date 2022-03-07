@@ -1,63 +1,98 @@
 import {
-  GET_TASKS,
-  ADD_TASK,
+  GET_TASKS_SUCCESSFUL,
+  ADD_TASK_SUCCESSFUL,
   DELETE_TASK,
   UPDATE_TASK,
   SET_SELECTED_TASK,
   TASK_ERROR,
-  LOADING,
-  SET_TASKS,
+  GET_TASKS_LOADING,
+  SET_TASKS_SUCCESSFUL,
+  SET_TASKS_LOADING,
+  GET_TASKS_ERROR,
+  ADD_TASK_FINALLY,
+  ADD_TASKS_LOADING,
+  DELETE_TASK_ERROR,
+  UPDATE_TASK_LOADING
 } from './types'
 
 export default function tasksReducer(state, { type, payload }) {
   const TASKS_REDUCERS = {
-    [SET_TASKS]: {
+    [SET_TASKS_SUCCESSFUL]: {
       ...state,
       tasks: payload,
-      loading: false,
+      setTasksLoading: false
     },
 
-    [GET_TASKS]: {
+    [GET_TASKS_SUCCESSFUL]: {
       ...state,
       tasks: payload,
-      loading: false,
+      getTasksLoading: false
     },
 
-    [ADD_TASK]: {
+    [ADD_TASK_SUCCESSFUL]: {
       ...state,
       tasks: [payload, ...state.tasks],
-      taskError: false,
-      loading: false,
+      taskError: false
     },
 
     [TASK_ERROR]: {
       ...state,
       taskError: true,
-      loading: false,
+      loading: false
     },
 
     [DELETE_TASK]: {
       ...state,
-      tasks: state.tasks.filter(({ id }) => id !== payload),
-      loading: false,
+      cachedTasks: state.tasks,
+      tasks: state.tasks.filter(task => task?.id !== payload?.id),
+      deleteTaskLoading: true
+    },
+
+    [DELETE_TASK_ERROR]: {
+      ...state,
+      tasks: state.cachedTasks
     },
 
     [UPDATE_TASK]: {
       ...state,
       tasks: state.tasks.map(task => (task.id === payload?.id ? payload : task)),
       selectedTask: null,
-      loading: false,
+      updateTaskLoading: false
+    },
+
+    [ADD_TASKS_LOADING]: {
+      ...state,
+      addTaskLoading: true
     },
 
     [SET_SELECTED_TASK]: {
       ...state,
-      selectedTask: payload,
+      selectedTask: payload
     },
 
-    [LOADING]: {
+    [GET_TASKS_LOADING]: {
       ...state,
-      loading: true,
+      getTasksLoading: true
     },
+
+    [SET_TASKS_LOADING]: {
+      ...state,
+      setTasksLoading: true
+    },
+
+    [UPDATE_TASK_LOADING]: {
+      ...state,
+      updateTaskLoading: true
+    },
+
+    [GET_TASKS_ERROR]: {
+      ...state,
+      getTasksLoading: false
+    },
+    [ADD_TASK_FINALLY]: {
+      ...state,
+      addTaskLoading: false
+    }
   }
 
   return TASKS_REDUCERS[type] || state
