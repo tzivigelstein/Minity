@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { baseURL } from './vars'
 
-const client = axios.create({ baseURL })
+const hasWindow = typeof window !== 'undefined'
+
+const client = hasWindow && axios.create({ baseURL: window.location.origin })
 
 export default client
