@@ -5,12 +5,12 @@ import TaskList from '../../Tasks/TasksList'
 import useProjects from '../../../hooks/useProjects'
 
 const Section = () => {
-  const { actualProject } = useProjects()
+  const { currentProject } = useProjects()
 
   return (
     <section className={styles.section}>
       <Projects />
-      {actualProject && <TaskList />}
+      {currentProject && <TaskList />}
     </section>
   )
 }

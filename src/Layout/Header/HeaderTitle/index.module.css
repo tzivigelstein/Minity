@@ -1,0 +1,9 @@
+.headerTitle {
+  font-size: 2rem;
+  background: linear-gradient(45deg, var(--main), lightgreen);
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  width: max-content;
+  margin: 0;
+}

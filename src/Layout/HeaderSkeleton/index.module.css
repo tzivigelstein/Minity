@@ -7,7 +7,7 @@
 .welcomeMessage {
   background: var(--loading-background);
   background-size: var(--loading-background-size);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   animation: pulse 3s linear infinite;
   box-shadow: var(--shadow-light);
   height: 2.375rem;
@@ -18,7 +18,7 @@
 .time {
   background: var(--loading-background);
   background-size: var(--loading-background-size);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   animation: pulse 3s linear infinite;
   box-shadow: var(--shadow-light);
   height: 1.8125rem;
