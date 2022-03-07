@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import styles from './index.module.css'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -8,8 +9,19 @@ import HeadingA from '../components/UI/Text/HeadingA'
 import HeadingB from '../components/UI/Text/HeadingB'
 import PrimaryButton from '../components/UI/Buttons/PrimaryButton'
 import SecondaryButton from '../components/UI/Buttons/SecondaryButton'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 const Welcome = () => {
+  const router = useRouter()
+  const { status } = useSession()
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.replace('/projects')
+    }
+  }, [status])
+
   return (
     <>
       <Head>
