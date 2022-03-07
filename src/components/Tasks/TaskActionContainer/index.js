@@ -7,9 +7,10 @@ import Modal from '../../Modal'
 import SecondaryButton from '../../UI/Buttons/SecondaryButton'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
+import ActivityIndicator from '../../ActivityIndicator'
 
 const TaskActionContainer = ({ task }) => {
-  const { updateTask, deleteTask } = useTasks()
+  const { updateTask, deleteTask, updateTaskLoading, setSelectedTask, selectedTask } = useTasks()
 
   const { id, project, name, state } = task
 
@@ -18,9 +19,10 @@ const TaskActionContainer = ({ task }) => {
   const [newTaskName, setNewTaskName] = useState(name)
 
   const handleChangeTaskState = () => {
+    setSelectedTask(task)
     const newTask = {
       ...task,
-      state: !state,
+      state: !state
     }
 
     updateTask(newTask)
@@ -55,9 +57,7 @@ const TaskActionContainer = ({ task }) => {
   }
 
   const handleAcceptDelete = () => {
-    deleteTask(id, project)
-    console.log(task)
-    setIsEditOpen(false)
+    deleteTask(task, project)
   }
 
   const handleDeclineDelete = () => {
@@ -75,9 +75,17 @@ const TaskActionContainer = ({ task }) => {
           id={id}
           checked={state}
         />
-        <label className={`${styles.checkbox} ${state && styles.activeCheckbox}`} htmlFor={id}>
+        {updateTaskLoading && selectedTask?.id === id && (
+          <ActivityIndicator style={{ marginRight: '0.3rem' }} width={20} colorstyle="dark" />
+        )}
+        <label
+          aria-disabled={updateTaskLoading && selectedTask?.id === id}
+          className={`${styles.checkbox} ${state && styles.activeCheckbox}`}
+          htmlFor={id}
+        >
           {state && <Check className={styles.checkIcon} />}
         </label>
+
         <button onClick={handleEditPetition} className={styles.iconContainer}>
           <Edit className={styles.actionIcon} width={21} height={21} />
         </button>
@@ -89,12 +97,12 @@ const TaskActionContainer = ({ task }) => {
       <Modal isOpen={isEditOpen} title="Edit task" description="Change task name" setIsOpen={setIsEditOpen}>
         <Input
           cleanButtonProps={{
-            onClick: handleClean,
+            onClick: handleClean
           }}
           inputProps={{
             onChange: handleChange,
             value: newTaskName,
-            placeholder: 'Task name',
+            placeholder: 'Task name'
           }}
         />
         <ButtonsContainer justify="end">
