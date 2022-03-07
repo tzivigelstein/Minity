@@ -26,14 +26,21 @@
   border-radius: 0.3rem;
   width: 100%;
   text-align: left;
-  padding: 0.3rem;
-  padding-left: 0.5rem;
-  padding-right: 1.5rem;
+  padding: 0.3rem 1rem 0.3rem 0.3rem;
   transition: 0.15s ease background-color;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menuButton:disabled {
+  filter: grayscale(1);
+  cursor: not-allowed;
+  padding-right: 0.3rem;
 }
 
 .removeMenuButton {
