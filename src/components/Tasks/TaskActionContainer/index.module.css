@@ -19,6 +19,11 @@
   margin: 0 0.5rem;
 }
 
+.checkbox[aria-disabled='true'] {
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
 .inputCheckbox {
   display: none;
   position: absolute;
