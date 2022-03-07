@@ -9,11 +9,14 @@ import Modal from '../../Modal'
 import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 import SecondaryButton from '../../UI/Buttons/SecondaryButton'
 import Navigation from '../../Layout/Navigation/Navigation'
+import ActivityIndicator from '../../ActivityIndicator'
+
+const DEFAULT_PROJECT_NAME = { name: '' }
 
 const Projects = () => {
   const { projects, filteredProjects, createProject } = useProjects()
   const [isOpen, setIsOpen] = useState(false)
-  const [newProject, setNewProject] = useState({ name: '' })
+  const [newProject, setNewProject] = useState(DEFAULT_PROJECT_NAME)
 
   const handleNewProjectModal = () => {
     setIsOpen(true)
@@ -21,6 +24,7 @@ const Projects = () => {
 
   const handleAccept = () => {
     createProject(newProject)
+    setNewProject(DEFAULT_PROJECT_NAME)
     setIsOpen(false)
   }
 
@@ -43,27 +47,31 @@ const Projects = () => {
             </PrimaryButton>
           </div>
         </div>
+        {filteredProjects.length === 0 && projects.length === 0 && (
+          <div className={styles.activityIndicatorContainer}>
+            <ActivityIndicator colorstyle="dark" />
+          </div>
+        )}
         <ul className={styles.list}>
           {filteredProjects.length !== 0
             ? filteredProjects.map(project => <ProjectCard key={project.id} project={project} />)
             : projects.map(project => <ProjectCard key={project.id} project={project} />)}
         </ul>
       </div>
-      {isOpen && (
-        <Modal title="Create project" description="Add project name" setIsOpen={setIsOpen}>
-          <Input
-            inputProps={{
-              onChange: handleChange,
-              value: newProject.name,
-              placeholder: 'Project name',
-            }}
-          />
-          <ButtonsContainer justify="end">
-            <SecondaryButton onClick={handleDecline}>Cancel</SecondaryButton>
-            <PrimaryButton onClick={handleAccept}>Create</PrimaryButton>
-          </ButtonsContainer>
-        </Modal>
-      )}
+      <Modal title="Create project" isOpen={isOpen} description="Add project name" setIsOpen={setIsOpen}>
+        <Input
+          inputProps={{
+            autoFocus: true,
+            onChange: handleChange,
+            value: newProject.name,
+            placeholder: 'Project name'
+          }}
+        />
+        <ButtonsContainer justify="end">
+          <SecondaryButton onClick={handleDecline}>Cancel</SecondaryButton>
+          <PrimaryButton onClick={handleAccept}>Create</PrimaryButton>
+        </ButtonsContainer>
+      </Modal>
     </>
   )
 }
