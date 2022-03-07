@@ -7,23 +7,29 @@ import { BackArrow } from '../../components/Icons'
 import BaseLink from '../../components/UI/Links/BaseLink'
 import TasksList from '../../components/Tasks/TasksList'
 import useTasks from '../../hooks/useTasks'
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
 import useProjects from '../../hooks/useProjects'
+import { useSession } from 'next-auth/react'
 
 const Tasks = () => {
   const { getTasks } = useTasks()
   const { setCurrentProject } = useProjects()
+  const router = useRouter()
+
+  const { status } = useSession()
 
   const {
     query: { id }
   } = useRouter()
 
   useEffect(() => {
-    if (typeof id !== 'undefined') {
+    if (status === 'authenticated' && typeof id !== 'undefined') {
       getTasks(id)
       setCurrentProject(id)
+    } else if (status === 'unauthenticated') {
+      router.replace('/login')
     }
-  }, [id])
+  }, [id, status])
 
   return (
     <>
