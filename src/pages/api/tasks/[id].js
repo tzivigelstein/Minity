@@ -15,6 +15,9 @@ export default async function tasks(req, res) {
     case 'DELETE':
       const deleteTaskHandler = useDatabase(deleteTask)
       return deleteTaskHandler(req, res)
+    case 'PUT':
+      const updateTasksHandler = useDatabase(updateTasks)
+      return updateTasksHandler(req, res)
   }
 }
 
@@ -42,7 +45,7 @@ async function newTask(req, res, session) {
 
     res.json({ ...task.toObject(), id: task._id })
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(500).send('There was an error')
   }
 }
@@ -79,18 +82,21 @@ async function getTasks(req, res, session) {
 
     res.json({ tasks: parsedTasks })
   } catch (error) {
-    // console.log(error)
+    console.error(error)
     res.status(500).send('There was an error')
   }
 }
 
 //Actualizar tareas
 async function updateTasks(req, res, session) {
+  const {
+    user: { id }
+  } = session
   try {
     const { project, name, state } = req.body
-    const { id } = req.params
+    const { id: taskId } = req.query
 
-    let task = await Task.findOne({ _id: id })
+    let task = await Task.findOne({ _id: taskId })
 
     if (!task) {
       return res.status(404).json({ msg: 'Task not found' })
@@ -100,7 +106,7 @@ async function updateTasks(req, res, session) {
     const existentProject = await Project.findOne({ _id: project })
 
     //Verificar si el proyecto le pertenece
-    if (existentProject.owner.toString() !== req.user.id) {
+    if (existentProject.owner.toString() !== id) {
       return res.status(401).json({ msg: 'Not permited' })
     }
 
@@ -111,7 +117,7 @@ async function updateTasks(req, res, session) {
     newTask.state = state
 
     //Guardar tarea
-    task = await Task.findOneAndUpdate({ _id: req.params.id }, newTask, { new: true })
+    task = await Task.findOneAndUpdate({ _id: taskId }, newTask, { new: true })
 
     const taskArray = [task]
     const parsedTask = taskArray.map(({ _id, state, date, name, project }) => ({
@@ -124,7 +130,7 @@ async function updateTasks(req, res, session) {
 
     res.json(parsedTask)
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(500).send('There was an error')
   }
 }
@@ -161,7 +167,7 @@ async function deleteTask(req, res, session) {
     await Task.findOneAndRemove({ _id: taskId })
     res.json({ msg: 'Deleted successfully' })
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(500).send('There was an error')
   }
 }
