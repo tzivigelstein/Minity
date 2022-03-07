@@ -2,6 +2,7 @@ import Project from './models/Project'
 import colors from './helpers/colors'
 import getRandomColor from './helpers/getRandomColor'
 import useDatabase from './config/database'
+import Task from './models/Task'
 
 export default async function projects(req, res) {
   const { method } = req
@@ -32,7 +33,22 @@ async function getProjects(req, res, session) {
       owner
     }))
 
-    return res.json(parsedProjects)
+    const tasksPromises = parsedProjects.map(
+      ({ id, ...rest }) =>
+        new Promise((resolve, reject) => {
+          return Task.find({ project: id })
+            .then(tasks => {
+              resolve({ id, ...rest, tasks: tasks.length })
+            })
+            .catch(error => {
+              reject(error)
+            })
+        })
+    )
+
+    const projectsWithTasksCount = await Promise.all(tasksPromises)
+
+    return res.json(projectsWithTasksCount)
   } catch (error) {
     console.error(error)
     return res.status(500).send('There was an error')
