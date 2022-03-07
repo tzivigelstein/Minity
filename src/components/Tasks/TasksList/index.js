@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './index.module.css'
-import useProjects from '../../../hooks/useProjects'
-import useTasks from '../../../hooks/useTasks'
 import TaskChip from '../TaskChip'
 import TaskChipSkeleton from '../TaskChipSkeleton'
 import Modal from '../../Modal'
@@ -10,19 +8,30 @@ import ButtonsContainer from '../../UI/Buttons/ButtonsContainer'
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import TasksListHeading from '../TasksListHeading'
 import SecondaryButton from '../../UI/Buttons/SecondaryButton'
+import { useRouter } from 'next/dist/client/router'
+import ActivityIndicator from '../../ActivityIndicator'
+import useTasks from '../../../hooks/useTasks'
+import useProjects from '../../../hooks/useProjects'
 
 const TasksList = () => {
-  const { actualProject } = useProjects()
-  const { tasks, loading, addTask } = useTasks()
+  const { getTasksLoading, tasks, addTask, addTaskLoading } = useTasks()
+  const { currentProject } = useProjects()
 
-  const intialNewTaskState = {
+  const router = useRouter()
+  const { id } = router.query
+
+  const INITIAL_NEW_TASK_STATE = {
     name: '',
     state: false,
-    project: actualProject?.id,
+    project: id
   }
 
   const [isOpen, setIsOpen] = useState(false)
-  const [newTask, setNewTask] = useState(intialNewTaskState)
+  const [newTask, setNewTask] = useState(INITIAL_NEW_TASK_STATE)
+
+  useEffect(() => {
+    setIsOpen(addTaskLoading)
+  }, [addTaskLoading])
 
   const handleChange = e => {
     setNewTask({ ...newTask, name: e.target.value })
@@ -33,8 +42,8 @@ const TasksList = () => {
   }
 
   const handleAccept = () => {
-    addTask(newTask)
-    setIsOpen(false)
+    addTask(newTask, currentProject.id)
+    setNewTask(INITIAL_NEW_TASK_STATE)
   }
 
   return (
@@ -43,7 +52,7 @@ const TasksList = () => {
         <TasksListHeading tasks={tasks} setIsOpen={setIsOpen} />
 
         <ul className={styles.tasksList}>
-          {loading ? (
+          {getTasksLoading ? (
             <>
               <TaskChipSkeleton />
               <TaskChipSkeleton />
@@ -58,14 +67,20 @@ const TasksList = () => {
       <Modal isOpen={isOpen} title="Add task" description="Add task name" setIsOpen={setIsOpen}>
         <Input
           inputProps={{
+            autoFocus: true,
             value: newTask.name,
             placeholder: 'Task name',
-            onChange: handleChange,
+            onChange: handleChange
           }}
         />
         <ButtonsContainer>
-          <SecondaryButton onClick={handleDecline}>Cancel</SecondaryButton>
-          <PrimaryButton onClick={handleAccept}>Add</PrimaryButton>
+          {!addTaskLoading && <SecondaryButton onClick={handleDecline}>Cancel</SecondaryButton>}
+          {addTaskLoading && (
+            <PrimaryButton disabled>
+              Creating <ActivityIndicator />
+            </PrimaryButton>
+          )}
+          {!addTaskLoading && <PrimaryButton onClick={handleAccept}>Add</PrimaryButton>}
         </ButtonsContainer>
       </Modal>
     </>
