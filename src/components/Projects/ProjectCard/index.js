@@ -8,7 +8,7 @@ import { MoreVertical } from '../../Icons'
 import ProjectCardMenu from '../ProjectCardMenu'
 
 const ProjectCard = ({ project }) => {
-  const { id, name, colors = {}, date } = project
+  const { id, name, colors = {}, date, tasks } = project
   const parsedDate = new Date(date).toLocaleDateString()
   const { accentColor = '', secondaryColor = '' } = colors
   const { setCurrentProject } = useProjects()
@@ -45,6 +45,9 @@ const ProjectCard = ({ project }) => {
             </div>
             <div className={styles.projectNameContainer}>
               <HeadingC>{name}</HeadingC>
+              <span className={styles.taskCount}>
+                {tasks} {tasks === 1 ? 'task' : 'tasks'}
+              </span>
             </div>
           </div>
           <HelperText>
