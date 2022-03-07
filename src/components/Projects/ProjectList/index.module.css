@@ -13,6 +13,12 @@
   margin: 0 0 0 1rem;
 }
 
+.activityIndicatorContainer {
+  display: grid;
+  place-items: center;
+  min-height: 250px;
+}
+
 .newButton {
   display: flex;
   align-items: center;
@@ -29,14 +35,13 @@
 }
 
 .addIcon {
-  margin-left: 0.3rem;
   stroke: var(--white);
   stroke-width: 0.1875rem;
 }
 
 .list {
   margin: 0;
-  padding: 1rem;
+  padding: 1rem 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   grid-template-rows: auto;
