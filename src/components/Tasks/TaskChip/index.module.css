@@ -1,20 +1,19 @@
 .taskChipContainer {
   width: 100%;
   border-radius: 0.5rem;
-  box-shadow: var(--shadow-light);
+  border: 1px solid #ccc;
   background-color: var(--white);
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  border: none;
   outline: none;
-  transition: 0.15s ease-in-out box-shadow, 0.15s ease-in-out background-color;
+  transition: border-color 200ms ease-out;
 }
 
 @media (hover) {
   .taskChipContainer:hover {
-    box-shadow: 0 0.188rem 1.25rem 0.125rem rgb(64 62 67 / 12%);
+    border-color: #222;
   }
 }
 
