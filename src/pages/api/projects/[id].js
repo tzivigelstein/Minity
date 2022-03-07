@@ -35,7 +35,7 @@ async function deleteProject(req, res, session) {
     await Project.findOneAndRemove({ _id: projectId })
     res.json({ msg: 'Deleted' })
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(500).send('There was an error')
   }
 }
@@ -65,7 +65,7 @@ async function updateProject(req, res, session) {
     project = await Project.findByIdAndUpdate({ _id: req.params.id }, { $set: newProject }, { new: true })
     res.json({ project })
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(500).send('There was an error')
   }
 }
