@@ -4,12 +4,13 @@ import TaskActionsContainer from '../TaskActionContainer'
 import useTasks from '../../../hooks/useTasks'
 
 const TaskChip = ({ task, tasks, setTasks }) => {
-  const { updateTask } = useTasks()
+  const { updateTask, setSelectedTask } = useTasks()
   const { name } = task
 
   const { state } = task
 
   const handleChangeTaskState = () => {
+    setSelectedTask(task)
     const newTask = {
       ...task,
       state: !state
