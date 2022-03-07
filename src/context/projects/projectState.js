@@ -10,10 +10,13 @@ import {
   SET_FILTERED_PROJECTS,
   ADD_PROJECTS,
   FORM_VALIDATION,
-  ACTUAL_PROJECT,
-  ACTUAL_PROJECT_UPDATE,
-  DELETE_PROJECT,
-  PROJECT_ERROR,
+  CURRENT_PROJECT,
+  CURRENT_PROJECT_UPDATE,
+  DELETE_PROJECT_SUCCESSFUL,
+  DELETE_PROJECT_ERROR,
+  GET_PROJECTS_ERROR,
+  ADD_PROJECTS_ERROR,
+  REMOVE_PROJECT_LOADING
 } from './types'
 import { alertTypes } from '../../types'
 
@@ -22,9 +25,10 @@ const initialState = {
   filteredProjects: [],
   form: false,
   errorform: false,
-  actualProject: null,
+  currentProject: null,
   msg: null,
   loadingProjects: false,
+  removeProjectLoading: false
 }
 
 const ProjectState = props => {
@@ -32,95 +36,109 @@ const ProjectState = props => {
 
   const showForm = () => {
     dispatch({
-      type: FORM_PROJECT,
+      type: FORM_PROJECT
     })
   }
 
   //Get all projects
   const getProjects = async () => {
-    try {
-      dispatch({
-        type: GET_PROJECTS,
+    dispatch({
+      type: GET_PROJECTS
+    })
+
+    fetch('/api/projects')
+      .then(res => res.json())
+      .then(data =>
+        dispatch({
+          type: GET_PROJECTS_SUCCESS,
+          payload: data
+        })
+      )
+      .catch(error => {
+        const alert = {
+          msg: "Couldn't get projects",
+          category: alertTypes.alertError
+        }
+        dispatch({
+          type: GET_PROJECTS_ERROR,
+          payload: alert
+        })
+
+        console.error(error)
       })
-      const query = await client.get('/api/projects')
-      dispatch({
-        type: GET_PROJECTS_SUCCESS,
-        payload: query.data,
-      })
-    } catch (error) {
-      const alert = {
-        msg: 'There was an error',
-        category: alertTypes.alertError,
-      }
-      dispatch({
-        type: PROJECT_ERROR,
-        payload: alert,
-      })
-    }
   }
 
   //Search projects
   const setFilteredProjects = projects => {
     dispatch({
       type: SET_FILTERED_PROJECTS,
-      payload: projects,
+      payload: projects
     })
   }
 
   //Add new project
   const createProject = async project => {
-    try {
-      const query = await client.post('/api/projects', project)
-      dispatch({
-        type: ADD_PROJECTS,
-        payload: query.data,
+    fetch('/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(project)
+    })
+      .then(res => res.json())
+      .then(data =>
+        dispatch({
+          type: ADD_PROJECTS,
+          payload: data
+        })
+      )
+      .catch(error => {
+        const alert = {
+          msg: 'There was an error',
+          category: alertTypes.alertError
+        }
+        dispatch({
+          type: ADD_PROJECTS_ERROR,
+          payload: alert
+        })
+
+        console.error(error)
       })
-    } catch (error) {
-      const alert = {
-        msg: 'There was an error',
-        category: alertTypes.alertError,
-      }
-      dispatch({
-        type: PROJECT_ERROR,
-        payload: alert,
-      })
-    }
   }
 
   //Show error on form validation
   const showError = () => {
     dispatch({
-      type: FORM_VALIDATION,
+      type: FORM_VALIDATION
     })
   }
 
   //Select project wich was clicked
-  const setActualProject = projectId => {
+  const setCurrentProject = projectId => {
     dispatch({
-      type: ACTUAL_PROJECT,
-    })
-    dispatch({
-      type: ACTUAL_PROJECT_UPDATE,
-      payload: projectId,
+      type: CURRENT_PROJECT_UPDATE,
+      payload: projectId
     })
   }
 
   //Delete project
   const removeProject = async projectId => {
+    dispatch({
+      type: REMOVE_PROJECT_LOADING
+    })
+
     try {
       await client.delete(`/api/projects/${projectId}`)
       dispatch({
-        type: DELETE_PROJECT,
-        payload: projectId,
+        type: DELETE_PROJECT_SUCCESSFUL,
+        payload: projectId
       })
     } catch (error) {
       const alert = {
         msg: 'There was an error',
-        category: alertTypes.alertError,
+        category: alertTypes.alertError
       }
       dispatch({
-        type: PROJECT_ERROR,
-        payload: alert,
+        type: DELETE_PROJECT_ERROR,
+        payload: alert
       })
     }
   }
@@ -132,16 +150,17 @@ const ProjectState = props => {
         filteredProjects: state.filteredProjects,
         form: state.form,
         errorform: state.errorform,
-        actualProject: state.actualProject,
+        currentProject: state.currentProject,
         msg: state.msg,
         loadingProjects: state.loadingProjects,
+        removeProjectLoading: state.removeProjectLoading,
         showForm,
         getProjects,
         setFilteredProjects,
         createProject,
         showError,
-        setActualProject,
-        removeProject,
+        setCurrentProject,
+        removeProject
       }}
     >
       {props.children}
