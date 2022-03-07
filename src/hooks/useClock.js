@@ -5,7 +5,7 @@ const updateTime = 30 * 1000
 const useTime = () => {
   const [time, setTime] = useState({
     time: '',
-    humanTime: '',
+    humanTime: ''
   })
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const useTime = () => {
   function getTime() {
     const timeParseOptions = {
       hour: 'numeric',
-      minute: 'numeric',
+      minute: 'numeric'
     }
 
     const millis = Date.now()
