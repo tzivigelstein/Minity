@@ -14,7 +14,7 @@ const Welcome = () => {
   return (
     <>
       <Head>
-        <title>Welcome</title>
+        <title>Welcome Minity</title>
       </Head>
       <AuthWrapper>
         <AuthContainer>
