@@ -1,9 +1,10 @@
 import { CSSTransition } from 'react-transition-group'
 import styles from './index.module.css'
 import useProjects from '../../../hooks/useProjects'
+import ActivityIndicator from '../../ActivityIndicator'
 
 const ProjectCardMenu = ({ isActive, projectId }) => {
-  const { removeProject } = useProjects()
+  const { removeProject, removeProjectLoading } = useProjects()
 
   const handleRemove = e => {
     e.preventDefault()
@@ -21,21 +22,26 @@ const ProjectCardMenu = ({ isActive, projectId }) => {
       classNames={{
         enter: styles.menuListEnter,
         enterActive: styles.menuListEnterActive,
-        exitActive: styles.menuListExitActive,
+        exitActive: styles.menuListExitActive
       }}
       in={isActive}
       timeout={100}
       unmountOnExit
     >
       <ul className={styles.menuList}>
-        <li className={styles.menuItem}>
-          <button className={styles.menuButton} onClick={handleEdit}>
+        {/*    <li className={styles.menuItem}>
+          <button disabled={removeProjectLoading} className={styles.menuButton} onClick={handleEdit}>
             Edit
           </button>
-        </li>
+        </li> */}
         <li className={styles.menuItem}>
-          <button className={`${styles.menuButton} ${styles.removeMenuButton}`} onClick={handleRemove}>
-            Remove
+          <button
+            disabled={removeProjectLoading}
+            className={`${styles.menuButton} ${styles.removeMenuButton}`}
+            onClick={handleRemove}
+          >
+            {removeProjectLoading ? 'Removing' : 'Remove'}
+            {removeProjectLoading && <ActivityIndicator width={16} height={16} colorstyle="dark" />}
           </button>
         </li>
       </ul>
