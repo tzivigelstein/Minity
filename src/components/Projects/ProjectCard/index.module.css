@@ -5,9 +5,9 @@
   outline: none;
   cursor: pointer;
   align-items: center;
-  transition: 0.2s ease transform, 0.3s ease box-shadow;
+  transition: border-color 200ms ease-out;
   border-radius: 1rem;
-  box-shadow: var(--shadow-light);
+  border: 1px solid #ccc;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -79,7 +79,7 @@
 
 @media (hover) {
   .projectChipContainer:hover {
-    box-shadow: var(--shadow);
+    border-color: #222;
   }
 
   .menuButton:hover {
