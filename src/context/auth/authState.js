@@ -75,7 +75,7 @@ const AuthState = props => {
         payload: user,
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
       dispatch({
         type: ERROR_AUTH,
       })
@@ -94,7 +94,7 @@ const AuthState = props => {
       })
       setToken(query.data.token)
     } catch (error) {
-      console.log(error)
+      console.error(error)
       const msg = error.response.data.msg
       const alerta = {
         msg,
