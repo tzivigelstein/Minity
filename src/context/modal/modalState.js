@@ -1,10 +1,10 @@
-import React, { useReducer } from 'react'
+import { useReducer } from 'react'
 import ModalContext from './modalContext'
 import modalReducer from './modalReducer'
 import { SET_IS_OPEN } from './types'
 
 const initialState = {
-  isOpen: false,
+  isOpen: false
 }
 
 const ModalState = ({ children }) => {
@@ -13,7 +13,7 @@ const ModalState = ({ children }) => {
   const setIsOpen = state => {
     dispatch({
       type: SET_IS_OPEN,
-      payload: state,
+      payload: state
     })
   }
 
@@ -21,7 +21,7 @@ const ModalState = ({ children }) => {
     <ModalContext.Provider
       value={{
         isOpen: state.isOpen,
-        setIsOpen,
+        setIsOpen
       }}
     >
       {children}

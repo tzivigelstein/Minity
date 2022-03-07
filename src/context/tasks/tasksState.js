@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import { useReducer } from 'react'
 import TasksContext from './tasksContext'
 import tasksReducer from './tasksReducer'
 import client from '../../config/axios'

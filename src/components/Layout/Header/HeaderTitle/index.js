@@ -1,6 +1,4 @@
 import { useSession } from 'next-auth/react'
-import React from 'react'
-import useAuth from '../../../../hooks/useAuth'
 import useClock from '../../../../hooks/useClock'
 import styles from './index.module.css'
 

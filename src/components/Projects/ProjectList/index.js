@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './index.module.css'
 import useProjects from '../../../hooks/useProjects'
 import ProjectCard from '../ProjectCard'

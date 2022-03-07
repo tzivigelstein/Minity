@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import { useReducer } from 'react'
 import AuthContext from './authContext'
 import authReducer from './authReducer'
 import client from '../../config/axios'
@@ -14,7 +14,7 @@ import {
   LOG_OUT,
   VISUAL_LOADING,
   LOADING,
-  alertTypes,
+  alertTypes
 } from '../../types'
 
 const AuthState = props => {
@@ -24,7 +24,7 @@ const AuthState = props => {
     isAuth: false,
     user: null,
     msg: null,
-    loading: false,
+    loading: false
   }
 
   const [state, dispatch] = useReducer(authReducer, initialState)
@@ -33,12 +33,12 @@ const AuthState = props => {
   const signup = async info => {
     try {
       dispatch({
-        type: VISUAL_LOADING,
+        type: VISUAL_LOADING
       })
       const query = await client.post('/api/users', info)
       dispatch({
         type: SUCCESS_REGISTER,
-        payload: query.data,
+        payload: query.data
       })
 
       setToken(query.data)
@@ -47,11 +47,11 @@ const AuthState = props => {
     } catch (err) {
       const alerta = {
         msg: err.response.data.msg,
-        category: alertTypes.alertError,
+        category: alertTypes.alertError
       }
       dispatch({
         type: ERROR_REGISTER,
-        payload: alerta,
+        payload: alerta
       })
     }
   }
@@ -63,7 +63,7 @@ const AuthState = props => {
     }
 
     dispatch({
-      type: LOADING,
+      type: LOADING
     })
 
     try {
@@ -72,12 +72,12 @@ const AuthState = props => {
 
       dispatch({
         type: AUTH_USER,
-        payload: user,
+        payload: user
       })
     } catch (error) {
       console.error(error)
       dispatch({
-        type: ERROR_AUTH,
+        type: ERROR_AUTH
       })
     }
   }
@@ -85,12 +85,12 @@ const AuthState = props => {
   const login = async data => {
     try {
       dispatch({
-        type: VISUAL_LOADING,
+        type: VISUAL_LOADING
       })
       const query = await client.post('/api/auth', data)
       dispatch({
         type: SUCCESS_LOGIN,
-        payload: query.data,
+        payload: query.data
       })
       setToken(query.data.token)
     } catch (error) {
@@ -98,18 +98,18 @@ const AuthState = props => {
       const msg = error.response.data.msg
       const alerta = {
         msg,
-        category: alertTypes.alertError,
+        category: alertTypes.alertError
       }
       dispatch({
         type: ERROR_LOGIN,
-        payload: alerta,
+        payload: alerta
       })
     }
   }
 
   const logout = () => {
     dispatch({
-      type: LOG_OUT,
+      type: LOG_OUT
     })
   }
 
@@ -124,7 +124,7 @@ const AuthState = props => {
         signup,
         login,
         authUser,
-        logout,
+        logout
       }}
     >
       {props.children}

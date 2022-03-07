@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './navigation.module.css'
 import { Search, Times } from '../../Icons'
 import useProjects from '../../../hooks/useProjects'
@@ -27,7 +27,7 @@ const Navigation = () => {
         placeholder: 'Search',
         value: searchTerm,
         type: 'text',
-        onChange: handleSearch,
+        onChange: handleSearch
       }}
       actionButton={
         searchTerm.length !== 0 && (

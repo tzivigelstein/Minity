@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './index.module.css'
 import useTasks from '../../../hooks/useTasks'
 import { Bin, Edit, Check } from '../../Icons'
