@@ -1,9 +1,9 @@
-import React from 'react'
+import { useMemo } from 'react'
 import styles from './index.module.css'
 import TaskActionsContainer from '../TaskActionContainer'
 import useTasks from '../../../hooks/useTasks'
 
-const TaskChip = ({ task }) => {
+const TaskChip = ({ task, tasks, setTasks }) => {
   const { updateTask } = useTasks()
   const { name } = task
 
@@ -12,18 +12,28 @@ const TaskChip = ({ task }) => {
   const handleChangeTaskState = () => {
     const newTask = {
       ...task,
-      state: !state,
+      state: !state
     }
 
     updateTask(newTask)
   }
 
+  const date = useMemo(() => {
+    const date = new Date(task.date)
+    const time = date.toLocaleTimeString([], {
+      hour: 'numeric',
+      minute: '2-digit'
+    })
+
+    return `${time} ${date.toLocaleDateString()}`
+  }, [task.date])
+
   return (
-    <div className={styles.taskChipContainer}>
+    <div title={date} className={styles.taskChipContainer}>
       <button onClick={handleChangeTaskState} className={styles.taskNameButton}>
         {name}
       </button>
-      <TaskActionsContainer task={task} />
+      <TaskActionsContainer task={task} tasks={tasks} setTasks={setTasks} />
     </div>
   )
 }
