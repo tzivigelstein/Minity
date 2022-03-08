@@ -9,7 +9,7 @@ import HeadingC from '../../components/UI/Text/HeadingC'
 import Alert from '../../components/Alert'
 import AuthWrapper from '../../components/AuthWrapper'
 import AuthContainer from '../../components/AuthContainer'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
 import GithubSignInButton from '../../components/GithubSignInButton'
 
 const Login = () => {
