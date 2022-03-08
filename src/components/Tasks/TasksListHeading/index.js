@@ -5,9 +5,15 @@ import useProjects from '../../../hooks/useProjects'
 import useTasks from '../../../hooks/useTasks'
 import ActivityIndicator from '../../ActivityIndicator'
 
+export const DEFAULT_TASKS_ORDER = {
+  LATEST: 'LATEST',
+  DONE: 'DONE',
+  TODO: 'TODO'
+}
+
 const TasksListHeading = ({ tasks, setIsOpen }) => {
   const { currentProject } = useProjects()
-  const { getTasksLoading } = useTasks()
+  const { getTasksLoading, setTasksListOrder } = useTasks()
 
   const { colors = {} } = currentProject || {}
   const { accentColor = '#1da0f2', secondaryColor = 'lightgreen' } = colors
@@ -22,8 +28,26 @@ const TasksListHeading = ({ tasks, setIsOpen }) => {
 
   const numberOfTasks = `${tasks && tasks.length} ${tasks && tasks.length === 1 ? 'task' : 'tasks'}`
 
+  function handleSelectChange(e) {
+    setTasksListOrder({ order: e.target.value })
+  }
+
   return (
     <div className={styles.heading}>
+      <div className={styles.selectContainer}>
+        <select
+          onChange={handleSelectChange}
+          className={styles.select}
+          defaultValue={DEFAULT_TASKS_ORDER.ALL}
+          name=""
+          id=""
+        >
+          <option value={DEFAULT_TASKS_ORDER.LATEST}>Latest</option>
+          <option value={DEFAULT_TASKS_ORDER.DONE}>Done</option>
+          <option value={DEFAULT_TASKS_ORDER.TODO}>To do</option>
+        </select>
+      </div>
+
       <span style={{ display: 'flex', height: '1rem' }}>
         {getTasksLoading && <ActivityIndicator colorstyle="dark" />}
         {!getTasksLoading && numberOfTasks}

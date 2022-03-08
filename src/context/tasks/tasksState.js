@@ -157,6 +157,15 @@ const TaskState = props => {
     }
   }
 
+  function setTasksListOrder({ order }) {
+    dispatch({
+      type: 'SET_TASKS_LIST_ORDER',
+      payload: order
+    })
+
+    console.log(state.tasks, order)
+  }
+
   return (
     <TasksContext.Provider
       value={{
@@ -167,6 +176,7 @@ const TaskState = props => {
         setTasksLoading: state.setTasksLoading,
         addTaskLoading: state.addTaskLoading,
         updateTaskLoading: state.updateTaskLoading,
+        setTasksListOrder,
         setTasks,
         getTasks,
         addTask,

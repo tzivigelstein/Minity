@@ -12,8 +12,15 @@ import {
   ADD_TASK_FINALLY,
   ADD_TASKS_LOADING,
   DELETE_TASK_ERROR,
-  UPDATE_TASK_LOADING
+  UPDATE_TASK_LOADING,
+  SET_TASKS_LIST_ORDER
 } from './types'
+
+const DEFAULT_TASKS_ORDER = {
+  LATEST: (a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1),
+  DONE: a => (a.state ? -1 : 1),
+  TODO: a => (a.state ? 1 : -1)
+}
 
 export default function tasksReducer(state, { type, payload }) {
   const TASKS_REDUCERS = {
@@ -92,6 +99,11 @@ export default function tasksReducer(state, { type, payload }) {
     [ADD_TASK_FINALLY]: {
       ...state,
       addTaskLoading: false
+    },
+
+    [SET_TASKS_LIST_ORDER]: {
+      ...state,
+      tasks: state.tasks.sort(DEFAULT_TASKS_ORDER[payload])
     }
   }
 

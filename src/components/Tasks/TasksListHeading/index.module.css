@@ -27,6 +27,19 @@
   height: 1.3125rem;
 }
 
+.selectContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.select {
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+}
+
 @media (hover) {
   .addButton:hover {
     filter: brightness(1.1);
